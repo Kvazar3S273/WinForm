@@ -1,0 +1,15 @@
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\bin\Debug\netcoreapp3.1\Hospital.WindowsForms.exe
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\bin\Debug\netcoreapp3.1\Hospital.WindowsForms.deps.json
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\bin\Debug\netcoreapp3.1\Hospital.WindowsForms.runtimeconfig.json
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\bin\Debug\netcoreapp3.1\Hospital.WindowsForms.runtimeconfig.dev.json
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\bin\Debug\netcoreapp3.1\Hospital.WindowsForms.dll
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\bin\Debug\netcoreapp3.1\Hospital.WindowsForms.pdb
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.csprojAssemblyReference.cache
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.FormLogin.resources
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.csproj.GenerateResource.cache
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.AssemblyInfoInputs.cache
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.AssemblyInfo.cs
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.csproj.CoreCompileInputs.cache
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.dll
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.pdb
+D:\ШАГ\0 Repository\Temp\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.genruntimeconfig.cache
