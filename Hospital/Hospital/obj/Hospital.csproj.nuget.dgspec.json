@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ШАГ\\0 Repository\\Temp\\Hospital\\Hospital\\Hospital.csproj": {}
+    "D:\\ШАГ\\0 Repository\\WinForm\\Hospital\\Hospital\\Hospital.csproj": {}
   },
   "projects": {
-    "D:\\ШАГ\\0 Repository\\Temp\\Hospital\\Hospital\\Hospital.csproj": {
+    "D:\\ШАГ\\0 Repository\\WinForm\\Hospital\\Hospital\\Hospital.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ШАГ\\0 Repository\\Temp\\Hospital\\Hospital\\Hospital.csproj",
+        "projectUniqueName": "D:\\ШАГ\\0 Repository\\WinForm\\Hospital\\Hospital\\Hospital.csproj",
         "projectName": "Hospital",
-        "projectPath": "D:\\ШАГ\\0 Repository\\Temp\\Hospital\\Hospital\\Hospital.csproj",
+        "projectPath": "D:\\ШАГ\\0 Repository\\WinForm\\Hospital\\Hospital\\Hospital.csproj",
         "packagesPath": "C:\\Users\\Ba2H\\.nuget\\packages\\",
-        "outputPath": "D:\\ШАГ\\0 Repository\\Temp\\Hospital\\Hospital\\obj\\",
+        "outputPath": "D:\\ШАГ\\0 Repository\\WinForm\\Hospital\\Hospital\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ba2H\\AppData\\Roaming\\NuGet\\NuGet.Config",

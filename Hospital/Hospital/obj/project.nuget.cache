@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jykMsBct2YA5KMFOUjyYaJDr8U8yymmBsCA8e8EC0FhFQLtJgI+oM/Lmn5oyb4fXTDpjKb17L9XFWtTjSpMoWg==",
+  "dgSpecHash": "7GX2OnC2nNZZiB4602bpFi1yae4NregRCNNiHk95KAIuuM504YzxLzzdzdiI9rCThERzrW0yLrAs8eJ/MIxsTA==",
   "success": true,
-  "projectFilePath": "D:\\ШАГ\\0 Repository\\Temp\\Hospital\\Hospital\\Hospital.csproj",
+  "projectFilePath": "D:\\ШАГ\\0 Repository\\WinForm\\Hospital\\Hospital\\Hospital.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ba2H\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Ba2H\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
