@@ -6,13 +6,20 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Hospital;
 
 namespace Hospital.WindowsForms
 {
     public partial class BazaForm : Form
     {
+        bool isAuth = false;
         public BazaForm()
         {
+            FormLogin login_dlg = new FormLogin();
+            if (login_dlg.ShowDialog()==DialogResult.OK)
+            {
+                isAuth = true;
+            }
             InitializeComponent();
         }
 
@@ -23,18 +30,25 @@ namespace Hospital.WindowsForms
 
         private void BazaForm_Load(object sender, EventArgs e)
         {
-            MyContext context = new MyContext();
-            foreach (var item in context.Doctors.Include(x=>x.Department))
+            if (!isAuth)
             {
-                object[] row =
+                Application.Exit();
+            }
+            else
+            {
+                MyContext context = new MyContext();
+                foreach (var item in context.Doctors.Include(x=>x.Department))
                 {
-                    $"{item.LastName} {item.FirstName}",
-                    $"{item.Login}",
-                    $"{item.Password}",
-                    $"{item.Department.Name}",
-                    $"{item.Stage}"
-                };
-                dataGridView1.Rows.Add(row);
+                    object[] row =
+                    {
+                        $"{item.LastName} {item.FirstName}",
+                        $"{item.Login}",
+                        $"{item.Password}",
+                        $"{item.Department.Name}",
+                        $"{item.Stage}"
+                    };
+                    dataGridView1.Rows.Add(row);
+                }
             }
         }
     }

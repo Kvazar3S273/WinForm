@@ -18,7 +18,6 @@ namespace Hospital.WindowsForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new BazaForm());
-            //Application.Run(new BazaForm());
             //Application.Run(new FormLogin());
         }
     }

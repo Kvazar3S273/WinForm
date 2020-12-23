@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospital.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace Hospital.WindowsForms
 {
     public partial class FormLogin : Form
     {
+        private readonly MyContext context;
         public FormLogin()
         {
+            context = new MyContext();
             InitializeComponent();
+            DbSeeder.SeedAll(context);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -26,9 +30,15 @@ namespace Hospital.WindowsForms
         {
             string login = textBoxLogin.Text;
             string password = textBoxPassword.Text;
-            if (login == "odmen" && password == "12346")
+            var doctor = context.Doctors.FirstOrDefault(x => x.Login == login);
+
+            if (doctor!=null)
             {
-                MessageBox.Show($"Привіт, {login} {password}!");
+                var passwordHash = doctor.Password;
+                if(PasswordManager.Verify(password,passwordHash))
+                    this.DialogResult = DialogResult.OK;
+                else
+                    MessageBox.Show("Try again");
             }
             else
                 MessageBox.Show("Try again");

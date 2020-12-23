@@ -28,5 +28,8 @@ namespace Hospital
 
         public int Stage { get; set; }
         public virtual Department Department { get; set; }
+
+        //public virtual ICollection<Department> Department { get; set; }
+
     }
 }
