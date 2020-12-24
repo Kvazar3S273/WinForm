@@ -14,12 +14,15 @@ namespace Hospital.WindowsForms
     {
         bool isAuth = false;
         private Doctor DoctorAuth { get; set; }
+        private Department DepartmentAuth { get; set; }
+
         public BazaForm()
         {
             FormLogin login_dlg = new FormLogin();
             if (login_dlg.ShowDialog()==DialogResult.OK)
             {
                 DoctorAuth = login_dlg.DoctorAuth;
+                DepartmentAuth = login_dlg.DepartmentAuth;
                 isAuth = true;
             }
             InitializeComponent();

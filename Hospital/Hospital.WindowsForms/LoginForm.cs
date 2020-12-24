@@ -15,6 +15,7 @@ namespace Hospital.WindowsForms
     {
         private readonly MyContext context;
         public Doctor DoctorAuth { get; set; }
+        public Department DepartmentAuth { get; set; }
         public FormLogin()
         {
             context = new MyContext();
@@ -31,14 +32,16 @@ namespace Hospital.WindowsForms
         {
             string login = textBoxLogin.Text;
             string password = textBoxPassword.Text;
-            var doctor = context.Doctors.FirstOrDefault(x => x.Login == login);
 
+            var doctor = context.Doctors.FirstOrDefault(x => x.Login == login);
+            var department = context.Departments.FirstOrDefault(c => c.Id == doctor.DepartmentId);
             if (doctor!=null)
             {
                 var passwordHash = doctor.Password;
                 if(PasswordManager.Verify(password,passwordHash))
                 {
                     DoctorAuth = doctor;
+                    DepartmentAuth = department;
                     this.DialogResult = DialogResult.OK;
                 }
                 else
