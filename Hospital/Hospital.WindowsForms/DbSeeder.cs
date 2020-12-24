@@ -44,6 +44,7 @@ namespace Hospital.WindowsForms
                        Login="sarah",
                        Password=PasswordManager.HashPassword("12346"),
                        Stage=14,
+                       Image="1.jpg",
                        Department=context.Departments.FirstOrDefault(x=>x.Name== "Педіатрія")
                     });
                 context.Doctors.Add(
@@ -54,6 +55,7 @@ namespace Hospital.WindowsForms
                         Login = "bond",
                         Password = PasswordManager.HashPassword("007"),
                         Stage = 15,
+                        Image = "2.jpg",
                         Department = context.Departments.FirstOrDefault(x => x.Name == "Урологія")
 
                     });
@@ -65,6 +67,7 @@ namespace Hospital.WindowsForms
                         Login = "sheva",
                         Password = PasswordManager.HashPassword("12346"),
                         Stage = 16,
+                        Image = "3.jpg",
                         Department = context.Departments.FirstOrDefault(x => x.Name == "Педіатрія")
 
                     });

@@ -14,6 +14,7 @@ namespace Hospital.WindowsForms
     public partial class FormLogin : Form
     {
         private readonly MyContext context;
+        public Doctor DoctorAuth { get; set; }
         public FormLogin()
         {
             context = new MyContext();
@@ -36,7 +37,10 @@ namespace Hospital.WindowsForms
             {
                 var passwordHash = doctor.Password;
                 if(PasswordManager.Verify(password,passwordHash))
+                {
+                    DoctorAuth = doctor;
                     this.DialogResult = DialogResult.OK;
+                }
                 else
                     MessageBox.Show("Try again");
             }

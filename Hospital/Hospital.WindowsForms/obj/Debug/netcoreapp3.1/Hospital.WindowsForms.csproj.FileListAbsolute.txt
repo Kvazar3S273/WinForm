@@ -85,3 +85,6 @@ D:\ШАГ\0 Repository\WinForm\Hospital\Hospital.WindowsForms\obj\Debug\netcorea
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.pdb
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital.WindowsForms\obj\Debug\netcoreapp3.1\Hospital.WindowsForms.genruntimeconfig.cache
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital.WindowsForms\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
+D:\ШАГ\0 Repository\WinForm\Hospital\Hospital.WindowsForms\bin\Debug\netcoreapp3.1\images\1.jpg
+D:\ШАГ\0 Repository\WinForm\Hospital\Hospital.WindowsForms\bin\Debug\netcoreapp3.1\images\2.jpg
+D:\ШАГ\0 Repository\WinForm\Hospital\Hospital.WindowsForms\bin\Debug\netcoreapp3.1\images\3.jpg

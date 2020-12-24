@@ -25,7 +25,9 @@ namespace Hospital
 
         [ForeignKey("Department")]
         public int DepartmentId { get; set; }
-
+        
+        [StringLength(250)]
+        public string Image { get; set; }
         public int Stage { get; set; }
         public virtual Department Department { get; set; }
 

@@ -13,11 +13,13 @@ namespace Hospital.WindowsForms
     public partial class BazaForm : Form
     {
         bool isAuth = false;
+        private Doctor DoctorAuth { get; set; }
         public BazaForm()
         {
             FormLogin login_dlg = new FormLogin();
             if (login_dlg.ShowDialog()==DialogResult.OK)
             {
+                DoctorAuth = login_dlg.DoctorAuth;
                 isAuth = true;
             }
             InitializeComponent();
@@ -49,6 +51,7 @@ namespace Hospital.WindowsForms
                     };
                     dataGridView1.Rows.Add(row);
                 }
+                pbImage.Image = Image.FromFile($"images/{DoctorAuth.Image}");
             }
         }
     }

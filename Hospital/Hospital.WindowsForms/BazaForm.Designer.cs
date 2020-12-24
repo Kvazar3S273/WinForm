@@ -36,14 +36,16 @@
             this.ColStage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColPhoto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pbImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(624, 363);
+            this.button1.Location = new System.Drawing.Point(754, 259);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 56);
+            this.button1.Size = new System.Drawing.Size(139, 54);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -81,12 +83,6 @@
             this.ColPhoto.HeaderText = "Фото";
             this.ColPhoto.Name = "ColPhoto";
             // 
-            // BazaForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -97,17 +93,34 @@
             this.ColDepartment,
             this.ColStage,
             this.ColPhoto});
-            this.dataGridView1.Location = new System.Drawing.Point(57, 51);
+            this.dataGridView1.Location = new System.Drawing.Point(206, 27);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(687, 200);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Text = "dataGridView1";
+            // 
+            // pbImage
+            // 
+            this.pbImage.Location = new System.Drawing.Point(31, 27);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(140, 140);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImage.TabIndex = 2;
+            this.pbImage.TabStop = false;
+            // 
+            // BazaForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(917, 341);
+            this.Controls.Add(this.pbImage);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
             this.Name = "BazaForm";
             this.Text = "BazaForm";
             this.Load += new System.EventHandler(this.BazaForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -122,5 +135,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDepartment;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColStage;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColPhoto;
+        private System.Windows.Forms.PictureBox pbImage;
     }
 }

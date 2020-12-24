@@ -72,3 +72,4 @@ D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospita
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.pdb
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.genruntimeconfig.cache
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
+D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.csprojAssemblyReference.cache
