@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospital;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,12 +22,21 @@ namespace NEWHospital.WindowsForms
             InitializeComponent();
         }
 
+        public Doctor DoctorAuth { get; internal set; }
+        public Department DepartmentAuth { get; internal set; }
+
         private void MenuForm_Load(object sender, EventArgs e)
         {
             if(!isAuth)
             {
                 Application.Exit();
             }
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            ProfileForm pf = new ProfileForm();
+            pf.ShowDialog();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace NEWHospital.WindowsForms
         {
             string login = txtLogin.Text;
             string password = txtPassword.Text;
-            var doctor = context.Doctors.FirstOrDefault(x => x.Login == login && x.Password == password);
+            var doctor = context.Doctors.FirstOrDefault(x => x.Login == login);
             if (doctor != null)
             {
                 var passwordHash = doctor.Password;

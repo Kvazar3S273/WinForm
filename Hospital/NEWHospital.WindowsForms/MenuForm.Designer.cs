@@ -54,6 +54,7 @@
             this.btnProfile.TabIndex = 0;
             this.btnProfile.Text = "Переглянути свій профіль";
             this.btnProfile.UseVisualStyleBackColor = true;
+            this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
             // 
             // btnShowAll
             // 
