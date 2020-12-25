@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hospital;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +15,28 @@ namespace NEWHospital.WindowsForms
         public BazaForm()
         {
             InitializeComponent();
+        }
+
+        private void BazaForm_Load(object sender, EventArgs e)
+        {
+            MyContext context = new MyContext();
+            foreach (var item in context.Doctors.Include(x=>x.Department))
+            {
+                object[] row =
+                {
+                    $"{item.LastName}",
+                    $"{item.FirstName}",
+                    $"{item.Stage}",
+                    $"{item.Department.Name}",
+                    $"{item.Login}"
+                };
+                dataGridView1.Rows.Add(row);
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

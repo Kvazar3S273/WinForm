@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hospital;
+using Hospital.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +14,32 @@ namespace NEWHospital.WindowsForms
 {
     public partial class LoginForm : Form
     {
+        private readonly MyContext context;
+
         public LoginForm()
         {
+            context = new MyContext();
             InitializeComponent();
+            DbSeeder.SeedAll(context);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Hello");
+            string login = txtLogin.Text;
+            string password = txtPassword.Text;
+            var doctor = context.Doctors.FirstOrDefault(x => x.Login == login && x.Password == password);
+            if (doctor != null)
+            {
+                var passwordHash = doctor.Password;
+                if(PasswordManager.Verify(password,passwordHash))
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                    MessageBox.Show("Помилка при введенні логіну або паролю");
+            }
+            else
+                MessageBox.Show("Помилка при введенні логіну або паролю");
         }
     }
 }

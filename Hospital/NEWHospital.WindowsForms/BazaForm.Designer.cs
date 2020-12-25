@@ -75,12 +75,7 @@
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Назад в меню";
             this.btnBack.UseVisualStyleBackColor = true;
-            // 
-            // BazaForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 308);
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // dataGridView1
             // 
@@ -96,11 +91,18 @@
             this.dataGridView1.Size = new System.Drawing.Size(617, 202);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Text = "dataGridView1";
+            // 
+            // BazaForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(657, 308);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dataGridView1);
             this.Name = "BazaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BazaForm";
+            this.Load += new System.EventHandler(this.BazaForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
