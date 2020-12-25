@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Hospital.WindowsForms
+namespace NEWHospital.WindowsForms
 {
     static class Program
     {
@@ -17,9 +17,7 @@ namespace Hospital.WindowsForms
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MenuForm());
-            //Application.Run(new BazaForm());
-            //Application.Run(new FormLogin());
+            Application.Run(new LoginForm());
         }
     }
 }

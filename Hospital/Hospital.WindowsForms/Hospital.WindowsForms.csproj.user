@@ -7,5 +7,11 @@
     <Compile Update="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ShowAllForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

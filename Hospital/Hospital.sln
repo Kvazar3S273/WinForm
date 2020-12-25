@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital", "Hospital\Hospital.csproj", "{A8AD0E48-ACAA-470D-B21B-F038C5D48D50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital", "Hospital\Hospital.csproj", "{A8AD0E48-ACAA-470D-B21B-F038C5D48D50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.WindowsForms", "Hospital.WindowsForms\Hospital.WindowsForms.csproj", "{003D2B9A-5A44-4511-A068-089D028707BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital.WindowsForms", "Hospital.WindowsForms\Hospital.WindowsForms.csproj", "{003D2B9A-5A44-4511-A068-089D028707BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEWHospital.WindowsForms", "NEWHospital.WindowsForms\NEWHospital.WindowsForms.csproj", "{399E51C2-3F79-450F-88EA-E1B2D49EC7D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{003D2B9A-5A44-4511-A068-089D028707BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{003D2B9A-5A44-4511-A068-089D028707BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{003D2B9A-5A44-4511-A068-089D028707BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{399E51C2-3F79-450F-88EA-E1B2D49EC7D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{399E51C2-3F79-450F-88EA-E1B2D49EC7D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{399E51C2-3F79-450F-88EA-E1B2D49EC7D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{399E51C2-3F79-450F-88EA-E1B2D49EC7D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

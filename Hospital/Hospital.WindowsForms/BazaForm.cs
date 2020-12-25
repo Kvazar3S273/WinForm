@@ -18,19 +18,23 @@ namespace Hospital.WindowsForms
 
         public BazaForm()
         {
-            FormLogin login_dlg = new FormLogin();
-            if (login_dlg.ShowDialog()==DialogResult.OK)
-            {
-                DoctorAuth = login_dlg.DoctorAuth;
-                DepartmentAuth = login_dlg.DepartmentAuth;
-                isAuth = true;
-            }
+            //FormLogin login_dlg = new FormLogin();
+            //if (login_dlg.ShowDialog()==DialogResult.OK)
+            //{
+            //    DoctorAuth = login_dlg.DoctorAuth;
+            //    DepartmentAuth = login_dlg.DepartmentAuth;
+            //    isAuth = true;
+            //}
+
+            MenuForm menu_dlg = new MenuForm();
+            if(menu_dlg.ShowDialog()==DialogResult.OK)
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Bye!");
+            Application.Exit();
         }
 
         private void BazaForm_Load(object sender, EventArgs e)
@@ -56,6 +60,8 @@ namespace Hospital.WindowsForms
                 }
                 pbImage.Image = Image.FromFile($"images/{DoctorAuth.Image}");
             }
+
+
         }
     }
 }
