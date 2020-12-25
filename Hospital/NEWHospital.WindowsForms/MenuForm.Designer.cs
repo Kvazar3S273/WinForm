@@ -94,6 +94,7 @@
             this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.lblMenu);
             this.Name = "MenuForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MenuForm";
             this.ResumeLayout(false);
             this.PerformLayout();
