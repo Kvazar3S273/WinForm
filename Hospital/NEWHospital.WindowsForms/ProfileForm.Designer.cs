@@ -39,6 +39,7 @@
             this.txtStage = new System.Windows.Forms.TextBox();
             this.txtDepartment = new System.Windows.Forms.TextBox();
             this.txtLogin = new System.Windows.Forms.TextBox();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictAva)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +49,7 @@
             this.pictAva.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictAva.Name = "pictAva";
             this.pictAva.Size = new System.Drawing.Size(170, 170);
+            this.pictAva.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictAva.TabIndex = 0;
             this.pictAva.TabStop = false;
             // 
@@ -98,44 +100,55 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(297, 20);
+            this.txtLastName.Location = new System.Drawing.Point(298, 17);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(190, 27);
             this.txtLastName.TabIndex = 6;
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(297, 56);
+            this.txtFirstName.Location = new System.Drawing.Point(298, 53);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(190, 27);
             this.txtFirstName.TabIndex = 7;
             // 
             // txtStage
             // 
-            this.txtStage.Location = new System.Drawing.Point(297, 92);
+            this.txtStage.Location = new System.Drawing.Point(298, 89);
             this.txtStage.Name = "txtStage";
             this.txtStage.Size = new System.Drawing.Size(190, 27);
             this.txtStage.TabIndex = 8;
             // 
             // txtDepartment
             // 
-            this.txtDepartment.Location = new System.Drawing.Point(297, 128);
+            this.txtDepartment.Location = new System.Drawing.Point(298, 125);
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Size = new System.Drawing.Size(190, 27);
             this.txtDepartment.TabIndex = 9;
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(298, 164);
+            this.txtLogin.Location = new System.Drawing.Point(299, 161);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(189, 27);
             this.txtLogin.TabIndex = 10;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(299, 207);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(189, 58);
+            this.btnBack.TabIndex = 11;
+            this.btnBack.Text = "Назад в меню";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 216);
+            this.ClientSize = new System.Drawing.Size(506, 277);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.txtDepartment);
             this.Controls.Add(this.txtStage);
@@ -172,5 +185,6 @@
         private System.Windows.Forms.TextBox txtStage;
         private System.Windows.Forms.TextBox txtDepartment;
         private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.Button btnBack;
     }
 }

@@ -44,9 +44,9 @@
             this.label1.Location = new System.Drawing.Point(92, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 25);
+            this.label1.Size = new System.Drawing.Size(128, 25);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Вхід у систему";
+            this.label1.Text = "Авторизація";
             // 
             // lblLogin
             // 

@@ -1,10 +1,5 @@
 ﻿using Hospital;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace NEWHospital.WindowsForms
@@ -12,19 +7,21 @@ namespace NEWHospital.WindowsForms
     public partial class MenuForm : Form
     {
         bool isAuth = false;
+        public Doctor DoctorAuth { get; set; }
+        public Department DepartmentAuth { get; set; }
+        public Doctor Doc { get; set; }
         public MenuForm()
         {
             LoginForm login_dlg = new LoginForm();
             if (login_dlg.ShowDialog() == DialogResult.OK)
             {
+                DoctorAuth = login_dlg.DoctorAuth;
+                DepartmentAuth = login_dlg.DepartmentAuth;
                 isAuth = true;
             }
             InitializeComponent();
         }
-
-        public Doctor DoctorAuth { get; internal set; }
-        public Department DepartmentAuth { get; internal set; }
-
+        
         private void MenuForm_Load(object sender, EventArgs e)
         {
             if(!isAuth)
@@ -36,7 +33,18 @@ namespace NEWHospital.WindowsForms
         private void btnProfile_Click(object sender, EventArgs e)
         {
             ProfileForm pf = new ProfileForm();
-            pf.ShowDialog();
+            pf.Show();
+        }
+
+        private void btnShowAll_Click(object sender, EventArgs e)
+        {
+            BazaForm bf = new BazaForm();
+            bf.Show();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

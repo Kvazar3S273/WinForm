@@ -64,6 +64,7 @@
             this.btnShowAll.TabIndex = 1;
             this.btnShowAll.Text = "Переглянути всю базу";
             this.btnShowAll.UseVisualStyleBackColor = true;
+            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
             // 
             // btnAddNew
             // 
@@ -83,6 +84,7 @@
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "Вийти з бази";
             this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // MenuForm
             // 
