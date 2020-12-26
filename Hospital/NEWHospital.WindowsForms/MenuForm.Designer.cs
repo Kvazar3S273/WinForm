@@ -74,6 +74,7 @@
             this.btnAddNew.TabIndex = 2;
             this.btnAddNew.Text = "Додати нового лікаря";
             this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // btnExit
             // 

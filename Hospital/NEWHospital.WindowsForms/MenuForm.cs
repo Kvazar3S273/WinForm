@@ -46,5 +46,11 @@ namespace NEWHospital.WindowsForms
         {
             Application.Exit();
         }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            AddNewForm anf = new AddNewForm();
+            anf.Show();
+        }
     }
 }

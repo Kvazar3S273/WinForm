@@ -16,6 +16,8 @@ namespace NEWHospital.WindowsForms
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new LoginForm());
             //Application.Run(new BazaForm());
+            //Application.Run(new AddNewForm());
+
             Application.Run(new MenuForm());
         }
     }
