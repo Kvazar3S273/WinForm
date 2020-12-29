@@ -13,6 +13,10 @@ namespace NEWHospital.WindowsForms
         {
             SeedDepartment(context);
             SeedDoctors(context);
+            Generate genDoc = new Generate();
+            genDoc.GenerateDoctor(context);
+            context.SaveChanges();
+
         }
         private static void SeedDepartment(MyContext context)
         {
@@ -74,6 +78,7 @@ namespace NEWHospital.WindowsForms
                     });
                 context.SaveChanges();
             }
+                
         }
     }
 }

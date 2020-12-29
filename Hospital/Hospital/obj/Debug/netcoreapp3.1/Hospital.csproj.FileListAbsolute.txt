@@ -66,10 +66,11 @@ D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\bin\Debug\netcoreapp3.1\System.
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.AssemblyInfoInputs.cache
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.AssemblyInfo.cs
-D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.csproj.CoreCompileInputs.cache
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.csproj.CopyComplete
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.dll
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.pdb
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.genruntimeconfig.cache
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
 D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.csprojAssemblyReference.cache
+D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\bin\Debug\netcoreapp3.1\Bogus.dll
+D:\ШАГ\0 Repository\WinForm\Hospital\Hospital\obj\Debug\netcoreapp3.1\Hospital.csproj.CoreCompileInputs.cache

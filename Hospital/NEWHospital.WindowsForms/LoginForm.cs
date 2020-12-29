@@ -16,6 +16,9 @@ namespace NEWHospital.WindowsForms
             context = new MyContext();
             InitializeComponent();
             DbSeeder.SeedAll(context);
+            //Generate gen = new Generate();
+            //gen.GenerateDoctor(context);
+            //context.SaveChanges();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

@@ -19,6 +19,7 @@ namespace NEWHospital.WindowsForms
             //Application.Run(new AddNewForm());
 
             Application.Run(new MenuForm());
+
         }
     }
 }
