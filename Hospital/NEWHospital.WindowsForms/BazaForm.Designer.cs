@@ -111,6 +111,7 @@
             this.btnPrevPage.TabIndex = 2;
             this.btnPrevPage.Text = "<<";
             this.btnPrevPage.UseVisualStyleBackColor = true;
+            this.btnPrevPage.Click += new System.EventHandler(this.btnPrevPage_Click);
             // 
             // btnNextPage
             // 
@@ -120,6 +121,7 @@
             this.btnNextPage.TabIndex = 2;
             this.btnNextPage.Text = ">>";
             this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
             // btnLastPage
             // 
