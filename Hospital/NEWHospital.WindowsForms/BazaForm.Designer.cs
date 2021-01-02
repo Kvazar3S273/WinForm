@@ -34,17 +34,22 @@
             this.ColStage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColLogin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnFirstPage = new System.Windows.Forms.Button();
+            this.btnPrevPage = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.btnLastPage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(365, 368);
+            this.btnBack.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnBack.Location = new System.Drawing.Point(437, 508);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(172, 49);
+            this.btnBack.Size = new System.Drawing.Size(100, 45);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Назад в меню";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // ColLastName
@@ -85,15 +90,55 @@
             this.ColLogin});
             this.dataGridView1.Location = new System.Drawing.Point(19, 19);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(518, 332);
+            this.dataGridView1.Size = new System.Drawing.Size(518, 470);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Text = "dataGridView1";
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.Location = new System.Drawing.Point(19, 508);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(90, 45);
+            this.btnFirstPage.TabIndex = 2;
+            this.btnFirstPage.Text = "Перша сторінка";
+            this.btnFirstPage.UseVisualStyleBackColor = true;
+            // 
+            // btnPrevPage
+            // 
+            this.btnPrevPage.Location = new System.Drawing.Point(114, 508);
+            this.btnPrevPage.Name = "btnPrevPage";
+            this.btnPrevPage.Size = new System.Drawing.Size(90, 45);
+            this.btnPrevPage.TabIndex = 2;
+            this.btnPrevPage.Text = "<<";
+            this.btnPrevPage.UseVisualStyleBackColor = true;
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Location = new System.Drawing.Point(209, 508);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(90, 45);
+            this.btnNextPage.TabIndex = 2;
+            this.btnNextPage.Text = ">>";
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.Location = new System.Drawing.Point(304, 508);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(90, 45);
+            this.btnLastPage.TabIndex = 2;
+            this.btnLastPage.Text = "Остання сторінка";
+            this.btnLastPage.UseVisualStyleBackColor = true;
             // 
             // BazaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 429);
+            this.ClientSize = new System.Drawing.Size(549, 568);
+            this.Controls.Add(this.btnLastPage);
+            this.Controls.Add(this.btnNextPage);
+            this.Controls.Add(this.btnPrevPage);
+            this.Controls.Add(this.btnFirstPage);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dataGridView1);
             this.Name = "BazaForm";
@@ -112,5 +157,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColStage;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColLogin;
+        private System.Windows.Forms.Button btnFirstPage;
+        private System.Windows.Forms.Button btnPrevPage;
+        private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.Button btnLastPage;
     }
 }
