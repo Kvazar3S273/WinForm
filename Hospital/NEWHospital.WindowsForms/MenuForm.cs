@@ -1,4 +1,5 @@
 ﻿using Hospital;
+using NEWHospital.WindowsForms.Models;
 using System;
 using System.Windows.Forms;
 
@@ -7,7 +8,6 @@ namespace NEWHospital.WindowsForms
     public partial class MenuForm : Form
     {
         bool isAuth = false;
-        public Doctor DoctorAuth { get; set; }
         public Department DepartmentAuth { get; set; }
         public Doctor Doc { get; set; }
         public MenuForm()
@@ -15,8 +15,6 @@ namespace NEWHospital.WindowsForms
             LoginForm login_dlg = new LoginForm();
             if (login_dlg.ShowDialog() == DialogResult.OK)
             {
-                DoctorAuth = login_dlg.DoctorAuth;
-                DepartmentAuth = login_dlg.DepartmentAuth;
                 isAuth = true;
             }
             InitializeComponent();

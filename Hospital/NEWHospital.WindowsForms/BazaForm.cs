@@ -22,7 +22,6 @@ namespace NEWHospital.WindowsForms
                     $"{item.LastName}",
                     $"{item.FirstName}",
                     $"{item.Stage}",
-                    //$"{item.Department.Name}",
                     $"{item.Login}"
                 };
                 dataGridView1.Rows.Add(row);

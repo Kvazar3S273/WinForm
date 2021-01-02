@@ -39,7 +39,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(321, 368);
+            this.btnBack.Location = new System.Drawing.Point(365, 368);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(172, 49);
             this.btnBack.TabIndex = 1;
@@ -85,7 +85,7 @@
             this.ColLogin});
             this.dataGridView1.Location = new System.Drawing.Point(19, 19);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(474, 332);
+            this.dataGridView1.Size = new System.Drawing.Size(518, 332);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Text = "dataGridView1";
             // 
@@ -93,7 +93,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 429);
+            this.ClientSize = new System.Drawing.Size(549, 429);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dataGridView1);
             this.Name = "BazaForm";

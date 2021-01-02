@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Bogus;
 using System.Linq;
+using Hospital.Helpers;
 
 namespace Hospital
 {
@@ -16,9 +17,10 @@ namespace Hospital
                 .RuleFor(d => d.LastName, f => f.Name.LastName())
                 .RuleFor(d => d.FirstName, f => f.Name.FirstName())
                 .RuleFor(d => d.Login, f => f.Internet.UserName())
-                .RuleFor(d=>d.Password, f=>f.Internet.Password())
+                .RuleFor(d => d.Password, f => f.Internet.Password())
+                .RuleFor(d => d.DepartmentId, f => f.Random.Int(11, 20))
                 .RuleFor(d => d.Stage, f => f.Random.Int(1, 40));
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 listDoctor.Add(doctor.Generate());
             }
@@ -33,7 +35,9 @@ namespace Hospital
                             LastName = item.LastName,
                             FirstName = item.FirstName,
                             Login = item.Login,
-                            Password = item.Password,
+                            Password = PasswordManager.HashPassword(item.Password),
+                            DepartmentId =item.DepartmentId,
+                            Image="0.jpg",
                             Stage = item.Stage
                         });
                 }

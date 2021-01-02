@@ -1,5 +1,6 @@
 ﻿using Hospital;
 using Hospital.Helpers;
+using NEWHospital.WindowsForms.Models;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,16 +10,13 @@ namespace NEWHospital.WindowsForms
     public partial class LoginForm : Form
     {
         private readonly MyContext context;
-        public Doctor DoctorAuth { get; set; }
+        //public Doctor DoctorAuth { get; set; }
         public Department DepartmentAuth { get; set; }
         public LoginForm()
         {
             context = new MyContext();
             InitializeComponent();
             DbSeeder.SeedAll(context);
-            //Generate gen = new Generate();
-            //gen.GenerateDoctor(context);
-            //context.SaveChanges();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -26,14 +24,13 @@ namespace NEWHospital.WindowsForms
             string login = txtLogin.Text;
             string password = txtPassword.Text;
             var doctor = context.Doctors.FirstOrDefault(x => x.Login == login);
-            var department = context.Departments.FirstOrDefault(y => y.Id == doctor.DepartmentId);
+            //var department = context.Departments.FirstOrDefault(y => y.Id == doctor.DepartmentId);
             if (doctor != null)
             {
                 var passwordHash = doctor.Password;
                 if(PasswordManager.Verify(password,passwordHash))
                 {
-                    DoctorAuth = doctor;
-                    DepartmentAuth = department;
+                    DoctorLogin.Id = doctor.Id;
                     this.DialogResult = DialogResult.OK;
                 }
                 else
