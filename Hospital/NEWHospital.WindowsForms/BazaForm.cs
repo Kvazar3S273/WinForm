@@ -9,8 +9,9 @@ namespace NEWHospital.WindowsForms
     public partial class BazaForm : Form
     {
         static int count = 0;
-        public static bool process = false;
+        public bool process = false;
         static int index = 0;
+        static int pageSize = 20;
         public BazaForm()
         {
             InitializeComponent();
@@ -21,7 +22,46 @@ namespace NEWHospital.WindowsForms
         private void BazaForm_Load(object sender, EventArgs e)
         {
             MyContext context = new MyContext();
-            int pageSize = 20;
+            //foreach (var item in context.Doctors.Include(x => x.Department))
+            //{
+            //    object[] row =
+            //    {
+            //        $"{item.LastName}",
+            //        $"{item.FirstName}",
+            //        $"{item.Stage}",
+            //        $"{item.Login}"
+            //    };
+            //    dataGridView1.Rows.Add(row);
+            //}
+
+            var collection = context.Doctors.Include(x => x.Department);
+            do
+            {
+                dataGridView1.Rows.Clear();
+                var result = collection.Skip(count * pageSize).Take(pageSize);
+                if(result.Count()<=0)
+                {
+                    count--;
+                    //process = false;
+                }
+                foreach (var item in result)
+                {
+                    object[] row =
+                    {
+                        $"{item.LastName}",
+                        $"{item.FirstName}",
+                        $"{item.Stage}",
+                        $"{item.Login}"
+                    };
+                        dataGridView1.Rows.Add(row);
+                }
+
+            } while (process);
+            
+                       
+            
+            
+            
             //do
             //{
             //    if( count >= 0)
@@ -48,17 +88,6 @@ namespace NEWHospital.WindowsForms
             //} while (process);
 
 
-            foreach (var item in context.Doctors.Include(x => x.Department))
-            {
-                object[] row =
-                {
-                    $"{item.LastName}",
-                    $"{item.FirstName}",
-                    $"{item.Stage}",
-                    $"{item.Login}"
-                };
-                dataGridView1.Rows.Add(row);
-            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -69,14 +98,14 @@ namespace NEWHospital.WindowsForms
         private void btnNextPage_Click(object sender, EventArgs e)
         {
             count++;
-            process = true;
+            //process = true;
         }
 
         private void btnPrevPage_Click(object sender, EventArgs e)
         {
             if (index > 0)
             count--;
-            process = true;
+            //process = true;
         }
     }
 }
