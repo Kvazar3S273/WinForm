@@ -11,7 +11,6 @@ namespace NEWHospital.WindowsForms
     {
         static int count = 0;
         public bool process = false;
-        static int index = 0;
         static int pageSize = 20;
         public BazaForm()
         {
@@ -36,91 +35,63 @@ namespace NEWHospital.WindowsForms
         }
         private void BazaForm_Load(object sender, EventArgs e)
         {
+            //варіант 2
             MyContext context = new MyContext();
-            if (count < 0)
+            do
             {
-                count = 0;
-            }
                 ShowOnePage(count, context);
 
+                //var collection = context.Doctors.Include("Department").ToList();
+                //if (count >= 0 && count <= (collection.Count() / pageSize))
+                //{
+                //    dataGridView1.Rows.Clear();
+                //    count++;
+                //    int index = (count - 1) * pageSize;
+                //    var result = collection.Skip(index).Take(pageSize);
+
+                //    foreach (var item in result)
+                //    {
+                //        object[] row = {
+                //    $"{item.LastName}",
+                //    $"{item.FirstName}",
+                //    $"{item.Stage}",
+                //    $"{item.Login}"
+
+                //    };
+                //        dataGridView1.Rows.Add(row);
+                //    }
+                //}
+            } while (process);
 
 
 
-
-            //int pageSize = 20;
+            //робочий варіант!!!!!!!!!!!!
             //MyContext context = new MyContext();
-            //List<Doctor> res = new List<Doctor>();
-
-            //foreach (var item in context.Doctors.Include(x => x.Department))
+            //do
             //{
-            //    object[] row =
+            //    var collection = context.Doctors.Include("Department").ToList();
+            //    if (count >= 0 && count <= (collection.Count() / pageSize))
             //    {
+            //        dataGridView1.Rows.Clear();
+            //        count++;
+            //        int index = (count - 1) * pageSize;
+            //        var result = collection.Skip(index).Take(pageSize);
+
+            //        foreach (var item in result)
+            //        {
+            //            object[] row = {
             //        $"{item.LastName}",
             //        $"{item.FirstName}",
             //        $"{item.Stage}",
             //        $"{item.Login}"
-            //    };
-            //    dataGridView1.Rows.Add(row);
-            //}
-            //process = true;
 
+            //        };
+            //            dataGridView1.Rows.Add(row);
+            //        }
+            //    }
+            //} while (process);
 
-
-            //var collection = context.Doctors.Include(x => x.Department);
-            //while (btnBack.DialogResult != DialogResult.Cancel)
-                //{
-                //do
-                //{
-                    //dataGridView1.Rows.Clear();
-                    //var result = collection.Skip(count * pageSize).Take(pageSize);
-                    //if (result.Count() <= 0)
-                    //{
-                    //    count--;
-                    //}
-                    //foreach (var item in result)
-                    //{
-                    //    object[] row =
-                    //    {
-                    //    $"{item.LastName}",
-                    //    $"{item.FirstName}",
-                    //    $"{item.Stage}",
-                    //    $"{item.Login}"
-                    //    };
-                    //    dataGridView1.Rows.Add(row);
-                    //}
-                //} while (process);
         }
-
-
-
-        // Власюк Н.
-        //do
-        //{
-        //    if (count >= 0)
-        //    {
-        //        dataGridView1.Rows.Clear();
-        //        count++;
-        //        int index = (count - 1) * pageSize;
-        //        var departm = context.Doctors.Include("Department").ToList();
-        //        var result = departm.Skip(index).Take(pageSize);
-
-        //        foreach (var item in result)
-        //        {
-        //            object[] row = {
-        //            $"{item.LastName}",
-        //            $"{item.FirstName}",
-        //            $"{item.Stage}",
-        //            $"{item.Login}"
-
-        //            };
-        //            dataGridView1.Rows.Add(row);
-
-        //        }
-
-        //    }
-
-        //} while (process);
-    //}
 
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -132,14 +103,18 @@ namespace NEWHospital.WindowsForms
         {
             count++;
             //process = true;
-            this.DialogResult = DialogResult.OK;
         }
 
         private void btnPrevPage_Click(object sender, EventArgs e)
         {
             count--;
             //process = true;
-            this.DialogResult = DialogResult.OK;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchForm sf = new SearchForm();
+            sf.Show();
         }
     }
 }
