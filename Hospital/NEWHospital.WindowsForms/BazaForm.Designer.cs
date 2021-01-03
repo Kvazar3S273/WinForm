@@ -103,6 +103,7 @@
             this.btnFirstPage.TabIndex = 1;
             this.btnFirstPage.Text = "Перша сторінка";
             this.btnFirstPage.UseVisualStyleBackColor = true;
+            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
             // btnPrevPage
             // 

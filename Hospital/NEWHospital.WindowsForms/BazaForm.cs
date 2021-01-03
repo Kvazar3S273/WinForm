@@ -36,60 +36,68 @@ namespace NEWHospital.WindowsForms
         private void BazaForm_Load(object sender, EventArgs e)
         {
             //варіант 2
-            MyContext context = new MyContext();
-            do
-            {
-                ShowOnePage(count, context);
+            //MyContext context = new MyContext();
+            //do
+            //{
+            //    ShowOnePage(count, context);
 
-                //var collection = context.Doctors.Include("Department").ToList();
-                //if (count >= 0 && count <= (collection.Count() / pageSize))
-                //{
-                //    dataGridView1.Rows.Clear();
-                //    count++;
-                //    int index = (count - 1) * pageSize;
-                //    var result = collection.Skip(index).Take(pageSize);
+            //    //var collection = context.Doctors.Include("Department").ToList();
+            //    //if (count >= 0 && count <= (collection.Count() / pageSize))
+            //    //{
+            //    //    dataGridView1.Rows.Clear();
+            //    //    count++;
+            //    //    int index = (count - 1) * pageSize;
+            //    //    var result = collection.Skip(index).Take(pageSize);
 
-                //    foreach (var item in result)
-                //    {
-                //        object[] row = {
-                //    $"{item.LastName}",
-                //    $"{item.FirstName}",
-                //    $"{item.Stage}",
-                //    $"{item.Login}"
+            //    //    foreach (var item in result)
+            //    //    {
+            //    //        object[] row = {
+            //    //    $"{item.LastName}",
+            //    //    $"{item.FirstName}",
+            //    //    $"{item.Stage}",
+            //    //    $"{item.Login}"
 
-                //    };
-                //        dataGridView1.Rows.Add(row);
-                //    }
-                //}
-            } while (process);
+            //    //    };
+            //    //        dataGridView1.Rows.Add(row);
+            //    //    }
+            //    //}
+            //} while (process);
 
 
 
             //робочий варіант!!!!!!!!!!!!
-            //MyContext context = new MyContext();
-            //do
-            //{
-            //    var collection = context.Doctors.Include("Department").ToList();
-            //    if (count >= 0 && count <= (collection.Count() / pageSize))
-            //    {
-            //        dataGridView1.Rows.Clear();
-            //        count++;
-            //        int index = (count - 1) * pageSize;
-            //        var result = collection.Skip(index).Take(pageSize);
+            MyContext context = new MyContext();
+            do
+            {
+                var collection = context.Doctors.Include("Department").ToList();
+                if (count >= 0 && count <= (collection.Count() / pageSize))
+                {
+                    dataGridView1.Rows.Clear();
+                    count++;
+                    if (btnNextPage.DialogResult == DialogResult.OK)
+                    {
+                        count++;
+                    }
+                    if (btnPrevPage.DialogResult == DialogResult.OK)
+                    {
+                        count--;
+                    }
+                    int index = (count - 1) * pageSize;
+                    var result = collection.Skip(index).Take(pageSize);
 
-            //        foreach (var item in result)
-            //        {
-            //            object[] row = {
-            //        $"{item.LastName}",
-            //        $"{item.FirstName}",
-            //        $"{item.Stage}",
-            //        $"{item.Login}"
+                    foreach (var item in result)
+                    {
+                        object[] row = {
+                    $"{item.LastName}",
+                    $"{item.FirstName}",
+                    $"{item.Stage}",
+                    $"{item.Login}"
 
-            //        };
-            //            dataGridView1.Rows.Add(row);
-            //        }
-            //    }
-            //} while (process);
+                    };
+                        dataGridView1.Rows.Add(row);
+                    }
+                }
+            } while (process);
 
         }
 
@@ -101,13 +109,16 @@ namespace NEWHospital.WindowsForms
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
-            count++;
+            //count++;
+            this.DialogResult = DialogResult.OK;
             //process = true;
         }
 
         private void btnPrevPage_Click(object sender, EventArgs e)
         {
-            count--;
+            //count--;
+            this.DialogResult = DialogResult.OK;
+
             //process = true;
         }
 
@@ -115,6 +126,11 @@ namespace NEWHospital.WindowsForms
         {
             SearchForm sf = new SearchForm();
             sf.Show();
+        }
+
+        private void btnFirstPage_Click(object sender, EventArgs e)
+        {
+            count = 0;
         }
     }
 }
