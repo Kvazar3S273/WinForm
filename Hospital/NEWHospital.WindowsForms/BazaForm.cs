@@ -29,7 +29,7 @@ namespace NEWHospital.WindowsForms
                 $"{item.LastName}",
                 $"{item.FirstName}",
                 $"{item.Stage}",
-                $"{item.Login}"
+                $"{item.Department.Name}"
                 };
                 dataGridView1.Rows.Add(row);
             }
@@ -38,7 +38,7 @@ namespace NEWHospital.WindowsForms
         private void BazaForm_Load(object sender, EventArgs e)
         {
             LoadDataAndBindGrid();
-            //lblCurrentPage.Text = $"{currentPageNumber}";
+            lblCurrentPage.Text = $"{currentPageNumber + 1}";
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -60,6 +60,8 @@ namespace NEWHospital.WindowsForms
             if (currentPageNumber >= totalPagesCount) currentPageNumber = totalPagesCount - 1;
             if (currentPageNumber < 0) currentPageNumber = 0;
             LoadDataAndBindGrid();
+            lblCurrentPage.Text = $"{currentPageNumber + 1}";
+
         }
 
         private void btnPrevPage_Click(object sender, EventArgs e)
@@ -67,6 +69,8 @@ namespace NEWHospital.WindowsForms
             currentPageNumber--;
             if (currentPageNumber < 0) currentPageNumber = 0;
             LoadDataAndBindGrid();
+            lblCurrentPage.Text = $"{currentPageNumber + 1}";
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -79,6 +83,8 @@ namespace NEWHospital.WindowsForms
         {
             currentPageNumber = 0;
             LoadDataAndBindGrid();
+            lblCurrentPage.Text = $"{currentPageNumber + 1}";
+
         }
 
         private void btnLastPage_Click(object sender, EventArgs e)
@@ -92,6 +98,8 @@ namespace NEWHospital.WindowsForms
             currentPageNumber = totalPagesCount - 1;
             if (currentPageNumber < 0) currentPageNumber = 0;
             LoadDataAndBindGrid();
+            lblCurrentPage.Text = $"{currentPageNumber + 1}";
+
         }
     }
 }
