@@ -39,6 +39,7 @@
             this.btnNextPage = new System.Windows.Forms.Button();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.lblCurrentPage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,7 +100,7 @@
             // 
             this.btnFirstPage.Location = new System.Drawing.Point(14, 609);
             this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(90, 45);
+            this.btnFirstPage.Size = new System.Drawing.Size(70, 45);
             this.btnFirstPage.TabIndex = 1;
             this.btnFirstPage.Text = "Перша сторінка";
             this.btnFirstPage.UseVisualStyleBackColor = true;
@@ -107,37 +108,38 @@
             // 
             // btnPrevPage
             // 
-            this.btnPrevPage.Location = new System.Drawing.Point(109, 609);
+            this.btnPrevPage.Location = new System.Drawing.Point(90, 609);
             this.btnPrevPage.Name = "btnPrevPage";
             this.btnPrevPage.Size = new System.Drawing.Size(45, 45);
             this.btnPrevPage.TabIndex = 2;
             this.btnPrevPage.Text = "<<";
             this.btnPrevPage.UseVisualStyleBackColor = true;
-            this.btnPrevPage.Click += new System.EventHandler(this.BazaForm_Load);
+            this.btnPrevPage.Click += new System.EventHandler(this.btnPrevPage_Click);
             // 
             // btnNextPage
             // 
-            this.btnNextPage.Location = new System.Drawing.Point(160, 609);
+            this.btnNextPage.Location = new System.Drawing.Point(197, 609);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(45, 45);
             this.btnNextPage.TabIndex = 3;
             this.btnNextPage.Text = ">>";
             this.btnNextPage.UseVisualStyleBackColor = true;
-            this.btnNextPage.Click += new System.EventHandler(this.BazaForm_Load);
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
             // btnLastPage
             // 
-            this.btnLastPage.Location = new System.Drawing.Point(211, 609);
+            this.btnLastPage.Location = new System.Drawing.Point(248, 609);
             this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(90, 45);
+            this.btnLastPage.Size = new System.Drawing.Size(70, 45);
             this.btnLastPage.TabIndex = 4;
             this.btnLastPage.Text = "Остання сторінка";
             this.btnLastPage.UseVisualStyleBackColor = true;
+            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
             // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.btnSearch.Location = new System.Drawing.Point(308, 609);
+            this.btnSearch.Location = new System.Drawing.Point(324, 609);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 45);
             this.btnSearch.TabIndex = 6;
@@ -145,11 +147,22 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // lblCurrentPage
+            // 
+            this.lblCurrentPage.AutoSize = true;
+            this.lblCurrentPage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCurrentPage.Location = new System.Drawing.Point(141, 619);
+            this.lblCurrentPage.Name = "lblCurrentPage";
+            this.lblCurrentPage.Size = new System.Drawing.Size(52, 21);
+            this.lblCurrentPage.TabIndex = 7;
+            this.lblCurrentPage.Text = "label1";
+            // 
             // BazaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 666);
+            this.Controls.Add(this.lblCurrentPage);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnNextPage);
@@ -163,6 +176,7 @@
             this.Load += new System.EventHandler(this.BazaForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -178,5 +192,6 @@
         private System.Windows.Forms.Button btnNextPage;
         private System.Windows.Forms.Button btnLastPage;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label lblCurrentPage;
     }
 }

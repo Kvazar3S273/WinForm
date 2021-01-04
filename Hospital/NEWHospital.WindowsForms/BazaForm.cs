@@ -9,96 +9,36 @@ namespace NEWHospital.WindowsForms
 {
     public partial class BazaForm : Form
     {
-        static int count = 0;
-        public bool process = false;
         static int pageSize = 20;
+        private int currentPageNumber = 0;
         public BazaForm()
         {
             InitializeComponent();
         }
-        public void ShowOnePage(int countPage, MyContext context)
+
+        private void LoadDataAndBindGrid()
         {
-            var collection = context.Doctors.Include(x => x.Department);
+            MyContext context = new MyContext();
+            
+            var collection = context.Doctors.Include("Department").Skip(currentPageNumber * pageSize).Take(pageSize).ToList();
+
             dataGridView1.Rows.Clear();
-            var result = collection.Skip(countPage * pageSize).Take(pageSize);
-            foreach (var item in result)
+            foreach (var item in collection)
             {
-                object[] row =
-                {
-                        $"{item.LastName}",
-                        $"{item.FirstName}",
-                        $"{item.Stage}",
-                        $"{item.Login}"
-                        };
+                object[] row = {
+                $"{item.LastName}",
+                $"{item.FirstName}",
+                $"{item.Stage}",
+                $"{item.Login}"
+                };
                 dataGridView1.Rows.Add(row);
             }
         }
+    
         private void BazaForm_Load(object sender, EventArgs e)
         {
-            //варіант 2
-            //MyContext context = new MyContext();
-            //do
-            //{
-            //    ShowOnePage(count, context);
-
-            //    //var collection = context.Doctors.Include("Department").ToList();
-            //    //if (count >= 0 && count <= (collection.Count() / pageSize))
-            //    //{
-            //    //    dataGridView1.Rows.Clear();
-            //    //    count++;
-            //    //    int index = (count - 1) * pageSize;
-            //    //    var result = collection.Skip(index).Take(pageSize);
-
-            //    //    foreach (var item in result)
-            //    //    {
-            //    //        object[] row = {
-            //    //    $"{item.LastName}",
-            //    //    $"{item.FirstName}",
-            //    //    $"{item.Stage}",
-            //    //    $"{item.Login}"
-
-            //    //    };
-            //    //        dataGridView1.Rows.Add(row);
-            //    //    }
-            //    //}
-            //} while (process);
-
-
-
-            //робочий варіант!!!!!!!!!!!!
-            MyContext context = new MyContext();
-            do
-            {
-                var collection = context.Doctors.Include("Department").ToList();
-                if (count >= 0 && count <= (collection.Count() / pageSize))
-                {
-                    dataGridView1.Rows.Clear();
-                    count++;
-                    if (btnNextPage.DialogResult == DialogResult.OK)
-                    {
-                        count++;
-                    }
-                    if (btnPrevPage.DialogResult == DialogResult.OK)
-                    {
-                        count--;
-                    }
-                    int index = (count - 1) * pageSize;
-                    var result = collection.Skip(index).Take(pageSize);
-
-                    foreach (var item in result)
-                    {
-                        object[] row = {
-                    $"{item.LastName}",
-                    $"{item.FirstName}",
-                    $"{item.Stage}",
-                    $"{item.Login}"
-
-                    };
-                        dataGridView1.Rows.Add(row);
-                    }
-                }
-            } while (process);
-
+            LoadDataAndBindGrid();
+            //lblCurrentPage.Text = $"{currentPageNumber}";
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -109,17 +49,24 @@ namespace NEWHospital.WindowsForms
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
-            //count++;
-            this.DialogResult = DialogResult.OK;
-            //process = true;
+            MyContext context = new MyContext();
+
+            int totalRowsCount = context.Doctors.Count();
+
+            int totalPagesCount = totalRowsCount / pageSize;
+            // остання сторінка може бути неповна, додаємо одиничку, якщо є остача від ділення
+            if (totalRowsCount % pageSize > 0) totalPagesCount++;
+            currentPageNumber++;
+            if (currentPageNumber >= totalPagesCount) currentPageNumber = totalPagesCount - 1;
+            if (currentPageNumber < 0) currentPageNumber = 0;
+            LoadDataAndBindGrid();
         }
 
         private void btnPrevPage_Click(object sender, EventArgs e)
         {
-            //count--;
-            this.DialogResult = DialogResult.OK;
-
-            //process = true;
+            currentPageNumber--;
+            if (currentPageNumber < 0) currentPageNumber = 0;
+            LoadDataAndBindGrid();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -130,7 +77,21 @@ namespace NEWHospital.WindowsForms
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
-            count = 0;
+            currentPageNumber = 0;
+            LoadDataAndBindGrid();
+        }
+
+        private void btnLastPage_Click(object sender, EventArgs e)
+        {
+            MyContext context = new MyContext();
+
+            int totalRowsCount = context.Doctors.Count();
+            int totalPagesCount = totalRowsCount / pageSize;
+            // остання сторінка може бути неповна, додаємо одиничку, якщо є остача від ділення
+            if (totalRowsCount % pageSize > 0) totalPagesCount++;
+            currentPageNumber = totalPagesCount - 1;
+            if (currentPageNumber < 0) currentPageNumber = 0;
+            LoadDataAndBindGrid();
         }
     }
 }
