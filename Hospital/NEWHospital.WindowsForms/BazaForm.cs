@@ -19,7 +19,6 @@ namespace NEWHospital.WindowsForms
         private void LoadDataAndBindGrid()
         {
             MyContext context = new MyContext();
-            
             var collection = context.Doctors.Include("Department").Skip(currentPageNumber * pageSize).Take(pageSize).ToList();
 
             dataGridView1.Rows.Clear();
@@ -50,9 +49,7 @@ namespace NEWHospital.WindowsForms
         private void btnNextPage_Click(object sender, EventArgs e)
         {
             MyContext context = new MyContext();
-
             int totalRowsCount = context.Doctors.Count();
-
             int totalPagesCount = totalRowsCount / pageSize;
             // остання сторінка може бути неповна, додаємо одиничку, якщо є остача від ділення
             if (totalRowsCount % pageSize > 0) totalPagesCount++;

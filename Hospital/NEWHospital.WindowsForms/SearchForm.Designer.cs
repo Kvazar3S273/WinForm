@@ -43,7 +43,10 @@
             this.ColStage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSearchPrev
@@ -54,6 +57,7 @@
             this.btnSearchPrev.TabIndex = 1;
             this.btnSearchPrev.Text = "<<";
             this.btnSearchPrev.UseVisualStyleBackColor = true;
+            this.btnSearchPrev.Click += new System.EventHandler(this.btnSearchPrev_Click);
             // 
             // btnSearchNext
             // 
@@ -63,6 +67,7 @@
             this.btnSearchNext.TabIndex = 2;
             this.btnSearchNext.Text = ">>";
             this.btnSearchNext.UseVisualStyleBackColor = true;
+            this.btnSearchNext.Click += new System.EventHandler(this.btnSearchNext_Click);
             // 
             // btnBack
             // 
@@ -88,55 +93,58 @@
             // rbtnLastName
             // 
             this.rbtnLastName.AutoSize = true;
-            this.rbtnLastName.Location = new System.Drawing.Point(25, 62);
+            this.rbtnLastName.Location = new System.Drawing.Point(14, 15);
             this.rbtnLastName.Name = "rbtnLastName";
             this.rbtnLastName.Size = new System.Drawing.Size(79, 19);
             this.rbtnLastName.TabIndex = 5;
             this.rbtnLastName.TabStop = true;
             this.rbtnLastName.Text = "Прізвище";
             this.rbtnLastName.UseVisualStyleBackColor = true;
+            this.rbtnLastName.CheckedChanged += new System.EventHandler(this.rbtnLastName_CheckedChanged);
             // 
             // rbtnStage
             // 
             this.rbtnStage.AutoSize = true;
-            this.rbtnStage.Location = new System.Drawing.Point(25, 103);
+            this.rbtnStage.Location = new System.Drawing.Point(14, 56);
             this.rbtnStage.Name = "rbtnStage";
             this.rbtnStage.Size = new System.Drawing.Size(53, 19);
             this.rbtnStage.TabIndex = 6;
             this.rbtnStage.TabStop = true;
             this.rbtnStage.Text = "Стаж";
             this.rbtnStage.UseVisualStyleBackColor = true;
+            this.rbtnStage.CheckedChanged += new System.EventHandler(this.rbtnStage_CheckedChanged);
             // 
             // rbtnDepartment
             // 
             this.rbtnDepartment.AutoSize = true;
-            this.rbtnDepartment.Location = new System.Drawing.Point(25, 144);
+            this.rbtnDepartment.Location = new System.Drawing.Point(14, 97);
             this.rbtnDepartment.Name = "rbtnDepartment";
             this.rbtnDepartment.Size = new System.Drawing.Size(83, 19);
             this.rbtnDepartment.TabIndex = 7;
             this.rbtnDepartment.TabStop = true;
             this.rbtnDepartment.Text = "Відділення";
             this.rbtnDepartment.UseVisualStyleBackColor = true;
+            this.rbtnDepartment.CheckedChanged += new System.EventHandler(this.rbtnDepartment_CheckedChanged);
             // 
             // textBoxLastName
             // 
             this.textBoxLastName.Location = new System.Drawing.Point(128, 59);
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(398, 23);
+            this.textBoxLastName.Size = new System.Drawing.Size(269, 23);
             this.textBoxLastName.TabIndex = 8;
             // 
             // textBoxStage
             // 
             this.textBoxStage.Location = new System.Drawing.Point(128, 101);
             this.textBoxStage.Name = "textBoxStage";
-            this.textBoxStage.Size = new System.Drawing.Size(398, 23);
+            this.textBoxStage.Size = new System.Drawing.Size(269, 23);
             this.textBoxStage.TabIndex = 8;
             // 
             // textBoxDepartment
             // 
             this.textBoxDepartment.Location = new System.Drawing.Point(128, 143);
             this.textBoxDepartment.Name = "textBoxDepartment";
-            this.textBoxDepartment.Size = new System.Drawing.Size(398, 23);
+            this.textBoxDepartment.Size = new System.Drawing.Size(269, 23);
             this.textBoxDepartment.TabIndex = 8;
             // 
             // ColLastName
@@ -181,27 +189,48 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Text = "dataGridView1";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.rbtnDepartment);
+            this.panel1.Controls.Add(this.rbtnStage);
+            this.panel1.Controls.Add(this.rbtnLastName);
+            this.panel1.Location = new System.Drawing.Point(11, 47);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(402, 130);
+            this.panel1.TabIndex = 9;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(427, 48);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(109, 128);
+            this.btnSearch.TabIndex = 10;
+            this.btnSearch.Text = "Знайти";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 491);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.textBoxDepartment);
             this.Controls.Add(this.textBoxStage);
             this.Controls.Add(this.textBoxLastName);
-            this.Controls.Add(this.rbtnDepartment);
-            this.Controls.Add(this.rbtnStage);
-            this.Controls.Add(this.rbtnLastName);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnSearchNext);
             this.Controls.Add(this.btnSearchPrev);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.panel1);
             this.Name = "SearchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Пошук";
             this.Load += new System.EventHandler(this.SearchForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,5 +253,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColStage;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDepartment;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
