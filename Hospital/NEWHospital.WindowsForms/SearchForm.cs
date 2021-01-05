@@ -23,7 +23,7 @@ namespace NEWHospital.WindowsForms
             InitializeComponent();
         }
 
-        private void LoadSearchDataAndBindGrid()
+        private void LoadSearchDataByLastName()
         {
             MyContext context = new MyContext();
             getLastName = this.textBoxLastName.Text;
@@ -31,67 +31,11 @@ namespace NEWHospital.WindowsForms
             List<Doctor> searchByLastName = context.Doctors.Include("Department")
                 .Where(x => x.LastName == getLastName).ToList();
 
-            List<Doctor> searchByStage = context.Doctors.Include("Department")
-                .Where(x => x.Stage == int.Parse(getStage)).ToList();
-
-            List<Doctor> searchByDepartment = context.Doctors.Include("Department")
-                .Where(x => x.Department.Name == getDepartment).ToList();
-
             var collectionLastName = searchByLastName
-                .Skip(currentPageNumber * pageSize).Take(pageSize).ToList();
-
-            var collectionStage = searchByStage
-                .Skip(currentPageNumber * pageSize).Take(pageSize).ToList();
-
-            var collectionDepartment = searchByDepartment
                 .Skip(currentPageNumber * pageSize).Take(pageSize).ToList();
 
             dataGridView1.Rows.Clear();
 
-            //if (rbtnLastName.Checked)
-            //{
-            //    getLastName = this.textBoxLastName.Text;
-            //    foreach (var item in collectionLastName)
-            //    {
-            //        object[] row = {
-            //    $"{item.LastName}",
-            //    $"{item.FirstName}",
-            //    $"{item.Stage}",
-            //    $"{item.Department.Name}"
-            //    };
-            //        dataGridView1.Rows.Add(row);
-            //    }
-            //}
-            //if (rbtnStage.Checked)
-            //{
-            //    getStage = this.textBoxStage.Text;
-            //    foreach (var item in collectionStage)
-            //    {
-            //        object[] row = {
-            //    $"{item.LastName}",
-            //    $"{item.FirstName}",
-            //    $"{item.Stage}",
-            //    $"{item.Department.Name}"
-            //    };
-            //        dataGridView1.Rows.Add(row);
-            //    }
-            //}
-            //if (rbtnDepartment.Checked)
-            //{
-            //    getDepartment = this.textBoxDepartment.Text;
-            //    foreach (var item in collectionDepartment)
-            //    {
-            //        object[] row = {
-            //    $"{item.LastName}",
-            //    $"{item.FirstName}",
-            //    $"{item.Stage}",
-            //    $"{item.Department.Name}"
-            //    };
-            //        dataGridView1.Rows.Add(row);
-            //    }
-            //}
-            //int sizeList = collectionLastName.Count();
-            //double total = sizeList / pageSize;
             foreach (var item in collectionLastName)
             {
                 object[] row = {
@@ -102,19 +46,62 @@ namespace NEWHospital.WindowsForms
                 };
                 dataGridView1.Rows.Add(row);
             }
-            LoadSearchDataAndBindGrid();
+        }
+
+        private void LoadSearchDataByDepartment()
+        {
+            MyContext context = new MyContext();
+            getDepartment = this.textBoxDepartment.Text;
+
+            List<Doctor> searchByDepartment = context.Doctors.Include("Department")
+                .Where(x => x.Department.Name == getDepartment).ToList();
+
+            var collectionDepartment = searchByDepartment
+                .Skip(currentPageNumber * pageSize).Take(pageSize).ToList();
+            
+            dataGridView1.Rows.Clear();
+
+            foreach (var item in collectionDepartment)
+            {
+                object[] row = {
+                $"{item.LastName}",
+                $"{item.FirstName}",
+                $"{item.Stage}",
+                $"{item.Department.Name}"
+                };
+                dataGridView1.Rows.Add(row);
+            }
+        }
+
+        private void LoadSearchDataByStage()
+        {
+            MyContext context = new MyContext();
+            getStage = this.textBoxStage.Text;
+
+            List<Doctor> searchByStage = context.Doctors.Include("Department")
+                .Where(x => x.Stage == int.Parse(getStage)).ToList();
+
+            var collectionStage = searchByStage
+                .Skip(currentPageNumber * pageSize).Take(pageSize).ToList();
+
+            dataGridView1.Rows.Clear();
+
+            foreach (var item in collectionStage)
+            {
+                object[] row = {
+                $"{item.LastName}",
+                $"{item.FirstName}",
+                $"{item.Stage}",
+                $"{item.Department.Name}"
+                };
+                dataGridView1.Rows.Add(row);
+            }
         }
 
         private void SearchForm_Load(object sender, EventArgs e)
         {
-            //getLastName = this.textBoxLastName.Text;
-            //getStage = this.textBoxStage.Text;
-            //getDepartment = this.textBoxDepartment.Text;
 
-        }
 
-        private void SearchForm_Click(object sender, EventArgs e)
-        {
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -122,46 +109,18 @@ namespace NEWHospital.WindowsForms
             this.Close();
         }
 
-        private void rbtnLastName_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton rbtnLastName = (RadioButton)sender;
-            if (rbtnLastName.Checked)
-                getLastName = this.textBoxLastName.Text;
-        }
-
-        private void rbtnStage_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton rbtnStage = (RadioButton)sender;
-            if (rbtnStage.Checked)
-                getStage = this.textBoxStage.Text;
-        }
-
-        private void rbtnDepartment_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton rbtnDepartment = (RadioButton)sender;
-            if (rbtnDepartment.Checked)
-                getDepartment = this.textBoxDepartment.Text;
-        }
-
         private void btnSearchPrev_Click(object sender, EventArgs e)
         {
             currentPageNumber--;
             if (currentPageNumber < 0) currentPageNumber = 0;
-            LoadSearchDataAndBindGrid();
+            LoadSearchDataByLastName();
+            LoadSearchDataByDepartment();
+            LoadSearchDataByStage();
         }
 
         private void btnSearchNext_Click(object sender, EventArgs e)
         {
             MyContext context = new MyContext();
-            getLastName = this.textBoxLastName.Text;
-
-            List<Doctor> searchByLastName = context.Doctors.Include("Department")
-                .Where(x => x.LastName == getLastName).ToList();
-            
-            var collectionLastName = searchByLastName
-                .Skip(currentPageNumber * pageSize).Take(pageSize).ToList();
-
-            
             int totalRowsCount = searchByLastName.Count();
             int totalPagesCount = totalRowsCount / pageSize;
             // остання сторінка може бути неповна, додаємо одиничку, якщо є остача від ділення
@@ -169,12 +128,24 @@ namespace NEWHospital.WindowsForms
             currentPageNumber++;
             if (currentPageNumber >= totalPagesCount) currentPageNumber = totalPagesCount - 1;
             if (currentPageNumber < 0) currentPageNumber = 0;
-            LoadSearchDataAndBindGrid();
+            LoadSearchDataByLastName();
+            LoadSearchDataByDepartment();
+            LoadSearchDataByStage();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void btnSearchLastName_Click(object sender, EventArgs e)
         {
-            LoadSearchDataAndBindGrid();
+            LoadSearchDataByLastName();
+        }
+
+        private void btnSearchDepartment_Click(object sender, EventArgs e)
+        {
+            LoadSearchDataByDepartment();
+        }
+
+        private void btnSearchStage_Click(object sender, EventArgs e)
+        {
+            LoadSearchDataByStage();
         }
     }
 }
