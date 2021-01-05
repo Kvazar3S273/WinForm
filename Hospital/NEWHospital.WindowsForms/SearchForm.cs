@@ -111,26 +111,12 @@ namespace NEWHospital.WindowsForms
 
         private void btnSearchPrev_Click(object sender, EventArgs e)
         {
-            currentPageNumber--;
-            if (currentPageNumber < 0) currentPageNumber = 0;
-            LoadSearchDataByLastName();
-            LoadSearchDataByDepartment();
-            LoadSearchDataByStage();
+           
         }
 
         private void btnSearchNext_Click(object sender, EventArgs e)
         {
-            MyContext context = new MyContext();
-            int totalRowsCount = searchByLastName.Count();
-            int totalPagesCount = totalRowsCount / pageSize;
-            // остання сторінка може бути неповна, додаємо одиничку, якщо є остача від ділення
-            if (totalRowsCount % pageSize > 0) totalPagesCount++;
-            currentPageNumber++;
-            if (currentPageNumber >= totalPagesCount) currentPageNumber = totalPagesCount - 1;
-            if (currentPageNumber < 0) currentPageNumber = 0;
-            LoadSearchDataByLastName();
-            LoadSearchDataByDepartment();
-            LoadSearchDataByStage();
+           
         }
 
         private void btnSearchLastName_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using Hospital;
+using Microsoft.EntityFrameworkCore;
 using NEWHospital.WindowsForms.Models;
 using System;
 using System.Drawing;
@@ -18,11 +19,11 @@ namespace NEWHospital.WindowsForms
         {
             using (MyContext context = new MyContext())
             {
-                var doctor = context.Doctors.SingleOrDefault(x => x.Id == DoctorLogin.Id);
+                var doctor = context.Doctors.Include("Department").SingleOrDefault(x => x.Id == DoctorLogin.Id);
                 txtLastName.Text = $"{doctor.LastName}";
                 txtFirstName.Text = $"{doctor.FirstName}";
                 txtStage.Text = $"{doctor.Stage.ToString()}";
-                //txtDepartment.Text = $"{doctor.Department.Name}";
+                txtDepartment.Text = $"{doctor.Department.Name}";
                 txtLogin.Text = $"{doctor.Login}";
                 pictAva.Image = Image.FromFile($"images/{doctor.Image}");
             }

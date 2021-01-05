@@ -51,7 +51,7 @@
             // 
             // btnSearchPrev
             // 
-            this.btnSearchPrev.Location = new System.Drawing.Point(12, 432);
+            this.btnSearchPrev.Location = new System.Drawing.Point(12, 600);
             this.btnSearchPrev.Name = "btnSearchPrev";
             this.btnSearchPrev.Size = new System.Drawing.Size(45, 45);
             this.btnSearchPrev.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             // btnSearchNext
             // 
-            this.btnSearchNext.Location = new System.Drawing.Point(63, 432);
+            this.btnSearchNext.Location = new System.Drawing.Point(63, 600);
             this.btnSearchNext.Name = "btnSearchNext";
             this.btnSearchNext.Size = new System.Drawing.Size(45, 45);
             this.btnSearchNext.TabIndex = 2;
@@ -72,7 +72,7 @@
             // btnBack
             // 
             this.btnBack.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnBack.Location = new System.Drawing.Point(447, 434);
+            this.btnBack.Location = new System.Drawing.Point(447, 602);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(90, 45);
             this.btnBack.TabIndex = 3;
@@ -149,7 +149,7 @@
             this.ColDepartment});
             this.dataGridView1.Location = new System.Drawing.Point(12, 190);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(525, 223);
+            this.dataGridView1.Size = new System.Drawing.Size(525, 394);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Text = "dataGridView1";
             // 
@@ -217,7 +217,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 491);
+            this.ClientSize = new System.Drawing.Size(549, 657);
             this.Controls.Add(this.btnSearchStage);
             this.Controls.Add(this.btnSearchDepartment);
             this.Controls.Add(this.btnSearchLastName);
