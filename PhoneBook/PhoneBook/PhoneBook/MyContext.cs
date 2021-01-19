@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PhoneBook
 {
-    class MyContext : DbContext
+    public class MyContext : DbContext
     {
         public DbSet<Human> Humans { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

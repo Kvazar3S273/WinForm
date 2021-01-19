@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using static Bogus.DataSets.Name;
 
 namespace PhoneBook
 {
-    [Table("tblHuman")]
+    public enum Gender
+    {
+        Male,
+        Female
+    }
+
+    [Table("tblHumans")]
     public class Human
     {
         [Key]
@@ -20,8 +27,13 @@ namespace PhoneBook
     
         [Required, StringLength(15)]
         public string Phone { get; set; }
-        
+
         [Required, StringLength(10)]
         public string Sex { get; set; }
+
+        //[Required]
+        public Gender gender = new Gender();
+
     }
+
 }
