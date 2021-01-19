@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using static Bogus.DataSets.Name;
 
@@ -8,18 +9,39 @@ namespace PhoneBook
 {
     public class Generate
     {
-        
+        public enum Gender
+        {
+            Male,
+            Female
+        }
         public void GenerateUser(MyContext context)
         {
             Random rnd = new Random();
             List<Human> listHuman = new List<Human>();
             var human = new Faker<Human>("uk")
-                .RuleFor(h => h.gender, f => f.PickRandom<Gender>())
-                .RuleFor(h => h.Surname, (f, h) => f.Name.LastName(h.gender))
-                .RuleFor(h => h.Name, (f, h) => f.Name.FirstName(h.gender))
+                .RuleFor(h => h.Gender, f => f.Person.Gender.ToString())
+                .RuleFor(h => h.Surname, f => f.Name.LastName(f.Person.Gender))
+                .RuleFor(h => h.Name, f => f.Name.FirstName(f.Person.Gender))
                 .RuleFor(h => h.Phone, f => f.Phone.PhoneNumber());
-
-
+            for (int i = 0; i < 1000; i++)
+            {
+                listHuman.Add(human.Generate());
+            }
+            if(context.Humans.Count()==0)
+            {
+                foreach (var item in listHuman)
+                {
+                    context.Humans.Add(
+                        new Human
+                        {
+                            Gender = item.Gender,
+                            Surname = item.Surname,
+                            Name = item.Name,
+                            Phone = item.Phone
+                        });
+                }
+            }
+            context.SaveChanges();
         }
     }   
 }

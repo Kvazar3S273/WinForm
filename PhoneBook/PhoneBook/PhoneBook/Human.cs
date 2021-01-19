@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using static Bogus.DataSets.Name;
+using Bogus;
 
 namespace PhoneBook
 {
@@ -29,10 +29,7 @@ namespace PhoneBook
         public string Phone { get; set; }
 
         [Required, StringLength(10)]
-        public string Sex { get; set; }
-
-        //[Required]
-        public Gender gender = new Gender();
+        public string Gender { get; set; }
 
     }
 

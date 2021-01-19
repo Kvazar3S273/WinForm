@@ -6,7 +6,9 @@ namespace PhoneBook
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Mars!");
+            Generate generate = new Generate();
+            generate.GenerateUser(new MyContext());
+            Console.WriteLine("Додано 1000 абонентів");
         }
     }
 }
