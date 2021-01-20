@@ -40,6 +40,7 @@ namespace PhoneBook.WindowsForms
             this.tboxSurname = new System.Windows.Forms.TextBox();
             this.tboxName = new System.Windows.Forms.TextBox();
             this.tboxPhone = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,11 +136,23 @@ namespace PhoneBook.WindowsForms
             this.tboxPhone.Size = new System.Drawing.Size(130, 23);
             this.tboxPhone.TabIndex = 3;
             // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSearch.Location = new System.Drawing.Point(433, 54);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(128, 54);
+            this.btnSearch.TabIndex = 4;
+            this.btnSearch.Text = "Пошук";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(574, 450);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.tboxPhone);
             this.Controls.Add(this.tboxName);
             this.Controls.Add(this.tboxSurname);
@@ -170,6 +183,7 @@ namespace PhoneBook.WindowsForms
         private System.Windows.Forms.TextBox tboxSurname;
         private System.Windows.Forms.TextBox tboxName;
         private System.Windows.Forms.TextBox tboxPhone;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
 
