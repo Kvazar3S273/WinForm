@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using static Bogus.DataSets.Name;
 
-namespace PhoneBook
+namespace PhoneBook.DAL
 {
     public class Generate
     {

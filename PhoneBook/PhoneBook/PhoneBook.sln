@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook", "PhoneBook\PhoneBook.csproj", "{2C6F6D93-1B8F-482A-AA9C-7DEEA2F46EF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBook", "PhoneBook\PhoneBook.csproj", "{2C6F6D93-1B8F-482A-AA9C-7DEEA2F46EF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.DAL", "PhoneBook.DAL\PhoneBook.DAL.csproj", "{AECC01F9-873D-49FB-AF6D-891CF62BF088}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.WindowsForms", "PhoneBook.WindowsForms\PhoneBook.WindowsForms.csproj", "{D4ED313D-07CD-4E87-BE9B-EFF8445F151C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2C6F6D93-1B8F-482A-AA9C-7DEEA2F46EF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C6F6D93-1B8F-482A-AA9C-7DEEA2F46EF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C6F6D93-1B8F-482A-AA9C-7DEEA2F46EF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AECC01F9-873D-49FB-AF6D-891CF62BF088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AECC01F9-873D-49FB-AF6D-891CF62BF088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AECC01F9-873D-49FB-AF6D-891CF62BF088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AECC01F9-873D-49FB-AF6D-891CF62BF088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4ED313D-07CD-4E87-BE9B-EFF8445F151C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4ED313D-07CD-4E87-BE9B-EFF8445F151C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4ED313D-07CD-4E87-BE9B-EFF8445F151C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4ED313D-07CD-4E87-BE9B-EFF8445F151C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
