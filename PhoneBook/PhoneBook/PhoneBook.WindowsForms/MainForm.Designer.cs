@@ -43,6 +43,10 @@ namespace PhoneBook.WindowsForms
             this.tboxPhone = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblCount = new System.Windows.Forms.Label();
+            this.btnLeft = new System.Windows.Forms.Button();
+            this.btnRight = new System.Windows.Forms.Button();
+            this.lblRange = new System.Windows.Forms.Label();
+            this.cbCountShowOnePage = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,10 +58,10 @@ namespace PhoneBook.WindowsForms
             this.colName,
             this.colGender,
             this.colPhone});
-            this.dataGridView1.Location = new System.Drawing.Point(13, 123);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 159);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(549, 226);
+            this.dataGridView1.Size = new System.Drawing.Size(549, 317);
             this.dataGridView1.TabIndex = 0;
             // 
             // colSurname
@@ -160,23 +164,67 @@ namespace PhoneBook.WindowsForms
             // 
             this.lblCount.AutoSize = true;
             this.lblCount.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblCount.Location = new System.Drawing.Point(13, 372);
+            this.lblCount.Location = new System.Drawing.Point(12, 489);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(73, 20);
             this.lblCount.TabIndex = 2;
             this.lblCount.Text = "Всього: 0";
             // 
+            // btnLeft
+            // 
+            this.btnLeft.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnLeft.Location = new System.Drawing.Point(13, 545);
+            this.btnLeft.Name = "btnLeft";
+            this.btnLeft.Size = new System.Drawing.Size(78, 41);
+            this.btnLeft.TabIndex = 5;
+            this.btnLeft.Text = "<<";
+            this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            // 
+            // btnRight
+            // 
+            this.btnRight.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnRight.Location = new System.Drawing.Point(97, 545);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(78, 41);
+            this.btnRight.TabIndex = 5;
+            this.btnRight.Text = ">>";
+            this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            // 
+            // lblRange
+            // 
+            this.lblRange.AutoSize = true;
+            this.lblRange.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblRange.Location = new System.Drawing.Point(72, 123);
+            this.lblRange.Name = "lblRange";
+            this.lblRange.Size = new System.Drawing.Size(147, 20);
+            this.lblRange.TabIndex = 2;
+            this.lblRange.Text = "Показано: з 0 по 10";
+            // 
+            // cbCountShowOnePage
+            // 
+            this.cbCountShowOnePage.FormattingEnabled = true;
+            this.cbCountShowOnePage.Location = new System.Drawing.Point(13, 123);
+            this.cbCountShowOnePage.Name = "cbCountShowOnePage";
+            this.cbCountShowOnePage.Size = new System.Drawing.Size(53, 23);
+            this.cbCountShowOnePage.TabIndex = 6;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 450);
+            this.ClientSize = new System.Drawing.Size(574, 598);
+            this.Controls.Add(this.cbCountShowOnePage);
+            this.Controls.Add(this.btnRight);
+            this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.tboxPhone);
             this.Controls.Add(this.tboxName);
             this.Controls.Add(this.tboxSurname);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lblRange);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.lblSurname);
             this.Controls.Add(this.lblTitle);
@@ -206,6 +254,10 @@ namespace PhoneBook.WindowsForms
         private System.Windows.Forms.DataGridViewTextBoxColumn colGender;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPhone;
         private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Button btnLeft;
+        private System.Windows.Forms.Button btnRight;
+        private System.Windows.Forms.Label lblRange;
+        private System.Windows.Forms.ComboBox cbCountShowOnePage;
     }
 }
 

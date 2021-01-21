@@ -8,8 +8,9 @@ namespace PhoneBook.WindowsForms.Models.Services
 {
     public class HumanService
     {
-        public static List<HumanView> Search(MyContext context, SearchHuman search)
+        public static HumanViewGrid Search(MyContext context, SearchHuman search)
         {
+            HumanViewGrid model = new HumanViewGrid();
             var query = context.Humans.AsQueryable();
             if (!string.IsNullOrEmpty(search.Surname))
             {
@@ -23,7 +24,12 @@ namespace PhoneBook.WindowsForms.Models.Services
             {
                 query = query.Where(x => x.Phone.Contains(search.Phone));
             }
-            var list = query
+            int showItems = search.CountShowOnePage;
+            int page = search.Page - 1;
+            model.CountRows = query.Count();
+            model.Humans = query
+                .Skip(page * showItems)
+                .Take(showItems)
                 .Select(x => new HumanView
                 {
                     Surname = x.Surname,
@@ -32,7 +38,7 @@ namespace PhoneBook.WindowsForms.Models.Services
                     Phone = x.Phone
                 }).ToList();
 
-            return list;
+            return model;
         }
     }
 }
