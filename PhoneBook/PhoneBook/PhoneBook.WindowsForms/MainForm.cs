@@ -1,4 +1,6 @@
 ﻿using PhoneBook.DAL;
+using PhoneBook.WindowsForms.Models;
+using PhoneBook.WindowsForms.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,24 +15,40 @@ namespace PhoneBook.WindowsForms
 {
     public partial class MainForm : Form
     {
+        private readonly MyContext _context;
         public MainForm()
         {
+            _context = new MyContext();
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MyContext context = new MyContext();
-            foreach (var item in context.Humans)
+            SearchHuman();
+        }
+
+        private void SearchHuman(SearchHuman search = null)
+        {
+            search ??= new SearchHuman();
+            var list = HumanService.Search(_context, null);
+            foreach (var item in list)
             {
                 object[] row =
                 {
-                    $"{item.Surname} {item.Name}",
-                    $"{item.Gender}",
-                    $"{item.Phone}"
+                    item.Surname,
+                    item.Name,
+                    item.Gender,
+                    item.Phone
                 };
                 dataGridView1.Rows.Add(row);
             }
+            lblCount.Text = list.Count().ToString();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchHuman search = new SearchHuman();
+            SearchHuman(search);
         }
     }
 }

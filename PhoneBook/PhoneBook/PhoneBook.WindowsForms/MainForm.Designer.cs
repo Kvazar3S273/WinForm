@@ -31,6 +31,7 @@ namespace PhoneBook.WindowsForms
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.colSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -41,6 +42,7 @@ namespace PhoneBook.WindowsForms
             this.tboxName = new System.Windows.Forms.TextBox();
             this.tboxPhone = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.lblCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +51,7 @@ namespace PhoneBook.WindowsForms
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSurname,
+            this.colName,
             this.colGender,
             this.colPhone});
             this.dataGridView1.Location = new System.Drawing.Point(13, 123);
@@ -60,8 +63,13 @@ namespace PhoneBook.WindowsForms
             // colSurname
             // 
             this.colSurname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colSurname.HeaderText = "Прізвище, ім\'я";
+            this.colSurname.HeaderText = "Прізвище";
             this.colSurname.Name = "colSurname";
+            // 
+            // colName
+            // 
+            this.colName.HeaderText = "Ім\'я";
+            this.colName.Name = "colName";
             // 
             // colGender
             // 
@@ -146,6 +154,17 @@ namespace PhoneBook.WindowsForms
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Пошук";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblCount.Location = new System.Drawing.Point(13, 372);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(73, 20);
+            this.lblCount.TabIndex = 2;
+            this.lblCount.Text = "Всього: 0";
             // 
             // MainForm
             // 
@@ -158,6 +177,7 @@ namespace PhoneBook.WindowsForms
             this.Controls.Add(this.tboxSurname);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lblCount);
             this.Controls.Add(this.lblSurname);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.dataGridView1);
@@ -173,9 +193,6 @@ namespace PhoneBook.WindowsForms
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSurname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colGender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPhone;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblSurname;
         private System.Windows.Forms.Label lblName;
@@ -184,6 +201,11 @@ namespace PhoneBook.WindowsForms
         private System.Windows.Forms.TextBox tboxName;
         private System.Windows.Forms.TextBox tboxPhone;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSurname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPhone;
+        private System.Windows.Forms.Label lblCount;
     }
 }
 
