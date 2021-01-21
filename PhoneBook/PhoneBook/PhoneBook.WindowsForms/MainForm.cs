@@ -29,8 +29,9 @@ namespace PhoneBook.WindowsForms
 
         private void SearchHuman(SearchHuman search = null)
         {
+            dataGridView1.Rows.Clear();
             search ??= new SearchHuman();
-            var list = HumanService.Search(_context, null);
+            var list = HumanService.Search(_context, search);
             foreach (var item in list)
             {
                 object[] row =
@@ -42,12 +43,16 @@ namespace PhoneBook.WindowsForms
                 };
                 dataGridView1.Rows.Add(row);
             }
-            lblCount.Text = list.Count().ToString();
+            lblCount.Text = "Знайдено: " + list.Count().ToString() + " позицій";
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             SearchHuman search = new SearchHuman();
+            search.Surname = tboxSurname.Text;
+            search.Name = tboxName.Text;
+            search.Phone = tboxPhone.Text;
+
             SearchHuman(search);
         }
     }

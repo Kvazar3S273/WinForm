@@ -15,6 +15,14 @@ namespace PhoneBook.WindowsForms.Models.Services
             {
                 query = query.Where(x => x.Surname.Contains(search.Surname));
             }
+            if (!string.IsNullOrEmpty(search.Name))
+            {
+                query = query.Where(x => x.Name.Contains(search.Name));
+            }
+            if (!string.IsNullOrEmpty(search.Phone))
+            {
+                query = query.Where(x => x.Phone.Contains(search.Phone));
+            }
             var list = query
                 .Select(x => new HumanView
                 {
@@ -23,6 +31,7 @@ namespace PhoneBook.WindowsForms.Models.Services
                     Gender = x.Gender,
                     Phone = x.Phone
                 }).ToList();
+
             return list;
         }
     }
