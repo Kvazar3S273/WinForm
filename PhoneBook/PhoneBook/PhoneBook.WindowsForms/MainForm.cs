@@ -26,7 +26,6 @@ namespace PhoneBook.WindowsForms
         private void Form1_Load(object sender, EventArgs e)
         {
             SearchHuman();
-            //CustomComboBoxItem item = new CustomComboBoxItem();
             cbCountShowOnePage.Items.AddRange(
                 new List<CustomComboBoxItem> {
                         new CustomComboBoxItem { Id=1, Name="10" },
@@ -36,6 +35,13 @@ namespace PhoneBook.WindowsForms
                    }.ToArray()
                 );
             cbCountShowOnePage.SelectedIndex = 0;
+        }
+
+        private void btnPage_Click(object sender, EventArgs e)
+        {
+            string s = (sender as Button).Text;
+            _page = int.Parse(s);
+            SearchHuman(GetSearchInputValue());
         }
 
         private void SearchHuman(SearchHuman search = null)
@@ -59,11 +65,30 @@ namespace PhoneBook.WindowsForms
             int end = begin + (search.CountShowOnePage - 1);
             lblRange.Text = $"Показано: {begin} - {end}";
             lblCount.Text = "Знайдено: " + result.CountRows.ToString() + " позицій";
+            
+            int totalPage = (int)Math.Ceiling((double)result.CountRows / search.CountShowOnePage);
+            int positionX = 9;
+            int dx = 45;
+            gbBoxButton.Controls.Clear();
+            //робимо цикл не з 1 сторінки, а з _page, для того, 
+            //щоб можна було рухатись кнопками вліво/вправо по всіх кнопках 1, 2, 3, ...
+            for (int i = _page; i <= totalPage; i++) 
+            {
+                Button btn = new Button();
+                btn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular);
+                btn.Location = new System.Drawing.Point(positionX, 17);
+                btn.Name = $"btnPage{i}";
+                btn.Size = new System.Drawing.Size(40, 40);
+                btn.Text = $"{i}";
+                btn.UseVisualStyleBackColor = true;
+                btn.Click += new System.EventHandler(this.btnPage_Click);
+                gbBoxButton.Controls.Add(btn);
+                positionX += dx;
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-           
             _page = 1;
             SearchHuman(GetSearchInputValue());
         }

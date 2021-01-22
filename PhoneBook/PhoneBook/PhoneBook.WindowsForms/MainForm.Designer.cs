@@ -47,6 +47,7 @@ namespace PhoneBook.WindowsForms
             this.btnRight = new System.Windows.Forms.Button();
             this.lblRange = new System.Windows.Forms.Label();
             this.cbCountShowOnePage = new System.Windows.Forms.ComboBox();
+            this.gbBoxButton = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,9 +174,9 @@ namespace PhoneBook.WindowsForms
             // btnLeft
             // 
             this.btnLeft.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnLeft.Location = new System.Drawing.Point(13, 545);
+            this.btnLeft.Location = new System.Drawing.Point(399, 489);
             this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(78, 41);
+            this.btnLeft.Size = new System.Drawing.Size(78, 30);
             this.btnLeft.TabIndex = 5;
             this.btnLeft.Text = "<<";
             this.btnLeft.UseVisualStyleBackColor = true;
@@ -184,9 +185,9 @@ namespace PhoneBook.WindowsForms
             // btnRight
             // 
             this.btnRight.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRight.Location = new System.Drawing.Point(97, 545);
+            this.btnRight.Location = new System.Drawing.Point(483, 489);
             this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(78, 41);
+            this.btnRight.Size = new System.Drawing.Size(78, 30);
             this.btnRight.TabIndex = 5;
             this.btnRight.Text = ">>";
             this.btnRight.UseVisualStyleBackColor = true;
@@ -210,11 +211,20 @@ namespace PhoneBook.WindowsForms
             this.cbCountShowOnePage.Size = new System.Drawing.Size(53, 23);
             this.cbCountShowOnePage.TabIndex = 6;
             // 
+            // gbBoxButton
+            // 
+            this.gbBoxButton.Location = new System.Drawing.Point(16, 525);
+            this.gbBoxButton.Name = "gbBoxButton";
+            this.gbBoxButton.Size = new System.Drawing.Size(544, 67);
+            this.gbBoxButton.TabIndex = 7;
+            this.gbBoxButton.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 598);
+            this.ClientSize = new System.Drawing.Size(574, 607);
+            this.Controls.Add(this.gbBoxButton);
             this.Controls.Add(this.cbCountShowOnePage);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnLeft);
@@ -258,6 +268,7 @@ namespace PhoneBook.WindowsForms
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.Label lblRange;
         private System.Windows.Forms.ComboBox cbCountShowOnePage;
+        private System.Windows.Forms.GroupBox gbBoxButton;
     }
 }
 
