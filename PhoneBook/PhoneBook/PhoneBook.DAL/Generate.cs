@@ -9,11 +9,14 @@ namespace PhoneBook.DAL
 {
     public class Generate
     {
+        // Створюємо перелік статей
         public enum Gender
         {
             Male,
             Female
         }
+
+        // Метод для генерування абонентів через бібліотеку Богус
         public void GenerateUser(MyContext context)
         {
             Random rnd = new Random();
@@ -23,10 +26,14 @@ namespace PhoneBook.DAL
                 .RuleFor(h => h.Surname, f => f.Name.LastName(f.Person.Gender))
                 .RuleFor(h => h.Name, f => f.Name.FirstName(f.Person.Gender))
                 .RuleFor(h => h.Phone, f => f.Phone.PhoneNumber());
+            
+            // Додаємо в список 1000 абонентів
             for (int i = 0; i < 1000; i++)
             {
                 listHuman.Add(human.Generate());
             }
+
+            // Якщо в таблиці пусто - здійснюємо заповнення таблиці згенерованими абонентами
             if(context.Humans.Count()==0)
             {
                 foreach (var item in listHuman)

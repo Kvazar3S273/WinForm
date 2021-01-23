@@ -15,6 +15,10 @@ namespace PhoneBook.WindowsForms.Models
         /// </summary>
         public int CountRows { get; set; }
     }
+
+    /// <summary>
+    /// Дані про абонента, які будемо показувати
+    /// </summary>
     public class HumanView
     {
         public string Surname { get; set; }
