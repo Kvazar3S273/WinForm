@@ -48,7 +48,10 @@ namespace PhoneBook.WindowsForms
             this.lblRange = new System.Windows.Forms.Label();
             this.cbCountShowOnePage = new System.Windows.Forms.ComboBox();
             this.gbBoxButton = new System.Windows.Forms.GroupBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -219,6 +222,22 @@ namespace PhoneBook.WindowsForms
             this.gbBoxButton.TabIndex = 7;
             this.gbBoxButton.TabStop = false;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(574, 24);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "Тестування";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(81, 20);
+            this.toolStripMenuItem1.Text = "Тестування";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -239,10 +258,14 @@ namespace PhoneBook.WindowsForms
             this.Controls.Add(this.lblSurname);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Телефонний довідник";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,6 +292,8 @@ namespace PhoneBook.WindowsForms
         private System.Windows.Forms.Label lblRange;
         private System.Windows.Forms.ComboBox cbCountShowOnePage;
         private System.Windows.Forms.GroupBox gbBoxButton;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 
