@@ -39,7 +39,7 @@ namespace Audit.WindowsForms
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTitle.ForeColor = System.Drawing.Color.MediumBlue;
-            this.lblTitle.Location = new System.Drawing.Point(26, 21);
+            this.lblTitle.Location = new System.Drawing.Point(22, 21);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(242, 32);
             this.lblTitle.TabIndex = 0;
@@ -48,7 +48,7 @@ namespace Audit.WindowsForms
             // 
             // bntGo
             // 
-            this.bntGo.Location = new System.Drawing.Point(26, 72);
+            this.bntGo.Location = new System.Drawing.Point(28, 72);
             this.bntGo.Name = "bntGo";
             this.bntGo.Size = new System.Drawing.Size(230, 58);
             this.bntGo.TabIndex = 1;
@@ -59,7 +59,7 @@ namespace Audit.WindowsForms
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.LightCoral;
-            this.btnExit.Location = new System.Drawing.Point(26, 145);
+            this.btnExit.Location = new System.Drawing.Point(28, 145);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(230, 58);
             this.btnExit.TabIndex = 1;
@@ -76,6 +76,7 @@ namespace Audit.WindowsForms
             this.Controls.Add(this.bntGo);
             this.Controls.Add(this.lblTitle);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Меню";
             this.ResumeLayout(false);
             this.PerformLayout();

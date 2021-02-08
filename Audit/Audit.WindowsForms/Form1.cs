@@ -23,12 +23,12 @@ namespace Audit.WindowsForms
 
         private void bntGo_Click(object sender, EventArgs e)
         {
-            this.Close();
+           // new QuestionForm().ShowDialog();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            new QuestionForm().ShowDialog();
+            this.Close();
         }
     }
 }
