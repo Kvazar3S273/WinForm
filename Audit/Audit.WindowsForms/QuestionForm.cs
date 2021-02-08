@@ -13,94 +13,66 @@ namespace Audit.WindowsForms
 {
     public partial class QuestionForm : Form
     {
-        /// <summary>
-        /// Питання.
-        /// </summary>
+        // Питання.
         private List<QuestionModel> _listQuestions;
 
         private readonly MyContext context;
 
-        /// <summary>
-        /// Поточне питання.
-        /// </summary>
+        // Поточне питання.
         private int indexQuestion = 0;
 
-        /// <summary>
-        /// Кількість питань у тестах
-        /// </summary>
-        int cou = 0;
+        // Кількість всіх запитань у тестах
+        int countQuestions = 0;
 
-        /// <summary>
-        /// Масив булевих значень відповідей.
-        /// </summary>
+        // Масив правильних відповідей (true/false)
         private bool[] result;
 
-        /// <summary>
-        /// Айді останньої створеної сесії після логіна користувача.
-        /// </summary>
-        private readonly int sesmax;
+        // Останя сесія користувача, який залогінився
+        private readonly int lastSession;
 
-        /// <summary>
-        /// Лічильник правильних відповідей.
-        /// </summary>
-        private int q;
+        // Кількість правильних відповідей
+        private int rightAnswer;
 
-        /// <summary>
-        /// Для таймера інтервал секунд.
-        /// </summary>
+        // Інтервал секунд (для таймера)
         private int _tick;
 
-        /// <summary>
-        /// Лічильник тіків таймера.
-        /// </summary>
-        private int count = 0;
+        // Лічильник тіків таймера.
+        private int tickCount = 0;
 
-        /// <summary>
-        /// Властивість,що містить айді користувача
-        /// </summary>
-        public UserAudit LogInstancem { get; set; }
+        // Залогінений користувач
+        public UserAudit UserIsLogined { get; set; }
 
-        /// <summary>
-        /// Властивіть,що містить айді останньої сесії.
-        /// </summary>
-        public int idsession
+        // ID останньої сесії.
+        public int SessionID
         {
             get
             {
-                return sesmax;
+                return lastSession;
             }
-
             set
             {
-                value = sesmax;
+                value = lastSession;
             }
         }
 
-        /// <summary>
-        /// Властивість,кількість тіків.
-        /// </summary>
+        // Кількість тіків
         public int count_tick { get; set; }
 
-        /// <summary>
-        /// Правильні відповіді.
-        /// </summary>
-        public int positive
+        // Правильні відповіді
+        public int RightAnswers
         {
             get
             {
-                return q;
+                return rightAnswer;
             }
             set
             {
-                value = positive;
+                value = RightAnswers;
             }
         }
 
-
-        /// <summary>
-        /// Неправильні відповіді.
-        /// </summary>
-        public int negative
+        // Неправильні відповіді
+        public int WrongAnswers
         {
             get
             {
@@ -118,11 +90,11 @@ namespace Audit.WindowsForms
             LoginForm login = new LoginForm();
             if(login.ShowDialog()==DialogResult.OK)
             {
-                LogInstancem = login.User;
+                UserIsLogined = login.User;
 
                 var sess = new SessionAudit
                 {
-                    UserId = LogInstancem.Id,
+                    UserId = UserIsLogined.Id,
                     Begin = DateTime.Now,
                     Marks = 60M
                 };
@@ -131,7 +103,7 @@ namespace Audit.WindowsForms
             }
 
             var info = context.Sessions.Max(x => x.Id);
-            sesmax = info;
+            lastSession = info;
 
             _listQuestions = context.Questions.Select(x => new QuestionModel
             {
@@ -147,8 +119,8 @@ namespace Audit.WindowsForms
             InitializeComponent();
 
             timer1.Start();
-            cou = context.Questions.Count();
-            lbl2.Text = $" із {cou}";
+            countQuestions = context.Questions.Count();
+            lbl2.Text = $" із {countQuestions}";
             result = new bool[_listQuestions.Count];
         }
 
@@ -176,8 +148,6 @@ namespace Audit.WindowsForms
                 startPosition += dy;
                 lbl4.Text = $"Запитання:  {indexQuestion + 1}";
             }
-
-
         }
         private void btnStop_Click(object sender, EventArgs e)
         {
@@ -186,8 +156,7 @@ namespace Audit.WindowsForms
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            //Кількість правильних відповідей.
-            q = 0;
+            rightAnswer = 0;
 
             var radioButtons = gbAnswers.Controls.OfType<RadioButton>();
             foreach (RadioButton rb in radioButtons)
@@ -200,7 +169,7 @@ namespace Audit.WindowsForms
                     var infoid = context.Answers.Where(x => x.Id == answer.Id).ToList();
                     foreach (var item in infoid)
                     {
-                        context.Results.Add(new ResultAudit { SessionId = idsession, AnswerId = item.Id });
+                        context.Results.Add(new ResultAudit { SessionId = SessionID, AnswerId = item.Id });
                         context.SaveChanges();
                     }
                 }
@@ -210,7 +179,7 @@ namespace Audit.WindowsForms
             {
                 if (item == true)
                 {
-                    q++;
+                    rightAnswer++;
                 }
             }
 
@@ -218,15 +187,13 @@ namespace Audit.WindowsForms
 
             if (_listQuestions.Count() == indexQuestion)
             {
-                //Close();  
-                var total = context.Sessions.Where(x => x.Id == sesmax).ToList();
-                //Додала в таблицю Сесія,скільки часу було потрачено на тест і записала в базу.
+                var total = context.Sessions.Where(x => x.Id == lastSession).ToList();
                 foreach (var item in total)
                 {
                     item.End = DateTime.Now.AddSeconds(count_tick);
                     context.SaveChanges();
                 }
-                count_tick = count;
+                count_tick = tickCount;
                 new ResultForm(this).ShowDialog();
             }
             else
@@ -249,7 +216,7 @@ namespace Audit.WindowsForms
         {
             _tick++;
             tBoxTimer.Text = _tick.ToString();
-            count++;
+            tickCount++;
         }
 
         private void QuestionForm_Load(object sender, EventArgs e)

@@ -17,10 +17,10 @@ namespace Audit.WindowsForms
         public ResultForm(QuestionForm form)
         {
             InitializeComponent();
-            lblRightAnswers.Text = $"Кількість правильних відповідей: {form.positive}";
-            lblWrongAnswers.Text = $"Кількість неправильних відповідей: { form.negative - form.positive}";
-            lblIQ.Text = $"Ваш IQ: {(form.positive * 100) / form.negative}";
-            UserSample = form.LogInstancem;
+            lblRightAnswers.Text = $"Кількість правильних відповідей: {form.RightAnswers}";
+            lblWrongAnswers.Text = $"Кількість неправильних відповідей: { form.WrongAnswers - form.RightAnswers}";
+            lblIQ.Text = $"Ваш IQ: {(form.RightAnswers * 100) / form.WrongAnswers}";
+            UserSample = form.UserIsLogined;
         }
 
         private void ResultForm_Load(object sender, EventArgs e)
@@ -45,11 +45,8 @@ namespace Audit.WindowsForms
                         $"{item.Surname}",
                         $"{item.Begin}",
                         $"{item.End}"
-
                     };
-
                 dataGridView1.Rows.Add(row);
-
             }
         }
     }
