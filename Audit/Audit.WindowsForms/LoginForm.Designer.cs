@@ -43,7 +43,7 @@ namespace Audit.WindowsForms
             this.lblLogin.Location = new System.Drawing.Point(25, 39);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(47, 20);
-            this.lblLogin.TabIndex = 0;
+            this.lblLogin.TabIndex = 3;
             this.lblLogin.Text = "Логін";
             // 
             // lblPassword
@@ -53,7 +53,7 @@ namespace Audit.WindowsForms
             this.lblPassword.Location = new System.Drawing.Point(25, 80);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(62, 20);
-            this.lblPassword.TabIndex = 0;
+            this.lblPassword.TabIndex = 4;
             this.lblPassword.Text = "Пароль";
             // 
             // tboxLogin
@@ -61,7 +61,7 @@ namespace Audit.WindowsForms
             this.tboxLogin.Location = new System.Drawing.Point(102, 39);
             this.tboxLogin.Name = "tboxLogin";
             this.tboxLogin.Size = new System.Drawing.Size(159, 23);
-            this.tboxLogin.TabIndex = 1;
+            this.tboxLogin.TabIndex = 0;
             // 
             // tboxPassword
             // 
