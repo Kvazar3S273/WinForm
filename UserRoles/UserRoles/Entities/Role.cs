@@ -6,7 +6,7 @@ using System.Text;
 
 namespace UserRoles.Entities
 {
-    [Table("tblRolesR")]
+    [Table("tblRoles")]
     public class Role
     {
         [Key]
@@ -17,5 +17,7 @@ namespace UserRoles.Entities
 
         [StringLength(300)]
         public string ConcurrencyStamp { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
+
     }
 }

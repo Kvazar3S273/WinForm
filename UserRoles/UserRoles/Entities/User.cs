@@ -6,7 +6,7 @@ using System.Text;
 
 namespace UserRoles.Entities
 {
-    [Table("tblUsersR")]
+    [Table("tblUsers")]
     public class User
     {
         [Key]
@@ -23,5 +23,6 @@ namespace UserRoles.Entities
 
         [Required, StringLength(255)]
         public string Password { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

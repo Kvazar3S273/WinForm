@@ -9,8 +9,8 @@ using UserRoles.Entities;
 namespace UserRoles.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20210210214800_Add tblRolesR")]
-    partial class AddtblRolesR
+    [Migration("20210210221225_Add tblUsers")]
+    partial class AddtblUsers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,7 @@ namespace UserRoles.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tblRolesR");
+                    b.ToTable("tblRoles");
                 });
 
             modelBuilder.Entity("UserRoles.Entities.User", b =>
@@ -68,7 +68,44 @@ namespace UserRoles.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tblUsersR");
+                    b.ToTable("tblUsers");
+                });
+
+            modelBuilder.Entity("UserRoles.Entities.UserRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("tblUserRoles");
+                });
+
+            modelBuilder.Entity("UserRoles.Entities.UserRole", b =>
+                {
+                    b.HasOne("UserRoles.Entities.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UserRoles.Entities.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

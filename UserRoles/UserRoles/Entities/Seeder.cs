@@ -11,6 +11,7 @@ namespace UserRoles.Entities
         {
             SeedUser(context);
             SeedRole(context);
+            SeedUserRole(context);
         }
         private static void SeedUser(EFContext context)
         {
@@ -39,8 +40,36 @@ namespace UserRoles.Entities
         {
             if(context.Roles.Count()==0)
             {
-                context.Roles.Add(new Role { Title = "HR" });
-                context.Roles.Add(new Role { Title = "Developer" });
+                context.Roles
+                    .Add(new Role { Title = "HR" });
+                context.Roles
+                    .Add(new Role { Title = "Developer" });
+            }
+            context.SaveChanges();
+        }
+        private static void SeedUserRole(EFContext context)
+        {
+            if(context.UserRoles.Count()==0)
+            {
+                context.UserRoles
+                    .Add(new UserRole
+                    {
+                        UserId = 1,
+                        RoleId = 1
+                    });
+                context.UserRoles
+                    .Add(new UserRole
+                    {
+                        UserId = 2,
+                        RoleId = 1
+                    });
+                context.UserRoles
+                    .Add(new UserRole
+                    {
+                        UserId = 1,
+                        RoleId = 2
+                    });
+                context.SaveChanges();
             }
         }
     }
