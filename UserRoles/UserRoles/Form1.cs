@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UserRoles.Entities;
 
 namespace UserRoles
 {
@@ -15,6 +16,8 @@ namespace UserRoles
         public Form1()
         {
             InitializeComponent();
+            EFContext context = new EFContext();
+            Seeder.SeedDataBase(context);
         }
 
     }
