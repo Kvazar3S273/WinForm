@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using UserRoles.Entities;
+using UserRoles.Models;
 
 namespace UserRoles
 {
@@ -43,6 +44,13 @@ namespace UserRoles
                 };
                 dataGridView.Rows.Add(row);
             }
+        }
+
+        private void SearchUser(SearchUser search = null)
+        {
+            dataGridView.Rows.Clear();
+            search ??= new SearchUser();
+            var result = UserService.Search(context, search);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
