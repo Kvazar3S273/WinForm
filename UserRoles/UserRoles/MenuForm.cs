@@ -27,7 +27,7 @@ namespace UserRoles
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-
+            new ReadForm().ShowDialog();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
