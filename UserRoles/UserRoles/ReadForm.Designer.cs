@@ -30,11 +30,6 @@ namespace UserRoles
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColEmale = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -45,6 +40,10 @@ namespace UserRoles
             this.tbPhoneNumber = new System.Windows.Forms.TextBox();
             this.tbRole = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColEmale = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +51,6 @@ namespace UserRoles
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColId,
             this.ColName,
             this.ColEmale,
             this.ColPhone,
@@ -62,36 +60,6 @@ namespace UserRoles
             this.dataGridView.RowTemplate.Height = 25;
             this.dataGridView.Size = new System.Drawing.Size(658, 290);
             this.dataGridView.TabIndex = 0;
-            // 
-            // ColId
-            // 
-            this.ColId.HeaderText = "ID";
-            this.ColId.Name = "ColId";
-            this.ColId.Width = 20;
-            // 
-            // ColName
-            // 
-            this.ColName.HeaderText = "Ім\'я";
-            this.ColName.Name = "ColName";
-            this.ColName.Width = 120;
-            // 
-            // ColEmale
-            // 
-            this.ColEmale.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColEmale.HeaderText = "E-mail";
-            this.ColEmale.Name = "ColEmale";
-            // 
-            // ColPhone
-            // 
-            this.ColPhone.HeaderText = "Телефон";
-            this.ColPhone.Name = "ColPhone";
-            this.ColPhone.Width = 120;
-            // 
-            // ColRole
-            // 
-            this.ColRole.HeaderText = "Посада";
-            this.ColRole.Name = "ColRole";
-            this.ColRole.Width = 120;
             // 
             // lblTitle
             // 
@@ -180,6 +148,30 @@ namespace UserRoles
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // ColName
+            // 
+            this.ColName.HeaderText = "Ім\'я";
+            this.ColName.Name = "ColName";
+            this.ColName.Width = 120;
+            // 
+            // ColEmale
+            // 
+            this.ColEmale.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColEmale.HeaderText = "E-mail";
+            this.ColEmale.Name = "ColEmale";
+            // 
+            // ColPhone
+            // 
+            this.ColPhone.HeaderText = "Телефон";
+            this.ColPhone.Name = "ColPhone";
+            this.ColPhone.Width = 120;
+            // 
+            // ColRole
+            // 
+            this.ColRole.HeaderText = "Посада";
+            this.ColRole.Name = "ColRole";
+            this.ColRole.Width = 120;
+            // 
             // ReadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -208,11 +200,6 @@ namespace UserRoles
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColEmale;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColRole;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblEmail;
@@ -223,5 +210,9 @@ namespace UserRoles
         private System.Windows.Forms.TextBox tbPhoneNumber;
         private System.Windows.Forms.TextBox tbRole;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColEmale;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColRole;
     }
 }
