@@ -44,5 +44,10 @@ namespace UserRoles
                 dataGridView.Rows.Add(row);
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
