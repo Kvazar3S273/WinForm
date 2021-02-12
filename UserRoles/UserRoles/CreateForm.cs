@@ -22,16 +22,26 @@ namespace UserRoles
 
         private void CreateForm_Load(object sender, EventArgs e)
         {
-            cbRole.Items.AddRange(
-                new List<ComboBoxItem>
+            //cbRole.Items.AddRange(
+            //    new List<ComboBoxItem>
+            //    {
+            //        new ComboBoxItem{ Id=8, Name="HR" },
+            //        new ComboBoxItem{ Id=9, Name="Developer" },
+            //        new ComboBoxItem{ Id=10, Name="Designer" },
+            //        new ComboBoxItem{ Id=11, Name="System administrator" },
+            //        new ComboBoxItem{ Id=12, Name="Artist" }
+            //    }.ToArray()
+            //    );
+
+            foreach (var role in _context.Roles)
+            {
+                ComboBoxItem item = new ComboBoxItem
                 {
-                    new ComboBoxItem{ Id=1, Name="HR" },
-                    new ComboBoxItem{ Id=2, Name="Developer" },
-                    new ComboBoxItem{ Id=3, Name="Designer" },
-                    new ComboBoxItem{ Id=4, Name="System administrator" },
-                    new ComboBoxItem{ Id=5, Name="Artist" }
-                }.ToArray()
-                );
+                    Id = role.Id,
+                    Name = role.Title
+                };
+                cbRole.Items.Add(item);
+            }
             cbRole.SelectedIndex = 0;
         }
 
