@@ -44,6 +44,12 @@ namespace UserRoles.Entities
                     .Add(new Role { Title = "HR" });
                 context.Roles
                     .Add(new Role { Title = "Developer" });
+                context.Roles
+                    .Add(new Role { Title = "Designer" });
+                context.Roles
+                    .Add(new Role { Title = "System administrator" });
+                context.Roles
+                    .Add(new Role { Title = "Artist" });
             }
             context.SaveChanges();
         }

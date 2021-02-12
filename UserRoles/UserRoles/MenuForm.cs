@@ -22,7 +22,7 @@ namespace UserRoles
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-
+            new CreateForm().ShowDialog();
         }
 
         private void btnRead_Click(object sender, EventArgs e)
