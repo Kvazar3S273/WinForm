@@ -50,6 +50,7 @@ namespace UserRoles
             // 
             // btnCreate
             // 
+            this.btnCreate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCreate.Location = new System.Drawing.Point(33, 75);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(330, 61);
@@ -60,6 +61,7 @@ namespace UserRoles
             // 
             // btnRead
             // 
+            this.btnRead.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnRead.Location = new System.Drawing.Point(33, 142);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(330, 61);
@@ -70,6 +72,7 @@ namespace UserRoles
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnUpdate.Location = new System.Drawing.Point(33, 209);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(330, 61);
@@ -80,6 +83,7 @@ namespace UserRoles
             // 
             // btnDelete
             // 
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnDelete.Location = new System.Drawing.Point(33, 276);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(330, 61);
@@ -91,6 +95,7 @@ namespace UserRoles
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnExit.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnExit.Location = new System.Drawing.Point(33, 343);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(330, 61);
@@ -111,6 +116,7 @@ namespace UserRoles
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.label1);
             this.Name = "MenuForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Меню";
             this.ResumeLayout(false);
             this.PerformLayout();

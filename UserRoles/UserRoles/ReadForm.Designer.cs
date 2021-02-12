@@ -30,6 +30,10 @@ namespace UserRoles
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColEmale = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -40,10 +44,6 @@ namespace UserRoles
             this.tbPhoneNumber = new System.Windows.Forms.TextBox();
             this.tbRole = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColEmale = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,6 +60,30 @@ namespace UserRoles
             this.dataGridView.RowTemplate.Height = 25;
             this.dataGridView.Size = new System.Drawing.Size(658, 290);
             this.dataGridView.TabIndex = 0;
+            // 
+            // ColName
+            // 
+            this.ColName.HeaderText = "Ім\'я";
+            this.ColName.Name = "ColName";
+            this.ColName.Width = 120;
+            // 
+            // ColEmale
+            // 
+            this.ColEmale.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColEmale.HeaderText = "E-mail";
+            this.ColEmale.Name = "ColEmale";
+            // 
+            // ColPhone
+            // 
+            this.ColPhone.HeaderText = "Телефон";
+            this.ColPhone.Name = "ColPhone";
+            this.ColPhone.Width = 120;
+            // 
+            // ColRole
+            // 
+            this.ColRole.HeaderText = "Посада";
+            this.ColRole.Name = "ColRole";
+            this.ColRole.Width = 120;
             // 
             // lblTitle
             // 
@@ -148,30 +172,6 @@ namespace UserRoles
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // ColName
-            // 
-            this.ColName.HeaderText = "Ім\'я";
-            this.ColName.Name = "ColName";
-            this.ColName.Width = 120;
-            // 
-            // ColEmale
-            // 
-            this.ColEmale.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColEmale.HeaderText = "E-mail";
-            this.ColEmale.Name = "ColEmale";
-            // 
-            // ColPhone
-            // 
-            this.ColPhone.HeaderText = "Телефон";
-            this.ColPhone.Name = "ColPhone";
-            this.ColPhone.Width = 120;
-            // 
-            // ColRole
-            // 
-            this.ColRole.HeaderText = "Посада";
-            this.ColRole.Name = "ColRole";
-            this.ColRole.Width = 120;
-            // 
             // ReadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -189,6 +189,7 @@ namespace UserRoles
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.dataGridView);
             this.Name = "ReadForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Перегляд бази даних";
             this.Load += new System.EventHandler(this.ReadForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
