@@ -39,6 +39,7 @@ namespace UserRoles.Models
             model.Users = query.Select(x =>
               new UserView
               {
+                  Id = x.User.Id,
                   Name = x.User.Name,
                   Email = x.User.Email,
                   PhoneNumber = x.User.PhoneNumber,

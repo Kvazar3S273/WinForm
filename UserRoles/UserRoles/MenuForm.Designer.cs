@@ -33,7 +33,6 @@ namespace UserRoles
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnRead = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -81,17 +80,6 @@ namespace UserRoles
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(33, 276);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(330, 61);
-            this.btnDelete.TabIndex = 1;
-            this.btnDelete.Text = "Видалити користувача";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -110,7 +98,6 @@ namespace UserRoles
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 440);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnCreate);
@@ -129,7 +116,6 @@ namespace UserRoles
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnRead;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnExit;
     }
 }

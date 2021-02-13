@@ -26,6 +26,7 @@ namespace UserRoles
             var data = _context.UserRoles.Include(x => x.User).Include(y => y.Role).AsQueryable();
             var list = data.Select(x => new
             {
+                Id=x.User.Id,
                 Name = x.User.Name,
                 Email = x.User.Email,
                 PhoneNumber = x.User.PhoneNumber,
@@ -36,6 +37,7 @@ namespace UserRoles
             {
                 object[] row =
                 {
+                    $"{n.Id}",
                     $"{n.Name}",
                     $"{n.Email}",
                     $"{n.PhoneNumber}",
@@ -43,6 +45,13 @@ namespace UserRoles
                 };
                 dataGridView.Rows.Add(row);
             }
+            
+            dataGridView.SelectionChanged += dataGridView_SelectionChanged;
+        }
+
+        private void dataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            dataGridView.ReadOnly = true;
         }
 
         private void SearchUser(SearchUser search = null)
@@ -54,6 +63,7 @@ namespace UserRoles
             {
                 object[] row =
                 {
+                    n.Id,
                     n.Name,
                     n.Email,
                     n.PhoneNumber,
@@ -77,6 +87,39 @@ namespace UserRoles
             search.Role = tbRole.Text;
 
             return search;
+        }
+        
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            // Знаходимо ID запису в базі даних
+            int index = int.Parse(dataGridView["ColId", dataGridView.CurrentRow.Index].Value.ToString());
+
+            // Знаходимо номер рядка в датагріді, на якому стоїть курсор
+            int indexInDGV = dataGridView.SelectedCells[0].RowIndex;
+
+            // Визначаємо користувача, якого будемо видаляти по занйденому ID
+            User user = _context.Users.SingleOrDefault(x => x.Id == index);
+
+            // Видаляємо даний рядок також з відображення в датагріді
+            dataGridView.Rows.RemoveAt(indexInDGV);
+
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            dataGridView.ReadOnly = false;
+            dataGridView.BeginEdit(true);
+            string _name = dataGridView["ColName", dataGridView.CurrentRow.Index].Value.ToString();
+            string _email = dataGridView["ColEmail", dataGridView.CurrentRow.Index].Value.ToString();
+            string _phone = dataGridView["ColPhone", dataGridView.CurrentRow.Index].Value.ToString();
+
+
+            MessageBox.Show($"Ім'я  {_name}\nE-mail  {_email}\nPhone  {_phone}");
+
+            
+            _context.SaveChanges();
         }
     }
 }
