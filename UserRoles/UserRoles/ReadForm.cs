@@ -45,13 +45,7 @@ namespace UserRoles
                 };
                 dataGridView.Rows.Add(row);
             }
-            
-            dataGridView.SelectionChanged += dataGridView_SelectionChanged;
-        }
-
-        private void dataGridView_SelectionChanged(object sender, EventArgs e)
-        {
-            dataGridView.ReadOnly = true;
+            dataGridView.CellContentClick += dataGridView_CellContentClick;
         }
 
         private void SearchUser(SearchUser search = null)
@@ -112,12 +106,9 @@ namespace UserRoles
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //new EditForm().ShowDialog();
-            dataGridView.ReadOnly = false;
-            dataGridView.BeginEdit(true);
+            //dataGridView.ReadOnly = false;
+            //dataGridView.BeginEdit(true);
             
-            //groupBox.Controls.Clear();
-
             // 
             // lbl
             // 
@@ -171,7 +162,6 @@ namespace UserRoles
             // 
             // btnSave
             // 
-            //Button btnSave = new Button();
             btnSave.Location = new System.Drawing.Point(578, 422);
             btnSave.Name = "btnDelete";
             btnSave.Size = new System.Drawing.Size(97, 80);
@@ -180,25 +170,33 @@ namespace UserRoles
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += new System.EventHandler(this.btnSave_Click);
 
-            string _name = dataGridView["ColName", dataGridView.CurrentRow.Index].Value.ToString();
+            //string _name = dataGridView["ColName", dataGridView.CurrentRow.Index].Value.ToString();
+            string str = dataGridView.CurrentCell.Value.ToString();
             string _email = dataGridView["ColEmail", dataGridView.CurrentRow.Index].Value.ToString();
             string _phone = dataGridView["ColPhone", dataGridView.CurrentRow.Index].Value.ToString();
 
-            TakeName = _name;
+            TakeName = str;
             TakeEmail = _email;
             TakePhoneNumber = _phone;
 
             //MessageBox.Show($"Ім'я  {_name}\nE-mail  {_email}\nPhone  {_phone}");
         }
-
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string str = dataGridView.CurrentCell.Value.ToString();
+            TakeName = str;
+        }
         private void EditUser()
         {
             User userN = _context.Users.SingleOrDefault(x => x.Name == TakeName);
-            if (userN != null)
-            {
+            //if (userN != null)
+            //{
                 userN.Name = tbName.Text;
+                //userN.Email = tbEmail.Text;
+                //userN.PhoneNumber = tbPhoneNumber.Text;
+
                 _context.SaveChanges();
-            }
+            //}
             //User userE = _context.Users.SingleOrDefault(y => y.Email == TakeEmail);
             //if (userE != null)
             //{

@@ -48,7 +48,6 @@ namespace UserRoles
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -123,7 +122,7 @@ namespace UserRoles
             this.lblEmail.Location = new System.Drawing.Point(139, 51);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(41, 15);
-            this.lblEmail.TabIndex = 2;
+            this.lblEmail.TabIndex = 3;
             this.lblEmail.Text = "E-mail";
             // 
             // lblPhoneNumber
@@ -132,7 +131,7 @@ namespace UserRoles
             this.lblPhoneNumber.Location = new System.Drawing.Point(261, 51);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(56, 15);
-            this.lblPhoneNumber.TabIndex = 2;
+            this.lblPhoneNumber.TabIndex = 4;
             this.lblPhoneNumber.Text = "Телефон";
             // 
             // lblRole
@@ -141,7 +140,7 @@ namespace UserRoles
             this.lblRole.Location = new System.Drawing.Point(383, 51);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(47, 15);
-            this.lblRole.TabIndex = 2;
+            this.lblRole.TabIndex = 5;
             this.lblRole.Text = "Посада";
             // 
             // tbName
@@ -149,28 +148,28 @@ namespace UserRoles
             this.tbName.Location = new System.Drawing.Point(17, 72);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(115, 23);
-            this.tbName.TabIndex = 3;
+            this.tbName.TabIndex = 6;
             // 
             // tbEmail
             // 
             this.tbEmail.Location = new System.Drawing.Point(139, 72);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(115, 23);
-            this.tbEmail.TabIndex = 3;
+            this.tbEmail.TabIndex = 7;
             // 
             // tbPhoneNumber
             // 
             this.tbPhoneNumber.Location = new System.Drawing.Point(261, 72);
             this.tbPhoneNumber.Name = "tbPhoneNumber";
             this.tbPhoneNumber.Size = new System.Drawing.Size(115, 23);
-            this.tbPhoneNumber.TabIndex = 3;
+            this.tbPhoneNumber.TabIndex = 8;
             // 
             // tbRole
             // 
             this.tbRole.Location = new System.Drawing.Point(383, 72);
             this.tbRole.Name = "tbRole";
             this.tbRole.Size = new System.Drawing.Size(115, 23);
-            this.tbRole.TabIndex = 3;
+            this.tbRole.TabIndex = 9;
             // 
             // btnSearch
             // 
@@ -179,7 +178,7 @@ namespace UserRoles
             this.btnSearch.Location = new System.Drawing.Point(522, 33);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(146, 62);
-            this.btnSearch.TabIndex = 4;
+            this.btnSearch.TabIndex = 10;
             this.btnSearch.Text = "Пошук";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -189,7 +188,7 @@ namespace UserRoles
             this.btnDelete.Location = new System.Drawing.Point(16, 422);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(116, 61);
-            this.btnDelete.TabIndex = 5;
+            this.btnDelete.TabIndex = 11;
             this.btnDelete.Text = "Видалити вибраний рядок";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -199,10 +198,17 @@ namespace UserRoles
             this.btnEdit.Location = new System.Drawing.Point(153, 422);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(116, 61);
-            this.btnEdit.TabIndex = 6;
+            this.btnEdit.TabIndex = 12;
             this.btnEdit.Text = "Редагувати";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(600, 422);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 61);
+            this.btnSave.TabIndex = 13;
             // 
             // ReadForm
             // 
@@ -248,11 +254,11 @@ namespace UserRoles
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEmail;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColPhone;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColRole;
+        private System.Windows.Forms.Button btnSave;
     }
 }
