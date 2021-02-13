@@ -106,6 +106,9 @@ namespace UserRoles
             _context.Users.Remove(user);
             _context.SaveChanges();
         }
+        public string TakeName { get; set; }
+        public string TakeEmail { get; set; }
+        public string TakePhoneNumber { get; set; }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -113,10 +116,6 @@ namespace UserRoles
             dataGridView.ReadOnly = false;
             dataGridView.BeginEdit(true);
             
-            string _name = dataGridView["ColName", dataGridView.CurrentRow.Index].Value.ToString();
-            string _email = dataGridView["ColEmail", dataGridView.CurrentRow.Index].Value.ToString();
-            string _phone = dataGridView["ColPhone", dataGridView.CurrentRow.Index].Value.ToString();
-
             //groupBox.Controls.Clear();
 
             // 
@@ -181,24 +180,41 @@ namespace UserRoles
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += new System.EventHandler(this.btnSave_Click);
 
+            string _name = dataGridView["ColName", dataGridView.CurrentRow.Index].Value.ToString();
+            string _email = dataGridView["ColEmail", dataGridView.CurrentRow.Index].Value.ToString();
+            string _phone = dataGridView["ColPhone", dataGridView.CurrentRow.Index].Value.ToString();
 
+            TakeName = _name;
+            TakeEmail = _email;
+            TakePhoneNumber = _phone;
 
             //MessageBox.Show($"Ім'я  {_name}\nE-mail  {_email}\nPhone  {_phone}");
-
-            //User user = _context.Users.SingleOrDefault(x => x.Name == _name);
-            //if(user!=null)
-            //{
-            //    user.Name = "0000";
-            //    _context.SaveChanges();
-            //}
-
-
-            //_context.SaveChanges();
         }
 
+        private void EditUser()
+        {
+            User userN = _context.Users.SingleOrDefault(x => x.Name == TakeName);
+            if (userN != null)
+            {
+                userN.Name = tbName.Text;
+                _context.SaveChanges();
+            }
+            //User userE = _context.Users.SingleOrDefault(y => y.Email == TakeEmail);
+            //if (userE != null)
+            //{
+            //    userE.Email = tbEmail.Text;
+            //    _context.SaveChanges();
+            //}
+            //User userP = _context.Users.SingleOrDefault(y => y.PhoneNumber == TakePhoneNumber);
+            //if (userP != null)
+            //{
+            //    userP.PhoneNumber = tbPhoneNumber.Text;
+            //    _context.SaveChanges();
+            //}
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            EditUser();
         }
     }
 }
