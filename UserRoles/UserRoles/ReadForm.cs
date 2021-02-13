@@ -115,11 +115,20 @@ namespace UserRoles
             string _email = dataGridView["ColEmail", dataGridView.CurrentRow.Index].Value.ToString();
             string _phone = dataGridView["ColPhone", dataGridView.CurrentRow.Index].Value.ToString();
 
-
             MessageBox.Show($"Ім'я  {_name}\nE-mail  {_email}\nPhone  {_phone}");
 
-            
+            //User user = _context.Users.SingleOrDefault(x => x.Name == _name);
+            //if(user!=null)
+            //{
+            //    user.Name = "0000";
+            //    _context.SaveChanges();
+            //}
+
+
             _context.SaveChanges();
         }
+
+        
+
     }
 }
