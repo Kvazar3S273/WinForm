@@ -30,6 +30,11 @@ namespace UserRoles
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -42,11 +47,8 @@ namespace UserRoles
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSave = new System.Windows.Forms.Button();
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,6 +66,36 @@ namespace UserRoles
             this.dataGridView.RowTemplate.Height = 25;
             this.dataGridView.Size = new System.Drawing.Size(658, 290);
             this.dataGridView.TabIndex = 0;
+            // 
+            // ColId
+            // 
+            this.ColId.HeaderText = "ID";
+            this.ColId.Name = "ColId";
+            this.ColId.Width = 30;
+            // 
+            // ColName
+            // 
+            this.ColName.HeaderText = "Ім\'я";
+            this.ColName.Name = "ColName";
+            this.ColName.Width = 120;
+            // 
+            // ColEmail
+            // 
+            this.ColEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColEmail.HeaderText = "E-mail";
+            this.ColEmail.Name = "ColEmail";
+            // 
+            // ColPhone
+            // 
+            this.ColPhone.HeaderText = "Телефон";
+            this.ColPhone.Name = "ColPhone";
+            this.ColPhone.Width = 120;
+            // 
+            // ColRole
+            // 
+            this.ColRole.HeaderText = "Посада";
+            this.ColRole.Name = "ColRole";
+            this.ColRole.Width = 120;
             // 
             // lblTitle
             // 
@@ -156,7 +188,7 @@ namespace UserRoles
             // 
             this.btnDelete.Location = new System.Drawing.Point(16, 422);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(192, 61);
+            this.btnDelete.Size = new System.Drawing.Size(116, 61);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Видалити вибраний рядок";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -164,52 +196,23 @@ namespace UserRoles
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(226, 421);
+            this.btnEdit.Location = new System.Drawing.Point(153, 422);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(192, 61);
+            this.btnEdit.Size = new System.Drawing.Size(116, 61);
             this.btnEdit.TabIndex = 6;
             this.btnEdit.Text = "Редагувати";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // ColId
-            // 
-            this.ColId.HeaderText = "ID";
-            this.ColId.Name = "ColId";
-            this.ColId.Width = 30;
-            // 
-            // ColName
-            // 
-            this.ColName.HeaderText = "Ім\'я";
-            this.ColName.Name = "ColName";
-            this.ColName.Width = 120;
-            // 
-            // ColEmail
-            // 
-            this.ColEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColEmail.HeaderText = "E-mail";
-            this.ColEmail.Name = "ColEmail";
-            // 
-            // ColPhone
-            // 
-            this.ColPhone.HeaderText = "Телефон";
-            this.ColPhone.Name = "ColPhone";
-            this.ColPhone.Width = 120;
-            // 
-            // ColRole
-            // 
-            this.ColRole.HeaderText = "Посада";
-            this.ColRole.Name = "ColRole";
-            this.ColRole.Width = 120;
-            // 
             // ReadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 500);
+            this.ClientSize = new System.Drawing.Size(693, 521);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbRole);
             this.Controls.Add(this.tbPhoneNumber);
             this.Controls.Add(this.tbEmail);
@@ -245,6 +248,7 @@ namespace UserRoles
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEmail;

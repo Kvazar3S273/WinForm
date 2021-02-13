@@ -109,13 +109,81 @@ namespace UserRoles
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            //new EditForm().ShowDialog();
             dataGridView.ReadOnly = false;
             dataGridView.BeginEdit(true);
+            
             string _name = dataGridView["ColName", dataGridView.CurrentRow.Index].Value.ToString();
             string _email = dataGridView["ColEmail", dataGridView.CurrentRow.Index].Value.ToString();
             string _phone = dataGridView["ColPhone", dataGridView.CurrentRow.Index].Value.ToString();
 
-            MessageBox.Show($"Ім'я  {_name}\nE-mail  {_email}\nPhone  {_phone}");
+            //groupBox.Controls.Clear();
+
+            // 
+            // lbl
+            // 
+            lblName.AutoSize = true;
+            lblEmail.AutoSize = true;
+            lblPhoneNumber.AutoSize = true;
+
+            lblName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+
+            lblName.Location = new System.Drawing.Point(290, 422);
+            lblEmail.Location = new System.Drawing.Point(290, 450);
+            lblPhoneNumber.Location = new System.Drawing.Point(290, 478);
+
+            lblName.Name = "lblName";
+            lblEmail.Name = "lblEmail";
+            lblPhoneNumber.Name = "lblPhoneNumber";
+
+            lblName.Size = new System.Drawing.Size(30, 17);
+            lblEmail.Size = new System.Drawing.Size(30, 17);
+            lblPhoneNumber.Size = new System.Drawing.Size(30, 17);
+
+            lblName.TabIndex = 5;
+            lblEmail.TabIndex = 6;
+            lblPhoneNumber.TabIndex = 7;
+
+            lblName.Text = "Ім\'я";
+            lblEmail.Text = "E-mail";
+            lblPhoneNumber.Text = "Номер тел.";
+            // 
+            // tbName
+            // 
+            //TextBox tbName = new TextBox();
+            tbName.Location = new System.Drawing.Point(365, 422);
+            tbEmail.Location = new System.Drawing.Point(365, 450);
+            tbPhoneNumber.Location = new System.Drawing.Point(365, 478);
+
+            tbName.Name = "tbName";
+            tbEmail.Name = "tbEmail";
+            tbPhoneNumber.Name = "tbPhoneNumber";
+
+            tbName.Size = new System.Drawing.Size(180, 23);
+            tbEmail.Size = new System.Drawing.Size(180, 23);
+            tbPhoneNumber.Size = new System.Drawing.Size(180, 23);
+
+            tbName.TabIndex = 1;
+            tbEmail.TabIndex = 2;
+            tbPhoneNumber.TabIndex = 3;
+
+            // 
+            // btnSave
+            // 
+            //Button btnSave = new Button();
+            btnSave.Location = new System.Drawing.Point(578, 422);
+            btnSave.Name = "btnDelete";
+            btnSave.Size = new System.Drawing.Size(97, 80);
+            btnSave.TabIndex = 4;
+            btnSave.Text = "Зберегти зміни";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += new System.EventHandler(this.btnSave_Click);
+
+
+
+            //MessageBox.Show($"Ім'я  {_name}\nE-mail  {_email}\nPhone  {_phone}");
 
             //User user = _context.Users.SingleOrDefault(x => x.Name == _name);
             //if(user!=null)
@@ -125,10 +193,12 @@ namespace UserRoles
             //}
 
 
-            _context.SaveChanges();
+            //_context.SaveChanges();
         }
 
-        
-
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

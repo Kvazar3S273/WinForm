@@ -170,7 +170,9 @@ namespace UserRoles
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblTitle);
             this.Name = "EditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Редагування інформації";
+            this.Load += new System.EventHandler(this.EditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

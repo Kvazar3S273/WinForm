@@ -32,7 +32,6 @@ namespace UserRoles
             this.label1 = new System.Windows.Forms.Label();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnRead = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -69,22 +68,11 @@ namespace UserRoles
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnUpdate.Location = new System.Drawing.Point(33, 209);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(330, 61);
-            this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Text = "Внести зміни";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnExit.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnExit.Location = new System.Drawing.Point(33, 343);
+            this.btnExit.Location = new System.Drawing.Point(33, 229);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(330, 61);
             this.btnExit.TabIndex = 1;
@@ -96,9 +84,8 @@ namespace UserRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 440);
+            this.ClientSize = new System.Drawing.Size(396, 323);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.label1);
@@ -115,7 +102,6 @@ namespace UserRoles
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnRead;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnExit;
     }
 }
