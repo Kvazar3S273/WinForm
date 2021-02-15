@@ -45,7 +45,8 @@ namespace UserRoles
                 };
                 dataGridView.Rows.Add(row);
             }
-            dataGridView.CellContentClick += dataGridView_CellContentClick;
+
+            dataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellValueChanged);
         }
 
         private void SearchUser(SearchUser search = null)
@@ -106,113 +107,29 @@ namespace UserRoles
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //dataGridView.ReadOnly = false;
-            //dataGridView.BeginEdit(true);
             
-            // 
-            // lbl
-            // 
-            lblName.AutoSize = true;
-            lblEmail.AutoSize = true;
-            lblPhoneNumber.AutoSize = true;
-
-            lblName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            lblEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            lblPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-
-            lblName.Location = new System.Drawing.Point(290, 422);
-            lblEmail.Location = new System.Drawing.Point(290, 450);
-            lblPhoneNumber.Location = new System.Drawing.Point(290, 478);
-
-            lblName.Name = "lblName";
-            lblEmail.Name = "lblEmail";
-            lblPhoneNumber.Name = "lblPhoneNumber";
-
-            lblName.Size = new System.Drawing.Size(30, 17);
-            lblEmail.Size = new System.Drawing.Size(30, 17);
-            lblPhoneNumber.Size = new System.Drawing.Size(30, 17);
-
-            lblName.TabIndex = 5;
-            lblEmail.TabIndex = 6;
-            lblPhoneNumber.TabIndex = 7;
-
-            lblName.Text = "Ім\'я";
-            lblEmail.Text = "E-mail";
-            lblPhoneNumber.Text = "Номер тел.";
-            // 
-            // tbName
-            // 
-            //TextBox tbName = new TextBox();
-            tbName.Location = new System.Drawing.Point(365, 422);
-            tbEmail.Location = new System.Drawing.Point(365, 450);
-            tbPhoneNumber.Location = new System.Drawing.Point(365, 478);
-
-            tbName.Name = "tbName";
-            tbEmail.Name = "tbEmail";
-            tbPhoneNumber.Name = "tbPhoneNumber";
-
-            tbName.Size = new System.Drawing.Size(180, 23);
-            tbEmail.Size = new System.Drawing.Size(180, 23);
-            tbPhoneNumber.Size = new System.Drawing.Size(180, 23);
-
-            tbName.TabIndex = 1;
-            tbEmail.TabIndex = 2;
-            tbPhoneNumber.TabIndex = 3;
-
-            // 
-            // btnSave
-            // 
-            btnSave.Location = new System.Drawing.Point(578, 422);
-            btnSave.Name = "btnDelete";
-            btnSave.Size = new System.Drawing.Size(97, 80);
-            btnSave.TabIndex = 4;
-            btnSave.Text = "Зберегти зміни";
-            btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += new System.EventHandler(this.btnSave_Click);
-
-            //string _name = dataGridView["ColName", dataGridView.CurrentRow.Index].Value.ToString();
-            string str = dataGridView.CurrentCell.Value.ToString();
-            string _email = dataGridView["ColEmail", dataGridView.CurrentRow.Index].Value.ToString();
-            string _phone = dataGridView["ColPhone", dataGridView.CurrentRow.Index].Value.ToString();
-
-            TakeName = str;
-            TakeEmail = _email;
-            TakePhoneNumber = _phone;
-
-            //MessageBox.Show($"Ім'я  {_name}\nE-mail  {_email}\nPhone  {_phone}");
         }
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string str = dataGridView.CurrentCell.Value.ToString();
-            TakeName = str;
-        }
-        private void EditUser()
-        {
-            User userN = _context.Users.SingleOrDefault(x => x.Name == TakeName);
-            //if (userN != null)
-            //{
-                userN.Name = tbName.Text;
-                //userN.Email = tbEmail.Text;
-                //userN.PhoneNumber = tbPhoneNumber.Text;
+        
 
+        private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int _id = int.Parse(dataGridView["ColId", dataGridView.CurrentRow.Index].Value.ToString());
+                string _name = dataGridView["ColName", dataGridView.CurrentRow.Index].Value.ToString();
+                string _email = dataGridView["ColEmail", dataGridView.CurrentRow.Index].Value.ToString();
+                string _phone = dataGridView["ColPhone", dataGridView.CurrentRow.Index].Value.ToString();
+                
+                
+                var user = _context.Users.SingleOrDefault(u => u.Id == _id);
+                user.Name = _name;
+                user.Email = _email;
+                user.PhoneNumber = _phone;
                 _context.SaveChanges();
-            //}
-            //User userE = _context.Users.SingleOrDefault(y => y.Email == TakeEmail);
-            //if (userE != null)
-            //{
-            //    userE.Email = tbEmail.Text;
-            //    _context.SaveChanges();
-            //}
-            //User userP = _context.Users.SingleOrDefault(y => y.PhoneNumber == TakePhoneNumber);
-            //if (userP != null)
-            //{
-            //    userP.PhoneNumber = tbPhoneNumber.Text;
-            //    _context.SaveChanges();
-            //}
-        }
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            EditUser();
+                MessageBox.Show($"Значення змінено");
+            }
+            catch (Exception ex){}
+
         }
     }
 }

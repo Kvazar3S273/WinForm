@@ -22,17 +22,7 @@ namespace UserRoles
 
         private void CreateForm_Load(object sender, EventArgs e)
         {
-            //cbRole.Items.AddRange(
-            //    new List<ComboBoxItem>
-            //    {
-            //        new ComboBoxItem{ Id=8, Name="HR" },
-            //        new ComboBoxItem{ Id=9, Name="Developer" },
-            //        new ComboBoxItem{ Id=10, Name="Designer" },
-            //        new ComboBoxItem{ Id=11, Name="System administrator" },
-            //        new ComboBoxItem{ Id=12, Name="Artist" }
-            //    }.ToArray()
-            //    );
-
+            
             foreach (var role in _context.Roles)
             {
                 ComboBoxItem item = new ComboBoxItem

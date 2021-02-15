@@ -47,7 +47,6 @@ namespace UserRoles
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +64,7 @@ namespace UserRoles
             this.dataGridView.RowTemplate.Height = 25;
             this.dataGridView.Size = new System.Drawing.Size(658, 290);
             this.dataGridView.TabIndex = 0;
+            //this.dataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellValueChanged);
             // 
             // ColId
             // 
@@ -195,7 +195,7 @@ namespace UserRoles
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(153, 422);
+            this.btnEdit.Location = new System.Drawing.Point(559, 422);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(116, 61);
             this.btnEdit.TabIndex = 12;
@@ -203,22 +203,14 @@ namespace UserRoles
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(600, 422);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 61);
-            this.btnSave.TabIndex = 13;
-            // 
             // ReadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 521);
+            this.ClientSize = new System.Drawing.Size(693, 504);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbRole);
             this.Controls.Add(this.tbPhoneNumber);
             this.Controls.Add(this.tbEmail);
@@ -259,6 +251,5 @@ namespace UserRoles
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEmail;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColPhone;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColRole;
-        private System.Windows.Forms.Button btnSave;
     }
 }
