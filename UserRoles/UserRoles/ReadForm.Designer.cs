@@ -64,7 +64,6 @@ namespace UserRoles
             this.dataGridView.RowTemplate.Height = 25;
             this.dataGridView.Size = new System.Drawing.Size(658, 290);
             this.dataGridView.TabIndex = 0;
-            //this.dataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellValueChanged);
             // 
             // ColId
             // 
@@ -223,7 +222,7 @@ namespace UserRoles
             this.Controls.Add(this.dataGridView);
             this.Name = "ReadForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " ";
+            this.Text = " Перегляд Бази даних";
             this.Load += new System.EventHandler(this.ReadForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);

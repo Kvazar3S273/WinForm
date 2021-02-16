@@ -19,5 +19,9 @@ namespace UserRoles.Entities
         public string ConcurrencyStamp { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
 
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

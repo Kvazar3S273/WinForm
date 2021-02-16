@@ -23,15 +23,15 @@ namespace UserRoles
 
         private void ReadForm_Load(object sender, EventArgs e)
         {
-            var data = _context.UserRoles.Include(x => x.User).Include(y => y.Role).AsQueryable();
-            var list = data.Select(x => new
-            {
-                Id=x.User.Id,
-                Name = x.User.Name,
-                Email = x.User.Email,
-                PhoneNumber = x.User.PhoneNumber,
-                Role = x.Role.Title
-            }).AsQueryable();
+            var query = _context.UserRoles
+              .AsQueryable(); var list = query.Select(x => new {
+                  Id = x.Id,
+                  //Image = x.User.Image,
+                  Name = x.User.Name,
+                  Email = x.User.Email,
+                  PhoneNumber = x.User.PhoneNumber,
+                  Role = x.Role.Title
+              }).AsQueryable().ToList();
 
             foreach (var n in list)
             {
@@ -46,7 +46,7 @@ namespace UserRoles
                 dataGridView.Rows.Add(row);
             }
 
-            dataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellValueChanged);
+            //dataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellValueChanged);
         }
 
         private void SearchUser(SearchUser search = null)
@@ -101,15 +101,55 @@ namespace UserRoles
             _context.Users.Remove(user);
             _context.SaveChanges();
         }
-        public string TakeName { get; set; }
-        public string TakeEmail { get; set; }
-        public string TakePhoneNumber { get; set; }
-
+       
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            
+            if (dataGridView.CurrentRow != null)
+            {
+                int id = int.Parse(dataGridView["ColId", dataGridView.CurrentRow.Index].Value.ToString());
+                EditForm dlg = new EditForm(id);
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    loadFormData();
+                }
+            }
         }
-        
+
+        private void loadFormData()
+        {
+            dataGridView.Rows.Clear();
+            var query = _context.UserRoles
+               .AsQueryable();
+
+            var list = query.Select(x => new
+            {
+                Id = x.Id,
+                Name = x.User.Name,
+                Email=x.User.Email,
+                PhoneNumber=x.User.PhoneNumber,
+                Password = x.User.Password,
+                Role = x.Role.Title
+            })
+                .AsQueryable().ToList();
+
+            //foreach (var item in list)
+            //{
+            //    string path = Path.Combine(Directory.GetCurrentDirectory(), "images");
+            //    object[] row =
+            //    {
+            //        item.Id,
+            //        ///Тернарний оператор C#, якщо фото немає, то буде null
+            //        ///якщо фото є, то його вантажимо чере Image.FromFile
+            //        item.Image==null ? null:Image.FromFile(Path.Combine(path, item.Image)),
+            //        item.Title,
+            //        item.CategoryName
+            //    };
+            //    dgvPosts.Rows
+            //        .Add(row);
+
+            //}
+
+        }
 
         private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
