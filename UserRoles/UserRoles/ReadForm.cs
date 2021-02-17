@@ -16,6 +16,7 @@ namespace UserRoles
     public partial class ReadForm : Form
     {
         private readonly EFContext _context = new EFContext();
+        private string fileSelected = string.Empty;
 
         public ReadForm()
         {
@@ -25,7 +26,8 @@ namespace UserRoles
         private void ReadForm_Load(object sender, EventArgs e)
         {
             var query = _context.UserRoles
-              .AsQueryable(); var list = query.Select(x => new {
+              .AsQueryable(); var list = query.Select(x => new
+              {
                   Id = x.Id,
                   //Image = x.User.Image,
                   Name = x.User.Name,
@@ -38,11 +40,12 @@ namespace UserRoles
             {
                 object[] row =
                 {
-                    $"{n.Id}",
-                    $"{n.Name}",
-                    $"{n.Email}",
-                    $"{n.PhoneNumber}",
-                    $"{n.Role}"
+                    n.Id,
+                    //n.Image,
+                    n.Name,
+                    n.Email,
+                    n.PhoneNumber,
+                    n.Role
                 };
                 dataGridView.Rows.Add(row);
             }
@@ -60,6 +63,7 @@ namespace UserRoles
                 object[] row =
                 {
                     n.Id,
+                    //n.Image,
                     n.Name,
                     n.Email,
                     n.PhoneNumber,
@@ -125,7 +129,7 @@ namespace UserRoles
             var list = query.Select(x => new
             {
                 Id = x.Id,
-                Image = x.User.Image,
+                //Image = x.User.Image,
                 Name = x.User.Name,
                 Email = x.User.Email,
                 PhoneNumber=x.User.PhoneNumber,
@@ -136,13 +140,12 @@ namespace UserRoles
             foreach (var item in list)
             {
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "Images");
-                //item.Image == null ? null : Image.FromFile(Path.Combine(path, item.Image));
                 object[] row =
                 {
                     item.Id,
                     ///Тернарний оператор C#, якщо фото немає, то буде null
                     ///якщо фото є, то його вантажимо чере Image.FromFile
-                    item.Image,// == null ? null:Image.FromFile(Path.Combine(path, item.Image)),
+                    //item.Image == null ? null:Image.FromFile(Path.Combine(path, item.Image)),
                     item.Name,
                     item.Email,
                     item.PhoneNumber,
@@ -150,6 +153,7 @@ namespace UserRoles
                 };
                 dataGridView.Rows.Add(row);
             }
+            
         }
 
         private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)

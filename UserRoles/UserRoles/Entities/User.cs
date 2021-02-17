@@ -27,5 +27,6 @@ namespace UserRoles.Entities
         [StringLength(255)]
         public string Image { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        
     }
 }

@@ -40,6 +40,7 @@ namespace UserRoles.Models
               new UserView
               {
                   Id = x.User.Id,
+                  Image = x.User.Image,
                   Name = x.User.Name,
                   Email = x.User.Email,
                   PhoneNumber = x.User.PhoneNumber,

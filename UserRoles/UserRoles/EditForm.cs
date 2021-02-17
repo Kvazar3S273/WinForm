@@ -69,7 +69,7 @@ namespace UserRoles
             if (!string.IsNullOrEmpty(fileSelected))
             {
                 string ext = Path.GetExtension(fileSelected);
-                string fileName = Path.GetRandomFileName() + ext;
+                string fileName = Path.GetFileNameWithoutExtension(fileSelected) + ext;
                 string fileSavePath = Path.Combine(Directory.GetCurrentDirectory(),
                     "Images", fileName);
                 File.Copy(fileSelected, fileSavePath);
