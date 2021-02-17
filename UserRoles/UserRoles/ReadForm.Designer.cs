@@ -30,11 +30,6 @@ namespace UserRoles
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -47,6 +42,14 @@ namespace UserRoles
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,6 +58,7 @@ namespace UserRoles
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColId,
+            this.ColImage,
             this.ColName,
             this.ColEmail,
             this.ColPhone,
@@ -64,36 +68,6 @@ namespace UserRoles
             this.dataGridView.RowTemplate.Height = 25;
             this.dataGridView.Size = new System.Drawing.Size(658, 290);
             this.dataGridView.TabIndex = 0;
-            // 
-            // ColId
-            // 
-            this.ColId.HeaderText = "ID";
-            this.ColId.Name = "ColId";
-            this.ColId.Width = 30;
-            // 
-            // ColName
-            // 
-            this.ColName.HeaderText = "Ім\'я";
-            this.ColName.Name = "ColName";
-            this.ColName.Width = 120;
-            // 
-            // ColEmail
-            // 
-            this.ColEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColEmail.HeaderText = "E-mail";
-            this.ColEmail.Name = "ColEmail";
-            // 
-            // ColPhone
-            // 
-            this.ColPhone.HeaderText = "Телефон";
-            this.ColPhone.Name = "ColPhone";
-            this.ColPhone.Width = 120;
-            // 
-            // ColRole
-            // 
-            this.ColRole.HeaderText = "Посада";
-            this.ColRole.Name = "ColRole";
-            this.ColRole.Width = 120;
             // 
             // lblTitle
             // 
@@ -184,29 +158,90 @@ namespace UserRoles
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(16, 422);
+            this.btnDelete.BackColor = System.Drawing.Color.DarkSalmon;
+            this.btnDelete.Location = new System.Drawing.Point(139, 425);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(116, 61);
             this.btnDelete.TabIndex = 11;
             this.btnDelete.Text = "Видалити вибраний рядок";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(559, 422);
+            this.btnEdit.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnEdit.Location = new System.Drawing.Point(16, 425);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(116, 61);
             this.btnEdit.TabIndex = 12;
-            this.btnEdit.Text = "Редагувати";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Text = "Редагувати\r\nцей рядок";
+            this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnUpdate.Location = new System.Drawing.Point(437, 425);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(116, 61);
+            this.btnUpdate.TabIndex = 13;
+            this.btnUpdate.Text = "Оновити вікно";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnExit.Location = new System.Drawing.Point(559, 425);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(116, 61);
+            this.btnExit.TabIndex = 13;
+            this.btnExit.Text = "Вийти";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // ColId
+            // 
+            this.ColId.HeaderText = "ID";
+            this.ColId.Name = "ColId";
+            this.ColId.Width = 30;
+            // 
+            // ColImage
+            // 
+            this.ColImage.HeaderText = "Фото";
+            this.ColImage.Name = "ColImage";
+            // 
+            // ColName
+            // 
+            this.ColName.HeaderText = "Ім\'я";
+            this.ColName.Name = "ColName";
+            this.ColName.Width = 120;
+            // 
+            // ColEmail
+            // 
+            this.ColEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColEmail.HeaderText = "E-mail";
+            this.ColEmail.Name = "ColEmail";
+            // 
+            // ColPhone
+            // 
+            this.ColPhone.HeaderText = "Телефон";
+            this.ColPhone.Name = "ColPhone";
+            this.ColPhone.Width = 120;
+            // 
+            // ColRole
+            // 
+            this.ColRole.HeaderText = "Посада";
+            this.ColRole.Name = "ColRole";
+            this.ColRole.Width = 120;
             // 
             // ReadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 504);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSearch);
@@ -245,7 +280,10 @@ namespace UserRoles
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColId;
+        private System.Windows.Forms.DataGridViewImageColumn ColImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEmail;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColPhone;

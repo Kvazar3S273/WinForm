@@ -41,6 +41,9 @@ namespace UserRoles
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.lblRole = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.lblImage = new System.Windows.Forms.Label();
+            this.pbImage = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // cbRole
@@ -144,7 +147,7 @@ namespace UserRoles
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(77, 221);
+            this.btnSave.Location = new System.Drawing.Point(77, 449);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(208, 50);
             this.btnSave.TabIndex = 5;
@@ -152,13 +155,35 @@ namespace UserRoles
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // lblImage
+            // 
+            this.lblImage.AutoSize = true;
+            this.lblImage.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblImage.Location = new System.Drawing.Point(133, 210);
+            this.lblImage.Name = "lblImage";
+            this.lblImage.Size = new System.Drawing.Size(97, 20);
+            this.lblImage.TabIndex = 10;
+            this.lblImage.Text = "Зображення";
+            // 
+            // pbImage
+            // 
+            this.pbImage.Location = new System.Drawing.Point(33, 243);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(296, 187);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImage.TabIndex = 12;
+            this.pbImage.TabStop = false;
+            this.pbImage.Click += new System.EventHandler(this.pbImage_Click);
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 303);
+            this.ClientSize = new System.Drawing.Size(362, 523);
+            this.Controls.Add(this.pbImage);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbPassword);
+            this.Controls.Add(this.lblImage);
             this.Controls.Add(this.lblRole);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.tbPhoneNumber);
@@ -172,6 +197,7 @@ namespace UserRoles
             this.Name = "EditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Редагування";
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +217,7 @@ namespace UserRoles
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblImage;
+        private System.Windows.Forms.PictureBox pbImage;
     }
 }

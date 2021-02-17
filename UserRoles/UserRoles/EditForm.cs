@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace UserRoles
     {
         private readonly int _id;
         private readonly EFContext _context;
-
+        private string fileSelected = string.Empty;
         public EditForm(int id)
         {
             InitializeComponent();
@@ -42,6 +43,17 @@ namespace UserRoles
                 tbPhoneNumber.Text = item.PhoneNumber;
                 tbPassword.Text = item.Password;
             }
+            string dirImagePath = Path.Combine(Directory.GetCurrentDirectory(), "Images");
+            if(!Directory.Exists(dirImagePath))
+            {
+                Directory.CreateDirectory(dirImagePath);
+            }
+            if (!string.IsNullOrEmpty(user.User.Image))
+            {
+                var dir = Path.Combine(Directory.GetCurrentDirectory(),
+                    "Images", user.User.Image);
+                pbImage.Image = Image.FromFile(dir);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -54,21 +66,37 @@ namespace UserRoles
             post.User.PhoneNumber = tbPhoneNumber.Text;
             post.User.Password = tbPassword.Text;
 
-            //if (!string.IsNullOrEmpty(fileSelected))
-            //{
-            //    string ext = Path.GetExtension(fileSelected);
-            //    string fileName = Path.GetRandomFileName() + ext;
-            //    string fileSavePath = Path.Combine(Directory.GetCurrentDirectory(),
-            //        "images", fileName);
-            //    var bmp = ResizeImage.ResizeOrigImg(
-            //        new Bitmap(Image.FromFile(fileSelected)), 75, 75);
+            if (!string.IsNullOrEmpty(fileSelected))
+            {
+                string ext = Path.GetExtension(fileSelected);
+                string fileName = Path.GetRandomFileName() + ext;
+                string fileSavePath = Path.Combine(Directory.GetCurrentDirectory(),
+                    "Images", fileName);
+                File.Copy(fileSelected, fileSavePath);
+                //var bmp = ResizeImage.ResizeOrigImg(
+                //    new Bitmap(Image.FromFile(fileSelected)), 75, 75);
 
-            //    bmp.Save(fileSavePath, ImageFormat.Jpeg);
+                //bmp.Save(fileSavePath, ImageFormat.Jpeg);
 
-            //    post.User.Image = fileName;
-            //}
+                post.User.Image = fileName;
+            }
+
             _context.SaveChanges();
             DialogResult = DialogResult.OK;
+        }
+
+        private void pbImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) " +
+                "| *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                fileSelected = dlg.FileName;
+                //txtSearchFile.Text = dlg.FileName;
+                pbImage.Image = Image.FromFile(dlg.FileName);
+                //MessageBox.Show(dlg.FileName);
+            }
         }
     }
 }

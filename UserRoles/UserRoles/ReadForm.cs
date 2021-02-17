@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -124,31 +125,31 @@ namespace UserRoles
             var list = query.Select(x => new
             {
                 Id = x.Id,
+                Image = x.User.Image,
                 Name = x.User.Name,
-                Email=x.User.Email,
+                Email = x.User.Email,
                 PhoneNumber=x.User.PhoneNumber,
-                Password = x.User.Password,
                 Role = x.Role.Title
             })
                 .AsQueryable().ToList();
 
-            //foreach (var item in list)
-            //{
-            //    string path = Path.Combine(Directory.GetCurrentDirectory(), "images");
-            //    object[] row =
-            //    {
-            //        item.Id,
-            //        ///Тернарний оператор C#, якщо фото немає, то буде null
-            //        ///якщо фото є, то його вантажимо чере Image.FromFile
-            //        item.Image==null ? null:Image.FromFile(Path.Combine(path, item.Image)),
-            //        item.Title,
-            //        item.CategoryName
-            //    };
-            //    dgvPosts.Rows
-            //        .Add(row);
-
-            //}
-
+            foreach (var item in list)
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "Images");
+                //item.Image == null ? null : Image.FromFile(Path.Combine(path, item.Image));
+                object[] row =
+                {
+                    item.Id,
+                    ///Тернарний оператор C#, якщо фото немає, то буде null
+                    ///якщо фото є, то його вантажимо чере Image.FromFile
+                    item.Image,// == null ? null:Image.FromFile(Path.Combine(path, item.Image)),
+                    item.Name,
+                    item.Email,
+                    item.PhoneNumber,
+                    item.Role
+                };
+                dataGridView.Rows.Add(row);
+            }
         }
 
         private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -170,6 +171,16 @@ namespace UserRoles
             }
             catch (Exception ex){}
 
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            SearchUser(GetSearchInputValue());
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
