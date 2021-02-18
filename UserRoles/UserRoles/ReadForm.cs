@@ -40,8 +40,7 @@ namespace UserRoles
 
             foreach (var n in list)
             {
-                    string path = Path.Combine(Directory.GetCurrentDirectory(), "Images");
-
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "Images");
                 object[] row =
                 {
                     n.Id,
@@ -63,10 +62,11 @@ namespace UserRoles
             var result = UserService.Search(_context, search);
             foreach (var n in result.Users)
             {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "Images");
                 object[] row =
                 {
                     n.Id,
-                    n.Image,
+                    n.Image == null ? null:Image.FromFile(Path.Combine(path, n.Image)),
                     n.Name,
                     n.Email,
                     n.PhoneNumber,
