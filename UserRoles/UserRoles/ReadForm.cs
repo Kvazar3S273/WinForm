@@ -25,11 +25,13 @@ namespace UserRoles
 
         private void ReadForm_Load(object sender, EventArgs e)
         {
+            dataGridView.Rows.Clear();
+
             var query = _context.UserRoles
               .AsQueryable(); var list = query.Select(x => new
               {
                   Id = x.Id,
-                  //Image = x.User.Image,
+                  Image = x.User.Image,
                   Name = x.User.Name,
                   Email = x.User.Email,
                   PhoneNumber = x.User.PhoneNumber,
@@ -38,10 +40,12 @@ namespace UserRoles
 
             foreach (var n in list)
             {
+                    string path = Path.Combine(Directory.GetCurrentDirectory(), "Images");
+
                 object[] row =
                 {
                     n.Id,
-                    //n.Image,
+                    n.Image == null ? null:Image.FromFile(Path.Combine(path, n.Image)),
                     n.Name,
                     n.Email,
                     n.PhoneNumber,
@@ -50,7 +54,6 @@ namespace UserRoles
                 dataGridView.Rows.Add(row);
             }
 
-            //dataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellValueChanged);
         }
 
         private void SearchUser(SearchUser search = null)
@@ -63,7 +66,7 @@ namespace UserRoles
                 object[] row =
                 {
                     n.Id,
-                    //n.Image,
+                    n.Image,
                     n.Name,
                     n.Email,
                     n.PhoneNumber,
@@ -112,51 +115,46 @@ namespace UserRoles
             if (dataGridView.CurrentRow != null)
             {
                 int id = int.Parse(dataGridView["ColId", dataGridView.CurrentRow.Index].Value.ToString());
-                //MessageBox.Show($"{id}");
-                EditForm dlg = new EditForm(id);
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    loadFormData();
-                }
+                new EditForm(id).ShowDialog();
             }
         }
 
         private void loadFormData()
         {
-            SearchUser(GetSearchInputValue());
+            //SearchUser(GetSearchInputValue());
 
-            dataGridView.Rows.Clear();
-            var query = _context.UserRoles
-               .AsQueryable();
+            //dataGridView.Rows.Clear();
+            //var query = _context.UserRoles
+            //   .AsQueryable();
 
-            var list = query.Select(x => new
-            {
-                Id = x.Id,
-                //Image = x.User.Image,
-                Name = x.User.Name,
-                Email = x.User.Email,
-                PhoneNumber=x.User.PhoneNumber,
-                Role = x.Role.Title
-            })
-                .AsQueryable()
-                .ToList();
+            //var list = query.Select(x => new
+            //{
+            //    Id = x.Id,
+            //    //Image = x.User.Image,
+            //    Name = x.User.Name,
+            //    Email = x.User.Email,
+            //    PhoneNumber=x.User.PhoneNumber,
+            //    Role = x.Role.Title
+            //})
+            //    .AsQueryable()
+            //    .ToList();
 
-            foreach (var item in list)
-            {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "Images");
-                object[] row =
-                {
-                    item.Id,
-                    ///Тернарний оператор C#, якщо фото немає, то буде null
-                    ///якщо фото є, то його вантажимо чере Image.FromFile
-                    //item.Image == null ? null:Image.FromFile(Path.Combine(path, item.Image)),
-                    item.Name,
-                    item.Email,
-                    item.PhoneNumber,
-                    item.Role
-                };
-                dataGridView.Rows.Add(row);
-            }
+            //foreach (var item in list)
+            //{
+            //    string path = Path.Combine(Directory.GetCurrentDirectory(), "Images");
+            //    object[] row =
+            //    {
+            //        item.Id,
+            //        ///Тернарний оператор C#, якщо фото немає, то буде null
+            //        ///якщо фото є, то його вантажимо чере Image.FromFile
+            //        //item.Image == null ? null:Image.FromFile(Path.Combine(path, item.Image)),
+            //        item.Name,
+            //        item.Email,
+            //        item.PhoneNumber,
+            //        item.Role
+            //    };
+            //    dataGridView.Rows.Add(row);
+            //}
             
         }
 
@@ -183,7 +181,7 @@ namespace UserRoles
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            SearchUser(GetSearchInputValue());
+            ReadForm_Load(sender, e);
         }
 
         private void btnExit_Click(object sender, EventArgs e)

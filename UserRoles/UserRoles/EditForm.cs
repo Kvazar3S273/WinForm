@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using UserRoles.Entities;
+using UserRoles.Models;
 
 namespace UserRoles
 {
@@ -72,11 +74,12 @@ namespace UserRoles
                 string fileName = Path.GetFileNameWithoutExtension(fileSelected) + ext;
                 string fileSavePath = Path.Combine(Directory.GetCurrentDirectory(),
                     "Images", fileName);
-                File.Copy(fileSelected, fileSavePath);
-                //var bmp = ResizeImage.ResizeOrigImg(
-                //    new Bitmap(Image.FromFile(fileSelected)), 75, 75);
+                //File.Copy(fileSelected, fileSavePath);
 
-                //bmp.Save(fileSavePath, ImageFormat.Jpeg);
+                var bmp = ResizeImage.ResizeOrigImg(
+                    new Bitmap(Image.FromFile(fileSelected)), 75, 75);
+
+                bmp.Save(fileSavePath, ImageFormat.Jpeg);
 
                 post.User.Image = fileName;
             }
