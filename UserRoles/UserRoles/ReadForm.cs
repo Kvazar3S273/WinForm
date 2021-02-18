@@ -112,6 +112,7 @@ namespace UserRoles
             if (dataGridView.CurrentRow != null)
             {
                 int id = int.Parse(dataGridView["ColId", dataGridView.CurrentRow.Index].Value.ToString());
+                //MessageBox.Show($"{id}");
                 EditForm dlg = new EditForm(id);
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
@@ -122,6 +123,8 @@ namespace UserRoles
 
         private void loadFormData()
         {
+            SearchUser(GetSearchInputValue());
+
             dataGridView.Rows.Clear();
             var query = _context.UserRoles
                .AsQueryable();
@@ -135,7 +138,8 @@ namespace UserRoles
                 PhoneNumber=x.User.PhoneNumber,
                 Role = x.Role.Title
             })
-                .AsQueryable().ToList();
+                .AsQueryable()
+                .ToList();
 
             foreach (var item in list)
             {

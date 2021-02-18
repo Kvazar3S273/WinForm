@@ -186,7 +186,7 @@ namespace UserRoles
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.DarkSalmon;
+            this.btnDelete.BackColor = System.Drawing.Color.LightBlue;
             this.btnDelete.Location = new System.Drawing.Point(139, 425);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(116, 61);
@@ -208,7 +208,7 @@ namespace UserRoles
             // 
             // btnUpdate
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnUpdate.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnUpdate.Location = new System.Drawing.Point(437, 425);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(116, 61);
@@ -219,7 +219,7 @@ namespace UserRoles
             // 
             // btnExit
             // 
-            this.btnExit.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnExit.BackColor = System.Drawing.Color.DarkSalmon;
             this.btnExit.Location = new System.Drawing.Point(559, 425);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(116, 61);
