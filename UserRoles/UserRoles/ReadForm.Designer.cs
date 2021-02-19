@@ -210,6 +210,7 @@ namespace UserRoles
             // 
             this.ColImage.HeaderText = "Фото";
             this.ColImage.Name = "ColImage";
+            this.ColImage.Width = 70;
             // 
             // ColName
             // 

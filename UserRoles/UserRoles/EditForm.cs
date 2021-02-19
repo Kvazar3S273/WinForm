@@ -18,6 +18,7 @@ namespace UserRoles
         private readonly int _id;
         private readonly EFContext _context;
         private string fileSelected = string.Empty;
+        public string OldFile { get; set; }
         public EditForm(int id)
         {
             InitializeComponent();
@@ -46,42 +47,46 @@ namespace UserRoles
                 tbPassword.Text = item.Password;
             }
             string dirImagePath = Path.Combine(Directory.GetCurrentDirectory(), "Images");
+            
             if(!Directory.Exists(dirImagePath))
             {
                 Directory.CreateDirectory(dirImagePath);
             }
+
             if (!string.IsNullOrEmpty(user.User.Image))
             {
                 var dir = Path.Combine(Directory.GetCurrentDirectory(),
                     "Images", user.User.Image);
-                pbImage.Image = Image.FromFile(dir);
+                var streamImage = File.OpenRead(dir);
+                pbImage.Image = Image.FromStream(streamImage);
+                OldFile = dir;
+                streamImage.Close();
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var post = _context.UserRoles
+            var user = _context.UserRoles
                .SingleOrDefault(p => p.Id == _id);
-            post.RoleId = (cbRole.SelectedItem as Role).Id;
-            post.User.Name = tbName.Text;
-            post.User.Email = tbEmail.Text;
-            post.User.PhoneNumber = tbPhoneNumber.Text;
-            post.User.Password = tbPassword.Text;
+            user.RoleId = (cbRole.SelectedItem as Role).Id;
+            user.User.Name = tbName.Text;
+            user.User.Email = tbEmail.Text;
+            user.User.PhoneNumber = tbPhoneNumber.Text;
+            user.User.Password = tbPassword.Text;
 
             if (!string.IsNullOrEmpty(fileSelected))
             {
+                File.Delete(OldFile);
                 string ext = Path.GetExtension(fileSelected);
                 string fileName = Path.GetFileNameWithoutExtension(fileSelected) + ext;
-                string fileSavePath = Path.Combine(Directory.GetCurrentDirectory(),
-                    "Images", fileName);
-                //File.Copy(fileSelected, fileSavePath);
+                string fileSavePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", fileName);
 
                 var bmp = ResizeImage.ResizeOrigImg(
-                    new Bitmap(Image.FromFile(fileSelected)), 75, 75);
+                    new Bitmap(Image.FromFile(fileSelected)), 100, 100);
 
                 bmp.Save(fileSavePath, ImageFormat.Jpeg);
+                user.User.Image = fileName;
 
-                post.User.Image = fileName;
             }
 
             _context.SaveChanges();
@@ -96,9 +101,7 @@ namespace UserRoles
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 fileSelected = dlg.FileName;
-                //txtSearchFile.Text = dlg.FileName;
                 pbImage.Image = Image.FromFile(dlg.FileName);
-                //MessageBox.Show(dlg.FileName);
             }
         }
     }

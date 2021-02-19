@@ -40,19 +40,21 @@ namespace UserRoles
 
             foreach (var n in list)
             {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "Images");
-                object[] row =
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "Images", n.Image);
+                using (var streamImage = File.OpenRead(path))
                 {
-                    n.Id,
-                    n.Image == null ? null:Image.FromFile(Path.Combine(path, n.Image)),
-                    n.Name,
-                    n.Email,
-                    n.PhoneNumber,
-                    n.Role
-                };
-                dataGridView.Rows.Add(row);
+                    object[] row =
+                        {
+                            n.Id,
+                            n.Image == null ? null:Image.FromStream(streamImage),
+                            n.Name,
+                            n.Email,
+                            n.PhoneNumber,
+                            n.Role
+                        };
+                    dataGridView.Rows.Add(row);
+                }
             }
-
         }
 
         private void SearchUser(SearchUser search = null)
@@ -117,45 +119,6 @@ namespace UserRoles
                 int id = int.Parse(dataGridView["ColId", dataGridView.CurrentRow.Index].Value.ToString());
                 new EditForm(id).ShowDialog();
             }
-        }
-
-        private void loadFormData()
-        {
-            //SearchUser(GetSearchInputValue());
-
-            //dataGridView.Rows.Clear();
-            //var query = _context.UserRoles
-            //   .AsQueryable();
-
-            //var list = query.Select(x => new
-            //{
-            //    Id = x.Id,
-            //    //Image = x.User.Image,
-            //    Name = x.User.Name,
-            //    Email = x.User.Email,
-            //    PhoneNumber=x.User.PhoneNumber,
-            //    Role = x.Role.Title
-            //})
-            //    .AsQueryable()
-            //    .ToList();
-
-            //foreach (var item in list)
-            //{
-            //    string path = Path.Combine(Directory.GetCurrentDirectory(), "Images");
-            //    object[] row =
-            //    {
-            //        item.Id,
-            //        ///Тернарний оператор C#, якщо фото немає, то буде null
-            //        ///якщо фото є, то його вантажимо чере Image.FromFile
-            //        //item.Image == null ? null:Image.FromFile(Path.Combine(path, item.Image)),
-            //        item.Name,
-            //        item.Email,
-            //        item.PhoneNumber,
-            //        item.Role
-            //    };
-            //    dataGridView.Rows.Add(row);
-            //}
-            
         }
 
         private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)

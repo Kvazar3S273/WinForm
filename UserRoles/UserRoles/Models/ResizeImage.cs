@@ -29,12 +29,8 @@ namespace UserRoles.Models
 
                 using (var g = Graphics.FromImage(outBmp))
                 {
-                    //g.CompositingQuality = CompositingQuality.HighQuality;
-                    //g.SmoothingMode = SmoothingMode.HighQuality;
-                    //g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                     g.DrawImage(image, 0, 0, newWidth, newHeight);
                     return new Bitmap(outBmp);
-
                 }
             }
 
