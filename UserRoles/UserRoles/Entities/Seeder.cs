@@ -60,20 +60,20 @@ namespace UserRoles.Entities
                 context.UserRoles
                     .Add(new UserRole
                     {
-                        UserId = 18,
-                        RoleId = 8
+                        UserId = 40,
+                        RoleId = 13
                     });
                 context.UserRoles
                     .Add(new UserRole
                     {
-                        UserId = 19,
-                        RoleId = 9
+                        UserId = 40,
+                        RoleId = 14
                     });
                 context.UserRoles
                     .Add(new UserRole
                     {
-                        UserId = 18,
-                        RoleId = 10
+                        UserId = 41,
+                        RoleId = 15
                     });
                 context.SaveChanges();
             }
