@@ -29,31 +29,33 @@ namespace TreeView
         /// </summary>
         private void InitializeComponent()
         {
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.tvBreed = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // treeView1
+            // tvBreed
             // 
-            this.treeView1.Location = new System.Drawing.Point(13, 12);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(355, 426);
-            this.treeView1.TabIndex = 0;
+            this.tvBreed.Location = new System.Drawing.Point(14, 12);
+            this.tvBreed.Name = "tvBreed";
+            this.tvBreed.Size = new System.Drawing.Size(355, 426);
+            this.tvBreed.TabIndex = 0;
+            this.tvBreed.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvBreed_BeforeExpand);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 450);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.tvBreed);
             this.Name = "Form1";
             this.Text = "Провідник";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView tvBreed;
     }
 }
 
