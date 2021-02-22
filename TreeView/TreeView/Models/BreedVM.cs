@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TreeView.Models
 {
-    class BreedVM
+    public class BreedVM
     {
         public int Id { get; set; }
         public string Name { get; set; }
