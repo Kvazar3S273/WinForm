@@ -14,10 +14,10 @@ using TreeView.Models;
 
 namespace TreeView
 {
-    public partial class Form1 : Form
+    public partial class TreeViewForm : Form
     {
         private readonly EFContext _context;
-        public Form1()
+        public TreeViewForm()
         {
             InitializeComponent();
             _context = new EFContext();
@@ -78,7 +78,20 @@ namespace TreeView
             node.Nodes.Add("");
             parent.Nodes.Add(node);
         }
-
+        private void btnAddParent_Click(object sender, EventArgs e)
+        {
+            string name = tbAddParent.Text;
+            TreeNode newNode = new TreeNode(name);
+            tvBreed.Nodes.Add(newNode);
+            tbAddParent.Clear();
+        }
+        private void btnAddElement_Click(object sender, EventArgs e)
+        {
+            string name = tbAddElement.Text;
+            TreeNode newNode = new TreeNode(name);
+            tvBreed.SelectedNode.Nodes.Add(newNode);
+            tbAddElement.Clear();
+        }
         private void tvBreed_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
             if (e.Node.Nodes[0].Text == "")
@@ -103,5 +116,12 @@ namespace TreeView
                 //MessageBox.Show(parentId.ToString());
             }
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        
     }
 }
