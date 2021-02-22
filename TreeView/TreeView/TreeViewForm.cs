@@ -70,17 +70,17 @@ namespace TreeView
             context.SaveChanges();
         }
 
-        ///private static void AddChildToParent(EFContext context, string parentSlug, string urlSlug, string name)
-        ///{
-        ///    var parent = context.Breeds.SingleOrDefault(x => x.UrlSlug == parentSlug);
-        ///    context.Breeds.Add(new Breed
-        ///    {
-        ///        Name = name,
-        ///        ParentId = parent.Id,
-        ///        UrlSlug = urlSlug
-        ///    });
-        ///    context.SaveChanges();
-        ///}
+        private static void AddChildNodeToParent(EFContext context, string parentSlug, string urlSlug, string name)
+        {
+            var parent = context.Breeds.SingleOrDefault(x => x.UrlSlug == parentSlug);
+            context.Breeds.Add(new Breed
+            {
+                Name = name,
+                ParentId = parent.Id,
+                UrlSlug = urlSlug
+            });
+            context.SaveChanges();
+        }
         private void AddParent(BreedVM breed)
         {
             TreeNode node = new TreeNode();
