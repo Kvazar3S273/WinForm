@@ -43,15 +43,18 @@ namespace TreeView
             this.lblNameAddParent = new System.Windows.Forms.Label();
             this.lblNameEdit = new System.Windows.Forms.Label();
             this.lblUrlSlugAddParent = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbUrlSlugEdit = new System.Windows.Forms.TextBox();
             this.lblUrlSlugEdit = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.tbUrlSlugElement = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tvBreed
             // 
             this.tvBreed.Location = new System.Drawing.Point(14, 12);
             this.tvBreed.Name = "tvBreed";
-            this.tvBreed.Size = new System.Drawing.Size(250, 489);
+            this.tvBreed.Size = new System.Drawing.Size(250, 522);
             this.tvBreed.TabIndex = 0;
             this.tvBreed.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvBreed_BeforeExpand);
             // 
@@ -67,7 +70,7 @@ namespace TreeView
             // 
             // btnAddParent
             // 
-            this.btnAddParent.Location = new System.Drawing.Point(277, 120);
+            this.btnAddParent.Location = new System.Drawing.Point(277, 135);
             this.btnAddParent.Name = "btnAddParent";
             this.btnAddParent.Size = new System.Drawing.Size(237, 46);
             this.btnAddParent.TabIndex = 1;
@@ -83,10 +86,11 @@ namespace TreeView
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "Редагувати";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(277, 403);
+            this.btnDelete.Location = new System.Drawing.Point(277, 436);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(237, 46);
             this.btnDelete.TabIndex = 1;
@@ -97,7 +101,7 @@ namespace TreeView
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.DarkSalmon;
-            this.btnExit.Location = new System.Drawing.Point(277, 455);
+            this.btnExit.Location = new System.Drawing.Point(277, 488);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(237, 46);
             this.btnExit.TabIndex = 1;
@@ -114,7 +118,7 @@ namespace TreeView
             // 
             // tbAddParent
             // 
-            this.tbAddParent.Location = new System.Drawing.Point(322, 172);
+            this.tbAddParent.Location = new System.Drawing.Point(322, 187);
             this.tbAddParent.Name = "tbAddParent";
             this.tbAddParent.Size = new System.Drawing.Size(192, 23);
             this.tbAddParent.TabIndex = 2;
@@ -128,7 +132,7 @@ namespace TreeView
             // 
             // tbUrlSlug
             // 
-            this.tbUrlSlug.Location = new System.Drawing.Point(322, 201);
+            this.tbUrlSlug.Location = new System.Drawing.Point(322, 216);
             this.tbUrlSlug.Name = "tbUrlSlug";
             this.tbUrlSlug.Size = new System.Drawing.Size(192, 23);
             this.tbUrlSlug.TabIndex = 2;
@@ -145,7 +149,7 @@ namespace TreeView
             // lblNameAddParent
             // 
             this.lblNameAddParent.AutoSize = true;
-            this.lblNameAddParent.Location = new System.Drawing.Point(277, 175);
+            this.lblNameAddParent.Location = new System.Drawing.Point(277, 190);
             this.lblNameAddParent.Name = "lblNameAddParent";
             this.lblNameAddParent.Size = new System.Drawing.Size(39, 15);
             this.lblNameAddParent.TabIndex = 3;
@@ -163,18 +167,18 @@ namespace TreeView
             // lblUrlSlugAddParent
             // 
             this.lblUrlSlugAddParent.AutoSize = true;
-            this.lblUrlSlugAddParent.Location = new System.Drawing.Point(277, 204);
+            this.lblUrlSlugAddParent.Location = new System.Drawing.Point(277, 219);
             this.lblUrlSlugAddParent.Name = "lblUrlSlugAddParent";
             this.lblUrlSlugAddParent.Size = new System.Drawing.Size(30, 15);
             this.lblUrlSlugAddParent.TabIndex = 3;
             this.lblUrlSlugAddParent.Text = "Slug";
             // 
-            // textBox1
+            // tbUrlSlugEdit
             // 
-            this.textBox1.Location = new System.Drawing.Point(322, 338);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(192, 23);
-            this.textBox1.TabIndex = 2;
+            this.tbUrlSlugEdit.Location = new System.Drawing.Point(322, 338);
+            this.tbUrlSlugEdit.Name = "tbUrlSlugEdit";
+            this.tbUrlSlugEdit.Size = new System.Drawing.Size(192, 23);
+            this.tbUrlSlugEdit.TabIndex = 2;
             // 
             // lblUrlSlugEdit
             // 
@@ -185,20 +189,49 @@ namespace TreeView
             this.lblUrlSlugEdit.TabIndex = 3;
             this.lblUrlSlugEdit.Text = "Slug";
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(277, 378);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(236, 52);
+            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.Text = "Оновити дерево";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // tbUrlSlugElement
+            // 
+            this.tbUrlSlugElement.Location = new System.Drawing.Point(322, 93);
+            this.tbUrlSlugElement.Name = "tbUrlSlugElement";
+            this.tbUrlSlugElement.Size = new System.Drawing.Size(192, 23);
+            this.tbUrlSlugElement.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(277, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 15);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Slug";
+            // 
             // TreeViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 518);
+            this.ClientSize = new System.Drawing.Size(526, 550);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblNameEdit);
             this.Controls.Add(this.lblUrlSlugEdit);
             this.Controls.Add(this.lblUrlSlugAddParent);
             this.Controls.Add(this.lblNameAddParent);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblNameAddElement);
             this.Controls.Add(this.tbEdit);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbUrlSlugEdit);
             this.Controls.Add(this.tbUrlSlug);
             this.Controls.Add(this.tbAddParent);
+            this.Controls.Add(this.tbUrlSlugElement);
             this.Controls.Add(this.tbAddElement);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnDelete);
@@ -231,8 +264,11 @@ namespace TreeView
         private System.Windows.Forms.Label lblNameAddParent;
         private System.Windows.Forms.Label lblNameEdit;
         private System.Windows.Forms.Label lblUrlSlugAddParent;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbUrlSlugEdit;
         private System.Windows.Forms.Label lblUrlSlugEdit;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox tbUrlSlugElement;
+        private System.Windows.Forms.Label label1;
     }
 }
 

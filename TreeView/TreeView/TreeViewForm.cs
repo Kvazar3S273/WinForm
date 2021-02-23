@@ -70,16 +70,47 @@ namespace TreeView
             context.SaveChanges();
         }
 
-        private static void AddChildNodeToParent(EFContext context, string parentSlug, string urlSlug, string name)
+        private void AddChildNodeToParent(TreeNode parent, string urlSlug, string name)
         {
-            var parent = context.Breeds.SingleOrDefault(x => x.UrlSlug == parentSlug);
-            context.Breeds.Add(new Breed
+            var takeParent = (BreedVM)parent.Tag;
+            _context.Breeds.Add(new Breed
             {
                 Name = name,
-                ParentId = parent.Id,
+                ParentId = takeParent.Id,
                 UrlSlug = urlSlug
             });
-            context.SaveChanges();
+            _context.SaveChanges();
+        }
+
+        private void btnAddElement_Click(object sender, EventArgs e)
+        {
+            string name = tbAddElement.Text;
+            string urlSlug = tbUrlSlugElement.Text;
+            if (name == "")
+            {
+                MessageBox.Show("Заповніть поле НАЗВА!");
+            }
+            else
+            {
+                AddChildNodeToParent(tvBreed.SelectedNode, urlSlug, name);
+            }
+            tbAddElement.Clear();
+            tbUrlSlugElement.Clear();
+        }
+        private void btnAddParent_Click(object sender, EventArgs e)
+        {
+            string name = tbAddParent.Text;
+            string urlSlug = tbUrlSlug.Text;
+            if (name == "")
+            {
+                MessageBox.Show("Заповніть поле НАЗВА!");
+            }
+            else
+            {
+                AddParentNode(_context, urlSlug, name);
+            }
+            tbAddParent.Clear();
+            tbUrlSlug.Clear();
         }
         private void AddParent(BreedVM breed)
         {
@@ -100,30 +131,8 @@ namespace TreeView
             node.Nodes.Add("");
             parent.Nodes.Add(node);
         }
-        private void btnAddParent_Click(object sender, EventArgs e)
-        {
-            string name = tbAddParent.Text;
-            string urlSlug = tbUrlSlug.Text;
-            //TreeNode newNode = new TreeNode(name);
-            //tvBreed.Nodes.Add(newNode);
-            if (name == "")
-            {
-                MessageBox.Show("Заповніть поле НАЗВА!");
-            }
-            else
-            {
-                AddParentNode(_context, urlSlug, name);
-            }
-            tbAddParent.Clear();
-            tbUrlSlug.Clear();
-        }
-        private void btnAddElement_Click(object sender, EventArgs e)
-        {
-            string name = tbAddElement.Text;
-            TreeNode newNode = new TreeNode(name);
-            tvBreed.SelectedNode.Nodes.Add(newNode);
-            tbAddElement.Clear();
-        }
+        
+        
         private void tvBreed_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
             if (e.Node.Nodes[0].Text == "")
@@ -148,14 +157,56 @@ namespace TreeView
             }
         }
 
+        private void DeleteNode(TreeNode selectedNode)
+        {
+            var node = (BreedVM)selectedNode.Tag;
+            _context.Breeds.Remove(new Breed
+            {
+                Id = node.Id
+            });
+            _context.SaveChanges();
+        }
+        private void EditNode(TreeNode selectedNode, string urlSlug, string name)
+        {
+            var node = _context.Breeds.SingleOrDefault(n => n.Name == selectedNode.Text);
+            node.Name = name;
+            node.UrlSlug = urlSlug;
+            _context.SaveChanges();
+        }
+        
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            string name = tbEdit.Text;
+            string urlSlug = tbUrlSlugEdit.Text;
+            if (name == "")
+            {
+                MessageBox.Show("Заповніть поле НАЗВА!");
+            }
+            else
+            {
+                EditNode(tvBreed.SelectedNode, urlSlug, name);
+            }
+            tbEdit.Clear();
+            tbUrlSlugEdit.Clear();
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DeleteNode(tvBreed.SelectedNode);
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            tvBreed.Nodes.Clear();
+            Form1_Load(sender, e);
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            tvBreed.Nodes.Remove(tvBreed.SelectedNode);
-        }
+       
     }
 }
