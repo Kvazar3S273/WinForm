@@ -191,12 +191,13 @@ namespace TreeView
             // 
             // btnUpdate
             // 
+            this.btnUpdate.BackColor = System.Drawing.Color.YellowGreen;
             this.btnUpdate.Location = new System.Drawing.Point(277, 378);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(236, 52);
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Оновити дерево";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // tbUrlSlugElement

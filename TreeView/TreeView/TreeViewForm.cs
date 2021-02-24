@@ -156,15 +156,25 @@ namespace TreeView
                 }
             }
         }
-
+        
         private void DeleteNode(TreeNode selectedNode)
         {
             var node = (BreedVM)selectedNode.Tag;
-            _context.Breeds.Remove(new Breed
+            
+            
+            // Якщо нода не має дочірніх елементів - видаляємо її
+            if(selectedNode.Nodes.Count==0)
             {
-                Id = node.Id
-            });
-            _context.SaveChanges();
+                _context.Breeds.Remove(new Breed
+                {
+                    Id = node.Id
+                });
+                _context.SaveChanges();
+            }
+            // інакше виводимо попередження
+            else
+                MessageBox.Show("Дана категорія має дочірні елементи\n" +
+                    "перш ніж її видалити, видаліть всі дочірні ноди");
         }
         private void EditNode(TreeNode selectedNode, string urlSlug, string name)
         {
@@ -188,7 +198,6 @@ namespace TreeView
             }
             tbEdit.Clear();
             tbUrlSlugEdit.Clear();
-
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -207,6 +216,6 @@ namespace TreeView
             Application.Exit();
         }
 
-       
+        
     }
 }
