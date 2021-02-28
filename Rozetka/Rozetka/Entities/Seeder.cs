@@ -58,10 +58,34 @@ namespace Rozetka.Entities
             }
             #endregion
 
+            #region Групування фільтрів
+            for (int i = 0; i < filterNames.Length; i++)
+            {
+                foreach (var value in filterValues[i])
+                {
+                    var nId = context.FilterNames
+                        .SingleOrDefault(ben => ben.Name == filterNames[i]).Id;
+                    var vId = context.FilterValues
+                        .SingleOrDefault(f => f.Name == value).Id;
+                    if (context.FilterNameGroups
+                        .SingleOrDefault(f => f.FilterValueId == vId &&
+                        f.FilterNameId == nId) == null)
+                    {
+                        context.FilterNameGroups.Add(
+                            new FilterNameGroup
+                            {
+                                FilterNameId = nId,
+                                FilterValueId = vId
+                            });
+                        context.SaveChanges();
+                    }
+                }
+            }
+            #endregion
 
         }
 
-       
+
 
         #endregion
     }
