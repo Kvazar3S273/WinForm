@@ -16,6 +16,8 @@ namespace Rozetka
     {
         private readonly EFContext _context;
         public IQueryable<FilterName> filter { get; set; }
+        public int positionY { get; set; } = 17;
+        public int dy { get; set; } = 15;
         public MainForm()
         {
             InitializeComponent();
@@ -29,9 +31,9 @@ namespace Rozetka
         }
         private void btnFilterBrand_Click(object sender, EventArgs e)
         {
-            int positionY = 17;
-            int dy = 20;
+            
             List<string> checksBrand = new List<string>();
+            pnlFilterBrand.Height = 1;
             pnlFilterBrand.Controls.Clear();
             var filters = GetListFilters();
             var result = from x in filters
@@ -47,13 +49,14 @@ namespace Rozetka
             //MessageBox.Show($"Всього {checksBrand.Count()} дітей");
             for (int i = 0; i < checksBrand.Count(); i++)
             {
+                pnlFilterBrand.Height += dy;
                 CheckBox chb = new CheckBox();
                 chb.AutoSize = true;
                 chb.Location = new System.Drawing.Point(45, positionY);
                 chb.Name = $"checkBox{i}";
                 chb.Size = new System.Drawing.Size(82, 19);
                 chb.TabIndex = 3;
-                chb.Text = $"checkBox{i}";
+                chb.Text = $"{checksBrand[i].ToString()}";
                 chb.UseVisualStyleBackColor = true;
                 pnlFilterBrand.Controls.Add(chb);
                 positionY += dy;
@@ -61,20 +64,17 @@ namespace Rozetka
 
 
 
-            //CheckBox chb2 = new CheckBox();
-            //chb2.AutoSize = true;
-            //chb2.Location = new System.Drawing.Point(positionX, 50);
-            //chb2.Name = "checkBox2";
-            //chb2.Size = new System.Drawing.Size(82, 19);
-            //chb2.TabIndex = 3;
-            //chb2.Text = "checkBox2";
-            //chb2.UseVisualStyleBackColor = true;
-            //pnlFilterBrand.Controls.Add(chb2);
+           
 
         }
         private void btnClosedBrand_Click(object sender, EventArgs e)
         {
             pnlFilterBrand.Controls.Clear();
+            positionY = 17;
+        }
+        private void btnFilterPower_Click(object sender, EventArgs e)
+        {
+
         }
         private List<FNameViewModel> GetListFilters()
         {

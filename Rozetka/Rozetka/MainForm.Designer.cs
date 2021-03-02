@@ -48,12 +48,13 @@ namespace Rozetka
             // 
             // btnFilterPower
             // 
-            this.btnFilterPower.Location = new System.Drawing.Point(12, 198);
+            this.btnFilterPower.Location = new System.Drawing.Point(12, positionY + 40);
             this.btnFilterPower.Name = "btnFilterPower";
             this.btnFilterPower.Size = new System.Drawing.Size(185, 38);
             this.btnFilterPower.TabIndex = 0;
             this.btnFilterPower.Text = "Потужність";
             this.btnFilterPower.UseVisualStyleBackColor = true;
+            this.btnFilterPower.Click += new System.EventHandler(this.btnFilterPower_Click);
             // 
             // btnClosedBrand
             // 
@@ -80,7 +81,7 @@ namespace Rozetka
             // 
             this.pnlFilterBrand.Location = new System.Drawing.Point(12, 55);
             this.pnlFilterBrand.Name = "pnlFilterBrand";
-            this.pnlFilterBrand.Size = new System.Drawing.Size(226, 115);
+            this.pnlFilterBrand.Size = new System.Drawing.Size(226, 1);
             this.pnlFilterBrand.TabIndex = 2;
             // 
             // MainForm
