@@ -15,6 +15,7 @@ namespace Rozetka
     public partial class MainForm : Form
     {
         private readonly EFContext _context;
+        public IQueryable<FilterName> filter { get; set; }
         public MainForm()
         {
             InitializeComponent();
@@ -24,28 +25,56 @@ namespace Rozetka
         }
         private void LoadForm()
         {
+            
+        }
+        private void btnFilterBrand_Click(object sender, EventArgs e)
+        {
+            int positionY = 17;
+            int dy = 20;
+            List<string> checksBrand = new List<string>();
+            pnlFilterBrand.Controls.Clear();
             var filters = GetListFilters();
-
-            var brand = (from x in filters
-                          where x.Id == 1
-                          select x.Children);
-            foreach (var items in brand)
+            var result = from x in filters
+                         where x.Name == btnFilterBrand.Text
+                         select x.Children;
+            foreach (var item in result)
             {
-                foreach (var it in items)
+                foreach (var it in item)
                 {
-                    chlbFilters.Items.Add(it.Value);
+                    checksBrand.Add(it.Value);
                 }
             }
-            //var power = (from y in filters
-            //             where y.Id == 2
-            //             select y.Children);
-            //foreach (var items in power)
-            //{
-            //    foreach (var it in items)
-            //    {
-            //        chlbFilters.Items.Add(it.Value);
-            //    }
-            //}
+            //MessageBox.Show($"Всього {checksBrand.Count()} дітей");
+            for (int i = 0; i < checksBrand.Count(); i++)
+            {
+                CheckBox chb = new CheckBox();
+                chb.AutoSize = true;
+                chb.Location = new System.Drawing.Point(45, positionY);
+                chb.Name = $"checkBox{i}";
+                chb.Size = new System.Drawing.Size(82, 19);
+                chb.TabIndex = 3;
+                chb.Text = $"checkBox{i}";
+                chb.UseVisualStyleBackColor = true;
+                pnlFilterBrand.Controls.Add(chb);
+                positionY += dy;
+            }
+
+
+
+            //CheckBox chb2 = new CheckBox();
+            //chb2.AutoSize = true;
+            //chb2.Location = new System.Drawing.Point(positionX, 50);
+            //chb2.Name = "checkBox2";
+            //chb2.Size = new System.Drawing.Size(82, 19);
+            //chb2.TabIndex = 3;
+            //chb2.Text = "checkBox2";
+            //chb2.UseVisualStyleBackColor = true;
+            //pnlFilterBrand.Controls.Add(chb2);
+
+        }
+        private void btnClosedBrand_Click(object sender, EventArgs e)
+        {
+            pnlFilterBrand.Controls.Clear();
         }
         private List<FNameViewModel> GetListFilters()
         {

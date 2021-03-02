@@ -29,24 +29,72 @@ namespace Rozetka
         /// </summary>
         private void InitializeComponent()
         {
-            this.chlbFilters = new System.Windows.Forms.CheckedListBox();
+            this.btnFilterBrand = new System.Windows.Forms.Button();
+            this.btnFilterPower = new System.Windows.Forms.Button();
+            this.btnClosedBrand = new System.Windows.Forms.Button();
+            this.btnClosedPower = new System.Windows.Forms.Button();
+            this.pnlFilterBrand = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // chlbFilters
+            // btnFilterBrand
             // 
-            this.chlbFilters.FormattingEnabled = true;
-            this.chlbFilters.Location = new System.Drawing.Point(16, 21);
-            this.chlbFilters.Name = "chlbFilters";
-            this.chlbFilters.Size = new System.Drawing.Size(270, 400);
-            this.chlbFilters.TabIndex = 0;
+            this.btnFilterBrand.Location = new System.Drawing.Point(12, 12);
+            this.btnFilterBrand.Name = "btnFilterBrand";
+            this.btnFilterBrand.Size = new System.Drawing.Size(185, 38);
+            this.btnFilterBrand.TabIndex = 0;
+            this.btnFilterBrand.Text = "Категорія";
+            this.btnFilterBrand.UseVisualStyleBackColor = true;
+            this.btnFilterBrand.Click += new System.EventHandler(this.btnFilterBrand_Click);
+            // 
+            // btnFilterPower
+            // 
+            this.btnFilterPower.Location = new System.Drawing.Point(12, 198);
+            this.btnFilterPower.Name = "btnFilterPower";
+            this.btnFilterPower.Size = new System.Drawing.Size(185, 38);
+            this.btnFilterPower.TabIndex = 0;
+            this.btnFilterPower.Text = "Потужність";
+            this.btnFilterPower.UseVisualStyleBackColor = true;
+            // 
+            // btnClosedBrand
+            // 
+            this.btnClosedBrand.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnClosedBrand.Location = new System.Drawing.Point(203, 12);
+            this.btnClosedBrand.Name = "btnClosedBrand";
+            this.btnClosedBrand.Size = new System.Drawing.Size(36, 38);
+            this.btnClosedBrand.TabIndex = 1;
+            this.btnClosedBrand.Text = "X";
+            this.btnClosedBrand.UseVisualStyleBackColor = true;
+            this.btnClosedBrand.Click += new System.EventHandler(this.btnClosedBrand_Click);
+            // 
+            // btnClosedPower
+            // 
+            this.btnClosedPower.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnClosedPower.Location = new System.Drawing.Point(203, 198);
+            this.btnClosedPower.Name = "btnClosedPower";
+            this.btnClosedPower.Size = new System.Drawing.Size(36, 38);
+            this.btnClosedPower.TabIndex = 1;
+            this.btnClosedPower.Text = "X";
+            this.btnClosedPower.UseVisualStyleBackColor = true;
+            // 
+            // pnlFilterBrand
+            // 
+            this.pnlFilterBrand.Location = new System.Drawing.Point(12, 55);
+            this.pnlFilterBrand.Name = "pnlFilterBrand";
+            this.pnlFilterBrand.Size = new System.Drawing.Size(226, 115);
+            this.pnlFilterBrand.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 450);
-            this.Controls.Add(this.chlbFilters);
+            this.ClientSize = new System.Drawing.Size(580, 530);
+            this.Controls.Add(this.pnlFilterBrand);
+            this.Controls.Add(this.btnClosedPower);
+            this.Controls.Add(this.btnFilterBrand);
+            this.Controls.Add(this.btnFilterPower);
+            this.Controls.Add(this.btnClosedBrand);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Вибір товару";
             this.ResumeLayout(false);
 
@@ -54,7 +102,11 @@ namespace Rozetka
 
         #endregion
 
-        private System.Windows.Forms.CheckedListBox chlbFilters;
+        private System.Windows.Forms.Button btnFilterBrand;
+        private System.Windows.Forms.Button btnFilterPower;
+        private System.Windows.Forms.Button btnClosedBrand;
+        private System.Windows.Forms.Button btnClosedPower;
+        private System.Windows.Forms.Panel pnlFilterBrand;
     }
 }
 
