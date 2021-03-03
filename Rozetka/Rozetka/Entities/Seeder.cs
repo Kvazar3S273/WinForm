@@ -18,7 +18,7 @@ namespace Rozetka.Entities
         {
             #region tblFilterNames - Назви фільтрів
 
-            string[] filterNames = { "Категорія", "Потужність" };
+            string[] filterNames = { "Виробник", "Потужність" };
             foreach (var type in filterNames)
             {
                 if (context.FilterNames.SingleOrDefault(f => f.Name == type) == null)
