@@ -83,7 +83,7 @@ namespace Rozetka
             // 
             // pnlFilterBrand
             // 
-            this.pnlFilterBrand.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnlFilterBrand.BackColor = System.Drawing.Color.Transparent;
             this.pnlFilterBrand.Location = new System.Drawing.Point(12, 55);
             this.pnlFilterBrand.Name = "pnlFilterBrand";
             this.pnlFilterBrand.Size = new System.Drawing.Size(173, 100);
@@ -91,7 +91,7 @@ namespace Rozetka
             // 
             // pnlFilterPower
             // 
-            this.pnlFilterPower.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnlFilterPower.BackColor = System.Drawing.SystemColors.Control;
             this.pnlFilterPower.Location = new System.Drawing.Point(12, 242);
             this.pnlFilterPower.Name = "pnlFilterPower";
             this.pnlFilterPower.Size = new System.Drawing.Size(173, 106);
@@ -105,6 +105,7 @@ namespace Rozetka
             this.btnSaveChoiceBrand.TabIndex = 6;
             this.btnSaveChoiceBrand.Text = "Застосувати фільтр";
             this.btnSaveChoiceBrand.UseVisualStyleBackColor = true;
+            this.btnSaveChoiceBrand.Visible = false;
             // 
             // btnSaveChoicePower
             // 
@@ -114,6 +115,7 @@ namespace Rozetka
             this.btnSaveChoicePower.TabIndex = 6;
             this.btnSaveChoicePower.Text = "Застосувати фільтр";
             this.btnSaveChoicePower.UseVisualStyleBackColor = true;
+            this.btnSaveChoicePower.Visible = false;
             // 
             // MainForm
             // 
