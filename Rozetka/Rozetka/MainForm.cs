@@ -20,11 +20,7 @@ namespace Rozetka
         const int startX = 15;
         const int startY = 15;
         const int interval = 8;
-
-        /// <summary>
-        /// Початкова координата для першого фільтра (для першого чекбокса першого фільтра)
-        /// </summary>
-        public int positionY1 { get; set; }
+        const int checkBoxHeight = 15;
 
         /// <summary>
         /// Зміщення по осі У для першого фільтра
@@ -32,14 +28,9 @@ namespace Rozetka
         public int dy1 { get; set; } 
 
         /// <summary>
-        /// Початкова координата для другого фільтра
-        /// </summary>
-        public int positionY2 { get; set; } = 200;
-
-        /// <summary>
         /// Зміщення по осі У для другого фільтра
         /// </summary>
-        public int dy2 { get; set; } = 8;
+        public int dy2 { get; set; }
 
         /// <summary>
         /// Кількість дітей першого фільтра
@@ -50,16 +41,6 @@ namespace Rozetka
         /// Кількість дітей першого фільтра
         /// </summary>
         public int CountOfPowers { get; set; }
-
-        /// <summary>
-        /// Мітка чи розкритий перший фільтр
-        /// </summary>
-        public bool isOpenBrands { get; set; } = false;
-
-        /// <summary>
-        /// Мітка чи розкритий другий фільтр
-        /// </summary>
-        public bool isOpenPower { get; set; } = false;
 
         public MainForm()
         {
@@ -76,7 +57,7 @@ namespace Rozetka
             // Виводимо кнопки для фільтра брендів і для його очищення
             btnFilterBrand.Location = new Point(startX, startY);
             btnClosedBrand.Location = new Point(startX + btnFilterBrand.Width + interval, startY);
-            
+
             // Виводимо панель фільтрів по бренду
             pnlFilterBrand.Location = new Point(startX, startY + btnFilterBrand.Height + interval / 2);
             pnlFilterBrand.Height = 1;
@@ -84,19 +65,34 @@ namespace Rozetka
             // Виводимо кнопки для фільтра по потужності і для його очищення
             btnFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval);
             btnClosedPower.Location = new Point(startX + btnFilterPower.Width + interval, startY + btnClosedBrand.Height + interval);
-            
+
             // Виводимо панель фільтрів по потужності
             pnlFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + btnFilterPower.Height + interval / 2);
             pnlFilterPower.Height = 1;
 
         }
+        private void MoveFilterPower(bool move)
+        {
+            if (move)
+            {
+                btnFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + pnlFilterBrand.Height);
+                btnClosedPower.Location = new Point(startX + btnFilterPower.Width + interval, startY + btnClosedBrand.Height + interval + pnlFilterBrand.Height);
+                pnlFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + pnlFilterBrand.Height + btnFilterPower.Height + interval / 2);
+                pnlFilterPower.Height = 1;
+            }
+            else
+            {
+                btnFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval);
+                btnClosedPower.Location = new Point(startX + btnFilterPower.Width + interval, startY + btnClosedBrand.Height + interval);
+                pnlFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + btnFilterPower.Height + interval / 2);
+                pnlFilterPower.Height = 1;
+            }
+
+        }
         private void btnFilterBrand_Click(object sender, EventArgs e)
         {
-            isOpenBrands = true;
             pnlFilterBrand.Controls.Clear();
-            positionY1 = startY + btnFilterBrand.Height + interval;
-            int checkBoxHeight = 15;
-            dy1 = checkBoxHeight + interval;
+            dy1 = 0;
             List<string> checksBrand = new List<string>();
             var filters = GetListFilters();
             var result = from x in filters
@@ -110,52 +106,32 @@ namespace Rozetka
                 }
             }
             CountOfBrands = checksBrand.Count();
+            pnlFilterBrand.Height =  2 * checkBoxHeight * (CountOfBrands - 1);
+
             foreach (var item in checksBrand)
             {
-                pnlFilterBrand.Height += dy1;
                 CheckBox chb = new CheckBox();
                 chb.AutoSize = true;
-                chb.Location = new System.Drawing.Point(15, positionY1);
+                chb.Location = new System.Drawing.Point(1, dy1);
                 chb.Size = new System.Drawing.Size(82, checkBoxHeight);
                 chb.Text = item.ToString();
                 chb.UseVisualStyleBackColor = true;
                 pnlFilterBrand.Controls.Add(chb);
-                positionY1 += dy1;
+                dy1 = dy1 + checkBoxHeight + interval;
             }
-            if (isOpenBrands && !isOpenPower)
-            {
-                //btnFilterPower.Location = new Point(15, btnFilterBrand.Height * CountOfBrands + dy1);
-                //btnClosedPower.Location = new Point(btnFilterPower.Width + 32, btnFilterBrand.Height * CountOfBrands + dy1);
-                //pnlFilterPower.Location = new Point(15, btnFilterBrand.Height + positionY1 + dy1);
-                pnlFilterPower.Controls.Clear();
-                pnlFilterPower.Height = 1;
-            }
-            if (isOpenBrands && isOpenPower)
-            {
-                btnFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + CountOfBrands * checkBoxHeight + (CountOfBrands - 1) * interval + interval);
-                btnClosedPower.Location = new Point(startX + btnFilterPower.Width + interval, startY + btnFilterBrand.Height + interval + CountOfBrands * checkBoxHeight + (CountOfBrands - 1) * interval + interval);
-                pnlFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + CountOfBrands * checkBoxHeight + (CountOfBrands - 1) * interval + interval);
-            }
+            MoveFilterPower(true);
         }
         private void btnClosedBrand_Click(object sender, EventArgs e)
         {
-            isOpenBrands = false;
             pnlFilterBrand.Controls.Clear();
-            pnlFilterBrand.Height = 5;
-            positionY1 = 10;
-            btnFilterPower.Location = new Point(15, btnFilterBrand.Height + dy1);
-            btnClosedPower.Location = new Point(btnFilterPower.Width + 32, btnFilterBrand.Height + dy1);
-            if(!isOpenPower)
-            {
-                pnlFilterPower.Controls.Clear();
-                pnlFilterPower.Height = 5;
-            }
-            pnlFilterPower.Location = new Point(15, btnFilterBrand.Height + btnFilterPower.Height + dy1);
+            pnlFilterBrand.Height = 1;
+            MoveFilterPower(false);
         }
         private void btnFilterPower_Click(object sender, EventArgs e)
         {
-            isOpenPower = true;
-            List<string> power = new List<string>();
+            pnlFilterPower.Controls.Clear();
+            dy2 = 0;
+            List<string> checksPower = new List<string>();
             var filters = GetListFilters();
             var result = from x in filters
                          where x.Name == btnFilterPower.Text
@@ -164,51 +140,27 @@ namespace Rozetka
             {
                 foreach (var it in items)
                 {
-                    power.Add(it.Value);
+                    checksPower.Add(it.Value);
                 }
             }
-            //MessageBox.Show($"Всього {power.Count()} дітей");
-            foreach (var item in power)
+            CountOfPowers = checksPower.Count();
+            pnlFilterPower.Height = 2 * checkBoxHeight * (CountOfPowers - 1);
+            foreach (var item in checksPower)
             {
-                pnlFilterPower.Height += dy2;
                 CheckBox chb = new CheckBox();
                 chb.AutoSize = true;
-                chb.Location = new System.Drawing.Point(15, positionY2);
-                chb.Size = new System.Drawing.Size(82, 22);
+                chb.Location = new System.Drawing.Point(1, dy2);
+                chb.Size = new System.Drawing.Size(82, checkBoxHeight);
                 chb.Text = item.ToString();
                 chb.UseVisualStyleBackColor = true;
-                pnlFilterBrand.Controls.Add(chb);
-                positionY2 += dy2;
-            }
-            if (!isOpenBrands && isOpenPower)
-            {
-                btnFilterPower.Location = new Point(15, btnFilterBrand.Height + dy1);
-                btnClosedPower.Location = new Point(btnFilterPower.Width + 32, btnClosedBrand.Height + dy1);
-                pnlFilterPower.Location = new Point(15, btnFilterBrand.Height + btnFilterPower.Height + dy1);
-            }
-            if (isOpenBrands && isOpenPower)
-            {
-                btnFilterPower.Location = new Point(15, btnFilterBrand.Height * CountOfPowers + dy1);
-                btnClosedPower.Location = new Point(btnFilterPower.Width + 32, btnClosedBrand.Height * CountOfPowers + dy1);
-                pnlFilterPower.Location = new Point(15, btnFilterBrand.Height * CountOfPowers + btnFilterPower.Height + dy1);
+                pnlFilterPower.Controls.Add(chb);
+                dy2 = dy2 + checkBoxHeight + interval;
             }
         }
         private void btnClosedPower_Click(object sender, EventArgs e)
         {
-            isOpenPower = false;
             pnlFilterPower.Controls.Clear();
-            pnlFilterPower.Height = 5;
-            positionY2 = 200;
-            if(!isOpenBrands)
-            {
-                pnlFilterBrand.Controls.Clear();
-                pnlFilterBrand.Height = 5;
-            }
-            else
-            {
-                btnFilterPower.Location = new Point(15, btnFilterBrand.Height * CountOfPowers + dy1);
-                btnClosedPower.Location = new Point(btnFilterPower.Width + 32, btnClosedBrand.Height * CountOfPowers + dy1);
-            }
+            pnlFilterPower.Height = 1;
         }
         private List<FNameViewModel> GetListFilters()
         {
@@ -227,7 +179,6 @@ namespace Rozetka
                             FValueId = aEmp != null ? aEmp.FilterValueId : 0,
                             FValue = aEmp != null ? aEmp.FilterValueOf.Name : null,
                         };
-
 
             //Групуємо по іменам і сортуємо по спаданню імен
 
@@ -253,7 +204,5 @@ namespace Rozetka
 
             return result.ToList();
         }
-
-        
     }
 }

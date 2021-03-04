@@ -35,13 +35,15 @@ namespace Rozetka
             this.btnClosedPower = new System.Windows.Forms.Button();
             this.pnlFilterBrand = new System.Windows.Forms.Panel();
             this.pnlFilterPower = new System.Windows.Forms.Panel();
+            this.btnSaveChoiceBrand = new System.Windows.Forms.Button();
+            this.btnSaveChoicePower = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFilterBrand
             // 
             this.btnFilterBrand.Location = new System.Drawing.Point(12, 11);
             this.btnFilterBrand.Name = "btnFilterBrand";
-            this.btnFilterBrand.Size = new System.Drawing.Size(185, 38);
+            this.btnFilterBrand.Size = new System.Drawing.Size(131, 38);
             this.btnFilterBrand.TabIndex = 0;
             this.btnFilterBrand.Text = "Виробник";
             this.btnFilterBrand.UseVisualStyleBackColor = true;
@@ -51,7 +53,7 @@ namespace Rozetka
             // 
             this.btnFilterPower.Location = new System.Drawing.Point(12, 198);
             this.btnFilterPower.Name = "btnFilterPower";
-            this.btnFilterPower.Size = new System.Drawing.Size(185, 38);
+            this.btnFilterPower.Size = new System.Drawing.Size(131, 38);
             this.btnFilterPower.TabIndex = 1;
             this.btnFilterPower.Text = "Потужність";
             this.btnFilterPower.UseVisualStyleBackColor = true;
@@ -60,7 +62,7 @@ namespace Rozetka
             // btnClosedBrand
             // 
             this.btnClosedBrand.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnClosedBrand.Location = new System.Drawing.Point(203, 11);
+            this.btnClosedBrand.Location = new System.Drawing.Point(149, 12);
             this.btnClosedBrand.Name = "btnClosedBrand";
             this.btnClosedBrand.Size = new System.Drawing.Size(36, 38);
             this.btnClosedBrand.TabIndex = 2;
@@ -71,7 +73,7 @@ namespace Rozetka
             // btnClosedPower
             // 
             this.btnClosedPower.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnClosedPower.Location = new System.Drawing.Point(203, 198);
+            this.btnClosedPower.Location = new System.Drawing.Point(149, 198);
             this.btnClosedPower.Name = "btnClosedPower";
             this.btnClosedPower.Size = new System.Drawing.Size(36, 38);
             this.btnClosedPower.TabIndex = 3;
@@ -81,23 +83,45 @@ namespace Rozetka
             // 
             // pnlFilterBrand
             // 
+            this.pnlFilterBrand.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pnlFilterBrand.Location = new System.Drawing.Point(12, 55);
             this.pnlFilterBrand.Name = "pnlFilterBrand";
-            this.pnlFilterBrand.Size = new System.Drawing.Size(226, 100);
+            this.pnlFilterBrand.Size = new System.Drawing.Size(173, 100);
             this.pnlFilterBrand.TabIndex = 4;
             // 
             // pnlFilterPower
             // 
+            this.pnlFilterPower.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pnlFilterPower.Location = new System.Drawing.Point(12, 242);
             this.pnlFilterPower.Name = "pnlFilterPower";
-            this.pnlFilterPower.Size = new System.Drawing.Size(222, 106);
+            this.pnlFilterPower.Size = new System.Drawing.Size(173, 106);
             this.pnlFilterPower.TabIndex = 5;
+            // 
+            // btnSaveChoiceBrand
+            // 
+            this.btnSaveChoiceBrand.Location = new System.Drawing.Point(12, 163);
+            this.btnSaveChoiceBrand.Name = "btnSaveChoiceBrand";
+            this.btnSaveChoiceBrand.Size = new System.Drawing.Size(172, 29);
+            this.btnSaveChoiceBrand.TabIndex = 6;
+            this.btnSaveChoiceBrand.Text = "Застосувати фільтр";
+            this.btnSaveChoiceBrand.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveChoicePower
+            // 
+            this.btnSaveChoicePower.Location = new System.Drawing.Point(12, 354);
+            this.btnSaveChoicePower.Name = "btnSaveChoicePower";
+            this.btnSaveChoicePower.Size = new System.Drawing.Size(172, 29);
+            this.btnSaveChoicePower.TabIndex = 6;
+            this.btnSaveChoicePower.Text = "Застосувати фільтр";
+            this.btnSaveChoicePower.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(580, 621);
+            this.Controls.Add(this.btnSaveChoicePower);
+            this.Controls.Add(this.btnSaveChoiceBrand);
             this.Controls.Add(this.pnlFilterPower);
             this.Controls.Add(this.pnlFilterBrand);
             this.Controls.Add(this.btnClosedPower);
@@ -119,6 +143,8 @@ namespace Rozetka
         private System.Windows.Forms.Button btnClosedPower;
         private System.Windows.Forms.Panel pnlFilterBrand;
         private System.Windows.Forms.Panel pnlFilterPower;
+        private System.Windows.Forms.Button btnSaveChoiceBrand;
+        private System.Windows.Forms.Button btnSaveChoicePower;
     }
 }
 
