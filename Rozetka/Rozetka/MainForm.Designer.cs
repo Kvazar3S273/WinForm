@@ -37,6 +37,7 @@ namespace Rozetka
             this.pnlFilterPower = new System.Windows.Forms.Panel();
             this.btnSaveChoiceBrand = new System.Windows.Forms.Button();
             this.btnSaveChoicePower = new System.Windows.Forms.Button();
+            this.btnAddFilterValue = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFilterBrand
@@ -117,11 +118,22 @@ namespace Rozetka
             this.btnSaveChoicePower.UseVisualStyleBackColor = true;
             this.btnSaveChoicePower.Visible = false;
             // 
+            // btnAddFilterValue
+            // 
+            this.btnAddFilterValue.Location = new System.Drawing.Point(12, 572);
+            this.btnAddFilterValue.Name = "btnAddFilterValue";
+            this.btnAddFilterValue.Size = new System.Drawing.Size(173, 37);
+            this.btnAddFilterValue.TabIndex = 7;
+            this.btnAddFilterValue.Text = "Додати параметр в фільтр";
+            this.btnAddFilterValue.UseVisualStyleBackColor = true;
+            this.btnAddFilterValue.Click += new System.EventHandler(this.btnAddFilterValue_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 621);
+            this.ClientSize = new System.Drawing.Size(432, 621);
+            this.Controls.Add(this.btnAddFilterValue);
             this.Controls.Add(this.btnSaveChoicePower);
             this.Controls.Add(this.btnSaveChoiceBrand);
             this.Controls.Add(this.pnlFilterPower);
@@ -147,6 +159,7 @@ namespace Rozetka
         private System.Windows.Forms.Panel pnlFilterPower;
         private System.Windows.Forms.Button btnSaveChoiceBrand;
         private System.Windows.Forms.Button btnSaveChoicePower;
+        private System.Windows.Forms.Button btnAddFilterValue;
     }
 }
 

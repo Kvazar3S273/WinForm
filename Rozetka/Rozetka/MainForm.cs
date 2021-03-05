@@ -255,5 +255,14 @@ namespace Rozetka
 
             return result.ToList();
         }
+        /// <summary>
+        /// Додавання значення в фільтр
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddFilterValue_Click(object sender, EventArgs e)
+        {
+            new AddValueForm().ShowDialog();
+        }
     }
 }
