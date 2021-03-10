@@ -57,5 +57,16 @@ namespace Rozetka
             }
             this.Close();
         }
+
+        private void btnAddNewFilter_Click(object sender, EventArgs e)
+        {
+            context.FilterNames.Add(
+                new FilterName
+                {
+                    Name = tbNewFilter.Text
+                });
+            context.SaveChanges();
+            this.Close();
+        }
     }
 }

@@ -88,8 +88,6 @@ namespace Rozetka
         public int btnHeight { get; set; } = 48;
         public int btnWidth { get; set; } = 125;
 
-        public bool MoveNextButton { get; set; } = false;
-        public int HowToMove { get; set; }
         public MainForm()
         {
             InitializeComponent();
@@ -97,10 +95,15 @@ namespace Rozetka
             //Seeder.SeedDatabase(_context);
             LoadForm();
         }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            AutoScroll = true;
+            SuspendLayout();
+            Seeder.SeedDatabase(_context);
+            LoadForm();
+        }
         private void LoadForm()
         {
-
-
 
 
             var collection = GetListFilters();
@@ -187,13 +190,11 @@ namespace Rozetka
                             }
                         }
                         count_child = child.Count();
-
-
                        
-                        pan.Location = new Point(X, btnHeight*i + interval*2);
+                        pan.Location = new Point(X, btnHeight * i + interval * 2);
                         pan.Size = new Size(btnWidth, 0);
-                        pan.BackColor = Color.Gray;
-                        pan.AutoScroll = true;
+                        pan.BackColor = Color.Transparent;
+                        //pan.AutoScroll = true;
                         Controls.Add(pan);
                         pan.Visible = true;
                         dy1 = 0;
@@ -209,10 +210,8 @@ namespace Rozetka
                             // Зміщуємо виведення наступного чекбокса на його висоту + інтервал
                             dy1 = dy1 + chb_height + interval;
                         }
-                        //MessageBox.Show($"{pan.Controls.Count}");
-                        var height = 2 * chb_height * (count_child - 1) + interval;
+                        var height = (chb_height + interval) * count_child;
                         pan.Height = height;
-                        
                     }
                     else
                     {
@@ -226,8 +225,6 @@ namespace Rozetka
 
                         if (pan.Controls.Count == 0)
                         {
-                            //MessageBox.Show("disp");
-                            // pan.Controls.RemoveByKey((sender as Button).Text);
                             Controls.Remove(pan);
                             pan.Dispose();
                         }
@@ -561,15 +558,10 @@ namespace Rozetka
         /// 
         private void btnAddFilterValue_Click(object sender, EventArgs e)
         {
-            new AddValueForm().ShowDialog();
+            AddValueForm avf = new AddValueForm();
+            avf.ShowDialog();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            AutoScroll = true;
-            SuspendLayout();
-            Seeder.SeedDatabase(_context);
-            LoadForm();
-        }
+        
     }
 }

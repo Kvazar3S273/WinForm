@@ -34,7 +34,7 @@ namespace Rozetka
             // 
             // btnAddFilterValue
             // 
-            this.btnAddFilterValue.Location = new System.Drawing.Point(301, 11);
+            this.btnAddFilterValue.Location = new System.Drawing.Point(12, 489);
             this.btnAddFilterValue.Name = "btnAddFilterValue";
             this.btnAddFilterValue.Size = new System.Drawing.Size(173, 37);
             this.btnAddFilterValue.TabIndex = 7;
