@@ -72,123 +72,138 @@ namespace Rozetka
         }
         private void LoadForm()
         {
-            List<string> namesOfFilter = new List<string>();
-            var takeFilters = GetListFilters();
-            var allFilters = from x in takeFilters
-                             where x.Id != 0
-                             select x.Name;
-            int countsFilters = 0;
-            foreach (var item in allFilters)
-            {
-                namesOfFilter.Add(item);
-                countsFilters++;
-            }
+
+            #region Спроба вивести динамічно
+            //List<string> namesOfFilter = new List<string>();
+            //var takeFilters = GetListFilters();
+            //var allFilters = from x in takeFilters
+            //                 where x.Id != 0
+            //                 select x.Name;
+            //int countsFilters = 0;
+            //foreach (var item in allFilters)
+            //{
+            //    namesOfFilter.Add(item);
+            //    countsFilters++;
+            //}
             //MessageBox.Show($"{countsFilters}");
 
 
-            for (int i = 0; i < countsFilters; i++)
-            {
-                Button[] btnFilter = new Button[countsFilters];
-                btnFilter[i] = new System.Windows.Forms.Button();
-                btnFilter[i].Location = new System.Drawing.Point(startX, startY + i*100);
-                btnFilter[i].Name = $"{btnFilter[i]}";
-                btnFilter[i].Size = new System.Drawing.Size(131, 38);
-                btnFilter[i].Text = $"{namesOfFilter[i]}";
-                btnFilter[i].UseVisualStyleBackColor = true;
-                Controls.Add(btnFilter[i]);
-                //btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            //for (int i = 0; i < countsFilters; i++)
+            //{
+            //    // Кнопка збереження вибраних значень чекбоксів
+            //    Button[] btnSaveChoiceFilter = new Button[countsFilters];
 
+            //    // Панель фільтра
+            //    Panel[] pnlFilter = new Panel[countsFilters];
 
-                List<string> childrensItemFilter = new List<string>();
-                var result = from x in GetListFilters()
-                             where x.Name == btnFilter[i].Text
-                             select x.Children;
-
-
-                foreach (var item in result)
-                {
-                    foreach (var it in item)
-                    {
-                        childrensItemFilter.Add(it.Value);
-                    }
-                }
-               
-
-                //Controls.Add(btnSaveChoiceFilter[i]);
-
-                Panel[] pnlFilter = new Panel[countsFilters];
-                pnlFilter[i] = new System.Windows.Forms.Panel();
-                pnlFilter[i].BackColor = System.Drawing.Color.Transparent;
-                pnlFilter[i].Location = new System.Drawing.Point(startX*2, startY + btnFilter[i].Height + interval);
-                pnlFilter[i].Name = $"{pnlFilter[i]}";
-                //pnlFilter[i].Size = new System.Drawing.Size(173, 100);
-                Controls.Add(pnlFilter[i]);
-
-                Button[] btnSaveChoiceFilter = new Button[countsFilters];
-                btnSaveChoiceFilter[i] = new System.Windows.Forms.Button();
-                btnSaveChoiceFilter[i].Location = new Point(0, 2 * checkBoxHeight * (CountChildrenOfFilter - 1));
-                btnSaveChoiceFilter[i].Name = $"{btnSaveChoiceFilter[i]}";
-                btnSaveChoiceFilter[i].Size = new System.Drawing.Size(172, 29);
-                btnSaveChoiceFilter[i].Text = "Застосувати фільтр";
-                btnSaveChoiceFilter[i].UseVisualStyleBackColor = true;
-                btnSaveChoiceFilter[i].Visible = true;
-
-                pnlFilter[i].Controls.Add(btnSaveChoiceFilter[i]);
-
-                // Отримуємо кількість значень по фільтру
-                CountChildrenOfFilter = childrensItemFilter.Count();
-                // Задаємо висоту панелі виведення чекбоксів
-                pnlFilter[i].Height = 2 * checkBoxHeight * (CountChildrenOfFilter - 1)
-                    + interval + btnSaveChoiceFilter[i].Height;
-                // Виводимо чекбокси
-                foreach (var item in childrensItemFilter)
-                {
-                    CheckBox chb = new CheckBox();
-                    chb.AutoSize = true;
-                    chb.Location = new System.Drawing.Point(1, dy1);
-                    chb.Size = new System.Drawing.Size(82, checkBoxHeight);
-                    chb.Text = item.ToString();
-                    chb.UseVisualStyleBackColor = true;
-                    pnlFilter[i].Controls.Add(chb);
-                    // Зміщуємо виведення наступного чекбокса на його висоту + інтервал
-                    dy1 = dy1 + checkBoxHeight + interval;
-                }
+            //    // Кнопка фільтра
+            //    Button[] btnFilter = new Button[countsFilters];
 
 
 
+            //    btnFilter[i] = new System.Windows.Forms.Button();
+            //    btnFilter[i].Location = new System.Drawing.Point(startX, startY + i*100);
+            //    btnFilter[i].Name = $"{btnFilter[i]}";
+            //    btnFilter[i].Size = new System.Drawing.Size(131, 38);
+            //    btnFilter[i].Text = $"{namesOfFilter[i]}";
+            //    btnFilter[i].UseVisualStyleBackColor = true;
+            //    Controls.Add(btnFilter[i]);
+            //    btnFilter[i].Click += new System.EventHandler(btnFilter_Click);
 
-            }
+            //    // Створюємо список дітей фільтра (витягуємо з БД)
+            //    List<string> childrensItemFilter = new List<string>();
+            //    var result = from x in GetListFilters()
+            //                 where x.Name == btnFilter[i].Text
+            //                 select x.Children;
+            //    foreach (var item in result)
+            //    {
+            //        foreach (var it in item)
+            //        {
+            //            childrensItemFilter.Add(it.Value);
+            //        }
+            //    }
+
+            //    // Отримуємо кількість значень по фільтру
+            //    CountChildrenOfFilter = childrensItemFilter.Count();
+
+            //    // Виводимо панель фільтра
+            //    pnlFilter[i] = new System.Windows.Forms.Panel();
+            //    pnlFilter[i].BackColor = System.Drawing.Color.Transparent;
+            //    pnlFilter[i].Location = new System.Drawing.Point(startX*2, startY + btnFilter[i].Height + interval);
+            //    pnlFilter[i].Name = $"{pnlFilter[i]}";
+            //    pnlFilter[i].Size = new System.Drawing.Size(173, 0);
+            //    Controls.Add(pnlFilter[i]);
+            //    pnlFilter[i].Visible = false;
+
+            //    // Виводимо кнопку "Зберегти вибрані значення чекбоксів"
+            //    btnSaveChoiceFilter[i] = new System.Windows.Forms.Button();
+            //    btnSaveChoiceFilter[i].Location = new Point(0, 2 * checkBoxHeight * (CountChildrenOfFilter - 1));
+            //    btnSaveChoiceFilter[i].Name = $"{btnSaveChoiceFilter[i]}";
+            //    btnSaveChoiceFilter[i].Size = new System.Drawing.Size(172, 29);
+            //    btnSaveChoiceFilter[i].Text = "Застосувати фільтр";
+            //    btnSaveChoiceFilter[i].UseVisualStyleBackColor = true;
+            //    btnSaveChoiceFilter[i].Visible = true;
+
+            //    // Додаємо кнопку збереження на панель чекбоксів
+            //    pnlFilter[i].Controls.Add(btnSaveChoiceFilter[i]);
+
+            //    //MessageBox.Show("Hello 2");
+
+            //    // Виводимо чекбокси
+            //    foreach (var item in childrensItemFilter)
+            //    {
+            //        CheckBox chb = new CheckBox();
+            //        chb.AutoSize = true;
+            //        chb.Location = new System.Drawing.Point(1, dy1);
+            //        chb.Size = new System.Drawing.Size(82, checkBoxHeight);
+            //        chb.Text = item.ToString();
+            //        chb.UseVisualStyleBackColor = true;
+            //        pnlFilter[i].Controls.Add(chb);
+            //        // Зміщуємо виведення наступного чекбокса на його висоту + інтервал
+            //        dy1 = dy1 + checkBoxHeight + interval;
+            //    }
 
 
+            //    // Обробка кліка кнопки фільтра
+            //    void btnFilter_Click(object sender, EventArgs e)
+            //    {
+            //        MessageBox.Show("Hello");
+            //        pnlFilter[i].Visible = true;
 
-            
+            //        // Задаємо висоту панелі виведення чекбоксів
+            //        //pnlFilter[i].Height = 2 * checkBoxHeight * (CountChildrenOfFilter - 1)
+            //        //    + interval + btnSaveChoiceFilter[i].Height;
+            //    }
 
+            //}
 
             //foreach (var item in namesOfFilter)
             //{
             //    MessageBox.Show(item.ToString());
             //}
+            #endregion
 
+            this.AutoScroll = true;
 
 
             #region Old buttons and panels
-            //// Виводимо кнопки для фільтра брендів і для його очищення
-            //btnFilterBrand.Location = new Point(startX, startY);
-            //btnClosedBrand.Location = new Point(startX + btnFilterBrand.Width + interval, startY);
+            // Виводимо кнопки для фільтра брендів і для його очищення
+            btnFilterBrand.Location = new Point(startX, startY);
+            btnClosedBrand.Location = new Point(startX + btnFilterBrand.Width + interval, startY);
 
-            //// Виводимо панель фільтрів по бренду
-            //pnlFilterBrand.Location = new Point(startX, startY + btnFilterBrand.Height + interval / 2);
-            //pnlFilterBrand.Height = 0;
+            // Виводимо панель фільтрів по бренду
+            pnlFilterBrand.Location = new Point(startX, startY + btnFilterBrand.Height + interval / 2);
+            pnlFilterBrand.Height = 0;
 
-            //// Виводимо кнопки для фільтра по потужності і для його очищення
-            //btnFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval);
-            //btnClosedPower.Location = new Point(startX + btnFilterPower.Width + interval, 
-            //    startY + btnClosedBrand.Height + interval);
+            // Виводимо кнопки для фільтра по потужності і для його очищення
+            btnFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval);
+            btnClosedPower.Location = new Point(startX + btnFilterPower.Width + interval,
+                startY + btnClosedBrand.Height + interval);
 
-            //// Виводимо панель фільтрів по потужності
-            //pnlFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height 
-            //    + interval + btnFilterPower.Height + interval / 2);
-            //pnlFilterPower.Height = 0;
+            // Виводимо панель фільтрів по потужності
+            pnlFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height
+                + interval + btnFilterPower.Height + interval / 2);
+            pnlFilterPower.Height = 0;
             #endregion
 
         }
@@ -198,133 +213,133 @@ namespace Rozetka
         /// Зсунення вниз кнопки Потужність
         /// </summary>
         /// <param name="move"></param>
-        //private void MoveFilterPower(bool move)
-        //{
-        //    // Якщо передаємо в параметрі тру, то зсовуємо кнопку вниз
-        //    if (move)
-        //    {
-        //        btnFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + pnlFilterBrand.Height);
-        //        btnClosedPower.Location = new Point(startX + btnFilterPower.Width + interval, startY + btnClosedBrand.Height + interval + pnlFilterBrand.Height);
-        //        pnlFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + pnlFilterBrand.Height + btnFilterPower.Height + interval / 2);
-        //        pnlFilterPower.Height = 0;
-        //    }
-        //    // інакше лишаємо її на місці
-        //    else
-        //    {
-        //        btnFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval);
-        //        btnClosedPower.Location = new Point(startX + btnFilterPower.Width + interval, startY + btnClosedBrand.Height + interval);
-        //        pnlFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + btnFilterPower.Height + interval / 2);
-        //        pnlFilterPower.Height = 0;
-        //    }
-        //}
+        private void MoveFilterPower(bool move)
+        {
+            // Якщо передаємо в параметрі тру, то зсовуємо кнопку вниз
+            if (move)
+            {
+                btnFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + pnlFilterBrand.Height);
+                btnClosedPower.Location = new Point(startX + btnFilterPower.Width + interval, startY + btnClosedBrand.Height + interval + pnlFilterBrand.Height);
+                pnlFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + pnlFilterBrand.Height + btnFilterPower.Height + interval / 2);
+                pnlFilterPower.Height = 0;
+            }
+            // інакше лишаємо її на місці
+            else
+            {
+                btnFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval);
+                btnClosedPower.Location = new Point(startX + btnFilterPower.Width + interval, startY + btnClosedBrand.Height + interval);
+                pnlFilterPower.Location = new Point(startX, startY + btnFilterBrand.Height + interval + btnFilterPower.Height + interval / 2);
+                pnlFilterPower.Height = 0;
+            }
+        }
         #endregion
 
         #region btnFilterBrand_Click
-        //private void btnFilterBrand_Click(object sender, EventArgs e)
-        //{
-        //    // Очищаємо панель чекбоксів
-        //    pnlFilterBrand.Controls.Clear();
-        //    // Перший чекбокс буде виводитись з нульової позиції
-        //    dy1 = 0;
-        //    // Отримуємо з БД список значень по даному фільтру
-        //    List<string> checksBrand = new List<string>();
-        //    var filters = GetListFilters();
-        //    var result = from x in filters
-        //                 where x.Name == btnFilterBrand.Text
-        //                 select x.Children;
-        //    foreach (var item in result)
-        //    {
-        //        foreach (var it in item)
-        //        {
-        //            checksBrand.Add(it.Value);
-        //        }
-        //    }
-        //    // Отримуємо кількість значень по фільтру
-        //    CountOfBrands = checksBrand.Count();
-        //    // Задаємо висоту панелі виведення чекбоксів
-        //    pnlFilterBrand.Height = 2 * checkBoxHeight * (CountOfBrands - 1) 
-        //        + interval + btnSaveChoiceBrand.Height;
-        //    // Виводимо чекбокси
-        //    foreach (var item in checksBrand)
-        //    {
-        //        CheckBox chb = new CheckBox();
-        //        chb.AutoSize = true;
-        //        chb.Location = new System.Drawing.Point(1, dy1);
-        //        chb.Size = new System.Drawing.Size(82, checkBoxHeight);
-        //        chb.Text = item.ToString();
-        //        chb.UseVisualStyleBackColor = true;
-        //        pnlFilterBrand.Controls.Add(chb);
-        //        // Зміщуємо виведення наступного чекбокса на його висоту + інтервал
-        //        dy1 = dy1 + checkBoxHeight + interval;
-        //    }
-        //    // Відображуємо кнопку Застосувати фільтр 
-        //    btnSaveChoiceBrand.Visible = true;
-        //    btnSaveChoiceBrand.Location = new Point(0, 2 * checkBoxHeight * (CountOfBrands - 1));
-        //    pnlFilterBrand.Controls.Add(btnSaveChoiceBrand);
-        //    // Зсовуємо наступну кнопку вниз
-        //    MoveFilterPower(true);
-        //}
-        //private void btnClosedBrand_Click(object sender, EventArgs e)
-        //{
-        //    // Очищуємо панель з чекбоксами
-        //    pnlFilterBrand.Controls.Clear();
-        //    // Ховаємо панель чекбоксів
-        //    pnlFilterBrand.Height = 0;
-        //    // Підтягуємо наступну кнопку назад
-        //    MoveFilterPower(false);
-        //}
+        private void btnFilterBrand_Click(object sender, EventArgs e)
+        {
+            // Очищаємо панель чекбоксів
+            pnlFilterBrand.Controls.Clear();
+            // Перший чекбокс буде виводитись з нульової позиції
+            dy1 = 0;
+            // Отримуємо з БД список значень по даному фільтру
+            List<string> checksBrand = new List<string>();
+            var filters = GetListFilters();
+            var result = from x in filters
+                         where x.Name == btnFilterBrand.Text
+                         select x.Children;
+            foreach (var item in result)
+            {
+                foreach (var it in item)
+                {
+                    checksBrand.Add(it.Value);
+                }
+            }
+            // Отримуємо кількість значень по фільтру
+            CountOfBrands = checksBrand.Count();
+            // Задаємо висоту панелі виведення чекбоксів
+            pnlFilterBrand.Height = 2 * checkBoxHeight * (CountOfBrands - 1)
+                + interval + btnSaveChoiceBrand.Height;
+            // Виводимо чекбокси
+            foreach (var item in checksBrand)
+            {
+                CheckBox chb = new CheckBox();
+                chb.AutoSize = true;
+                chb.Location = new System.Drawing.Point(1, dy1);
+                chb.Size = new System.Drawing.Size(82, checkBoxHeight);
+                chb.Text = item.ToString();
+                chb.UseVisualStyleBackColor = true;
+                pnlFilterBrand.Controls.Add(chb);
+                // Зміщуємо виведення наступного чекбокса на його висоту + інтервал
+                dy1 = dy1 + checkBoxHeight + interval;
+            }
+            // Відображуємо кнопку Застосувати фільтр 
+            btnSaveChoiceBrand.Visible = true;
+            btnSaveChoiceBrand.Location = new Point(0, 2 * checkBoxHeight * (CountOfBrands - 1));
+            pnlFilterBrand.Controls.Add(btnSaveChoiceBrand);
+            // Зсовуємо наступну кнопку вниз
+            MoveFilterPower(true);
+        }
+        private void btnClosedBrand_Click(object sender, EventArgs e)
+        {
+            // Очищуємо панель з чекбоксами
+            pnlFilterBrand.Controls.Clear();
+            // Ховаємо панель чекбоксів
+            pnlFilterBrand.Height = 0;
+            // Підтягуємо наступну кнопку назад
+            MoveFilterPower(false);
+        }
         #endregion
 
         #region btnFilterPower_Click
-        //private void btnFilterPower_Click(object sender, EventArgs e)
-        //{
-        //    // Очищаємо панель чекбоксів
-        //    pnlFilterPower.Controls.Clear();
-        //    // Перший чекбокс буде виводитись з нульової позиції
-        //    dy2 = 0;
-        //    // Отримуємо з БД список значень по даному фільтру
-        //    List<string> checksPower = new List<string>();
-        //    var filters = GetListFilters();
-        //    var result = from x in filters
-        //                 where x.Name == btnFilterPower.Text
-        //                 select x.Children;
-        //    foreach (var items in result)
-        //    {
-        //        foreach (var it in items)
-        //        {
-        //            checksPower.Add(it.Value);
-        //        }
-        //    }
-        //    // Отримуємо кількість значень по фільтру
-        //    CountOfPowers = checksPower.Count();
-        //    // Задаємо висоту панелі виведення чекбоксів
-        //    pnlFilterPower.Height = 2 * checkBoxHeight * (CountOfPowers - 1) 
-        //        + interval + btnSaveChoicePower.Height;
-        //    // Виводимо чекбокси
-        //    foreach (var item in checksPower)
-        //    {
-        //        CheckBox chb = new CheckBox();
-        //        chb.AutoSize = true;
-        //        chb.Location = new System.Drawing.Point(1, dy2);
-        //        chb.Size = new System.Drawing.Size(82, checkBoxHeight);
-        //        chb.Text = item.ToString();
-        //        chb.UseVisualStyleBackColor = true;
-        //        pnlFilterPower.Controls.Add(chb);
-        //        // Зміщуємо виведення наступного чекбокса на його висоту + інтервал
-        //        dy2 = dy2 + checkBoxHeight + interval;
-        //    }
-        //    // Відображуємо кнопку Застосувати фільтр 
-        //    btnSaveChoicePower.Visible = true;
-        //    btnSaveChoicePower.Location = new Point(0, 2 * checkBoxHeight * (CountOfPowers - 1));
-        //    pnlFilterPower.Controls.Add(btnSaveChoicePower);
-        //}
-        //private void btnClosedPower_Click(object sender, EventArgs e)
-        //{
-        //    // Очищуємо панель з чекбоксами
-        //    pnlFilterPower.Controls.Clear();
-        //    // Ховаємо панель чекбоксів
-        //    pnlFilterPower.Height = 0;
-        //}
+        private void btnFilterPower_Click(object sender, EventArgs e)
+        {
+            // Очищаємо панель чекбоксів
+            pnlFilterPower.Controls.Clear();
+            // Перший чекбокс буде виводитись з нульової позиції
+            dy2 = 0;
+            // Отримуємо з БД список значень по даному фільтру
+            List<string> checksPower = new List<string>();
+            var filters = GetListFilters();
+            var result = from x in filters
+                         where x.Name == btnFilterPower.Text
+                         select x.Children;
+            foreach (var items in result)
+            {
+                foreach (var it in items)
+                {
+                    checksPower.Add(it.Value);
+                }
+            }
+            // Отримуємо кількість значень по фільтру
+            CountOfPowers = checksPower.Count();
+            // Задаємо висоту панелі виведення чекбоксів
+            pnlFilterPower.Height = 2 * checkBoxHeight * (CountOfPowers - 1)
+                + interval + btnSaveChoicePower.Height;
+            // Виводимо чекбокси
+            foreach (var item in checksPower)
+            {
+                CheckBox chb = new CheckBox();
+                chb.AutoSize = true;
+                chb.Location = new System.Drawing.Point(1, dy2);
+                chb.Size = new System.Drawing.Size(82, checkBoxHeight);
+                chb.Text = item.ToString();
+                chb.UseVisualStyleBackColor = true;
+                pnlFilterPower.Controls.Add(chb);
+                // Зміщуємо виведення наступного чекбокса на його висоту + інтервал
+                dy2 = dy2 + checkBoxHeight + interval;
+            }
+            // Відображуємо кнопку Застосувати фільтр 
+            btnSaveChoicePower.Visible = true;
+            btnSaveChoicePower.Location = new Point(0, 2 * checkBoxHeight * (CountOfPowers - 1));
+            pnlFilterPower.Controls.Add(btnSaveChoicePower);
+        }
+        private void btnClosedPower_Click(object sender, EventArgs e)
+        {
+            // Очищуємо панель з чекбоксами
+            pnlFilterPower.Controls.Clear();
+            // Ховаємо панель чекбоксів
+            pnlFilterPower.Height = 0;
+        }
         #endregion
         private List<FNameViewModel> GetListFilters()
         {
