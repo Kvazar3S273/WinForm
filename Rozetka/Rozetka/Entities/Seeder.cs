@@ -157,28 +157,23 @@ namespace Rozetka.Entities
             #region Filters
             Filter[] filters =
             {
-                new Filter { FilterNameId = 1, FilterValueId = 2, ProductId = 1},
-                new Filter { FilterNameId = 2, FilterValueId = 6, ProductId = 1},
-                new Filter { FilterNameId = 3, FilterValueId = 12, ProductId = 1},
+                new Filter { FilterNameId = 1, FilterValueId = 1, ProductId = 1},
+                new Filter { FilterNameId = 2, FilterValueId = 9, ProductId = 1},
 
-                new Filter { FilterNameId = 1, FilterValueId = 2, ProductId = 2},
-                new Filter { FilterNameId = 2, FilterValueId = 7, ProductId = 2},
-                new Filter { FilterNameId = 3, FilterValueId = 12, ProductId = 2},
+                new Filter { FilterNameId = 1, FilterValueId = 1, ProductId = 2},
+                new Filter { FilterNameId = 2, FilterValueId = 10, ProductId = 2},
 
-                new Filter { FilterNameId = 1, FilterValueId = 1, ProductId = 3},
-                new Filter { FilterNameId = 2, FilterValueId = 7, ProductId = 3},
-                new Filter { FilterNameId = 3, FilterValueId = 14, ProductId = 3},
+                new Filter { FilterNameId = 1, FilterValueId = 2, ProductId = 3},
+                new Filter { FilterNameId = 2, FilterValueId = 8, ProductId = 3},
 
                 new Filter { FilterNameId = 1, FilterValueId = 3, ProductId = 4},
-                new Filter { FilterNameId = 2, FilterValueId = 8, ProductId = 4},
+                new Filter { FilterNameId = 2, FilterValueId = 7, ProductId = 4},
 
-                new Filter { FilterNameId = 1, FilterValueId = 5, ProductId = 5},
-                new Filter { FilterNameId = 2, FilterValueId = 7, ProductId = 5},
-                new Filter { FilterNameId = 3, FilterValueId = 12, ProductId = 5},
+                new Filter { FilterNameId = 1, FilterValueId = 4, ProductId = 5},
+                new Filter { FilterNameId = 2, FilterValueId = 11, ProductId = 5},
 
-                new Filter { FilterNameId = 1, FilterValueId = 4, ProductId = 6},
-                new Filter { FilterNameId = 2, FilterValueId = 9, ProductId = 6},
-                new Filter { FilterNameId = 3, FilterValueId = 11, ProductId = 6}
+                new Filter { FilterNameId = 1, FilterValueId = 5, ProductId = 6},
+                new Filter { FilterNameId = 2, FilterValueId = 14, ProductId = 6},
             };
             foreach (var item in filters)
             {

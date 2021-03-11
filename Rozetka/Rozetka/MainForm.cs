@@ -1,4 +1,5 @@
-﻿using Rozetka.Entities;
+﻿using LinqKit;
+using Rozetka.Entities;
 using Rozetka.Models;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,11 @@ namespace Rozetka
         /// </summary>
         public int btnWidth { get; set; } = 125;
 
+        /// <summary>
+        /// Список обраних елементів
+        /// </summary>
+        private List<int> category = new List<int>();
+
         public MainForm()
         {
             InitializeComponent();
@@ -95,23 +101,22 @@ namespace Rozetka
             }
             count = names.Count;
 
-            //Panel filterPanel = new Panel();
-            //filterPanel.Size = new Size(200, 480);
-            //filterPanel.Location = new Point(0, 0);
-            //filterPanel.BackColor = Color.Gray;
-            //filterPanel.AutoScroll = true;
-            //Controls.Add(filterPanel);
+            Panel filterPanel = new Panel();
+            filterPanel.Size = new Size(145, 460);
+            filterPanel.Location = new Point(0, 0);
+            filterPanel.BackColor = Color.Transparent;
+            Controls.Add(filterPanel);
 
             for (int i = 0; i < count; i++)
             {
-                
+
                 Button[] btnNameFilter = new Button[count];
                 btnNameFilter[i] = new Button();
                 btnNameFilter[i].Location = new Point(X, Y + i * 50);
                 btnNameFilter[i].Name = $"btnNameFilter{i}";
                 btnNameFilter[i].Size = new Size(btnWidth, btnHeight);
                 btnNameFilter[i].Text = names[i];
-                Controls.Add(btnNameFilter[i]);
+                filterPanel.Controls.Add(btnNameFilter[i]);
                 btnNameFilter[i].Click += new EventHandler(btnNameFilter_Click);
 
                 void btnNameFilter_Click(object sender, EventArgs e)
@@ -120,11 +125,17 @@ namespace Rozetka
 
                     if (kol % 2 != 0)
                     {
+                    //filterPanel.AutoScroll = true;
                         pan = new Panel();
                         List<string> child = new List<string>();
                         var res_child = from b in collection
                                         where b.Name == (sender as Button).Text
                                         select b.Children;
+
+                        if(res_child == null)
+                        {
+                            MessageBox.Show("Відсутні елементи для відображення");
+                        }
 
                         foreach (var item in res_child)
                         {
@@ -138,7 +149,9 @@ namespace Rozetka
                         pan.Location = new Point(X, btnHeight * i + interval * 2);
                         pan.Size = new Size(btnWidth, 0);
                         pan.BackColor = Color.Transparent;
-                        Controls.Add(pan);
+                        //pan.AutoScroll = true;
+
+                        filterPanel.Controls.Add(pan);
                         pan.Visible = true;
                         dy = 0;
                         foreach (var item in child)
@@ -148,6 +161,8 @@ namespace Rozetka
                             chb.Location = new System.Drawing.Point(1, dy);
                             chb.Size = new System.Drawing.Size(82, chbHeight);
                             chb.Text = item.ToString();
+                            chb.CheckedChanged += CheckChangedHandler;
+                            chb.Tag = item;
                             chb.UseVisualStyleBackColor = true;
                             pan.Controls.Add(chb);
                             // Зміщуємо виведення наступного чекбокса на його висоту + інтервал
@@ -176,6 +191,28 @@ namespace Rozetka
             }
 
             //this.AutoScroll = true;
+        }
+
+        /// <summary>
+        /// Список обраних елементів фільтра
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="ea"></param>
+        private void CheckChangedHandler(object sender, EventArgs ea)
+        {
+
+            CheckBox cb = sender as CheckBox;
+            var cat2 = GetListFilters();
+            var filterNameValue = from x in _context.FilterNameGroups.AsQueryable() select x;
+            var res = from y in filterNameValue
+                      where y.FilterValueOf.Name == cb.Text
+                      select y.FilterValueId;
+
+            foreach (var y in res)
+            {
+                category.Add(y);
+            }
+
         }
 
         private List<FNameViewModel> GetListFilters()
@@ -229,6 +266,54 @@ namespace Rozetka
         {
             AddValueForm avf = new AddValueForm();
             avf.ShowDialog();
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            var filtersList = GetListFilters();
+            int[] filterValueSearchList = category.ToArray();
+
+            var query = _context
+                    .Products
+                    .AsQueryable();
+
+            foreach (var fName in filtersList)
+            {
+                int countFilter = 0; //Кількість співпадінь у даній групі фільтрів
+                var predicate = PredicateBuilder.False<Product>();
+                foreach (var fValue in fName.Children)
+                {
+                    for (int i = 0; i < filterValueSearchList.Length; i++)
+                    {
+                        var idV = fValue.Id; //id - значення фільтра
+                        if (filterValueSearchList[i] == idV) //маємо співпадіння
+                        {
+                            predicate = predicate
+                                .Or(p => p.Filters
+                                    .Any(f => f.FilterValueId == idV));
+                            countFilter++;
+                        }
+                    }
+                }
+                if (countFilter != 0)
+                    query = query.Where(predicate);
+            }
+
+            var listProduct = query.ToList();
+            dgvProducts.Rows.Clear();
+            foreach (var p in listProduct)
+            {
+                object[] row =
+                {
+                    p.Id,
+                    p.Name,
+                    p.Price,
+                    null
+                };
+                dgvProducts.Rows.Add(row);
+            }
+
+
         }
     }
 }
