@@ -6,15 +6,25 @@ using System.Text;
 
 namespace Rozetka.Entities
 {
-    [Table("tblFilterValues")]
-    public class FilterValue
+    [Table("tblProduct")]
+    public class Product
     {
         [Key]
         public int Id { get; set; }
-        
+
         [Required, StringLength(250)]
         public string Name { get; set; }
-        public virtual ICollection<FilterNameGroup> FilterNameGroups { get; set; }
+
+        [Column(TypeName = "decimal(7,2)")]
+        public decimal? Price { get; set; }
+
+
+        [StringLength(250)]
+        public string Image { get; set; }
+
+        [Required, StringLength(250)]
+        public string UniqueName { get; set; }
+
         public virtual ICollection<Filter> Filters { get; set; }
     }
 }
