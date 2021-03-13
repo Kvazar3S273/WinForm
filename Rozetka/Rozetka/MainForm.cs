@@ -19,69 +19,36 @@ namespace Rozetka
         public IQueryable<FilterName> filter { get; set; }
 
         /// <summary>
-        /// Інтервал між графічними елементами в пікселях
+        /// Інтервал між групбоксами
         /// </summary>
-        const int interval = 8;
-        
-        /// <summary>
-        /// Зміщення по осі У для першого фільтра
-        /// </summary>
-        public int dy { get; set; } 
-       
-        /// <summary>
-        /// Кількість елементів у Лісті значень імен(кількість імен фільтрів)
-        /// </summary>
-        public int count { get; set; }
-        
-        /// <summary>
-        /// Кількість дочірніх елементів
-        /// </summary>
-        public int countChild { get; set; }
-
-        /// <summary>
-        /// Початкова координата по горизонталі
-        /// </summary>
-        int X { get; set; } = 10;
-
-        /// <summary>
-        /// Початкова координата по вертикалі
-        /// </summary>
-        int Y { get; set; } = 10;
-
-        /// <summary>
-        /// Висота одного чекбокса
-        /// </summary>
-        const int chbHeight = 15;
+        const int gb_interval = 5;
 
         /// <summary>
         /// Кількість натискань миші (для розгортання фільтра)
         /// </summary>
         int kol = 0;
 
-        Panel pan;
-        //Panel filterPanel;
+        /// <summary>
+        /// Відступ по довжині між  групбокса і чекедлістбокса всередині нього
+        /// </summary>
+        public int checkHeight { get; set; } = 30;
 
         /// <summary>
-        /// Висота кнопки
+        /// Відступ по ширині між шириною групбокса і чекедлістбокса всередині нього.
         /// </summary>
-        public int btnHeight { get; set; } = 48;
-
-        /// <summary>
-        /// Ширина кнопки
-        /// </summary>
-        public int btnWidth { get; set; } = 125;
+        public int chWidth { get; set; } = 20;
+        public int height { get; set; } = 50;
+        public int width { get; set; } = 220;
 
         /// <summary>
         /// Список обраних елементів
         /// </summary>
-        private List<int> category = new List<int>();
+        private List<int> category { get; set; }
 
         public MainForm()
         {
             InitializeComponent();
             _context = new EFContext();
-            //Seeder.SeedDatabase(_context);
-            LoadForm();
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -92,127 +59,80 @@ namespace Rozetka
         }
         private void LoadForm()
         {
+            GroupBox gbNameFilter;
+            CheckedListBox cbValuesFilter;
+
             var collection = GetListFilters();
-            List<string> names = new List<string>();
+            int hy = 15;
+
+            //Отримуємо множину значень імен
             var result = from b in collection select b.Name;
-            foreach (var item in result)
+
+            foreach (var item in collection)
             {
-                names.Add(item);
-            }
-            count = names.Count;
+                gbNameFilter = new GroupBox();
+                cbValuesFilter = new CheckedListBox();
+                gbNameFilter.SuspendLayout();
 
-            Panel filterPanel = new Panel();
-            filterPanel.Size = new Size(145, 460);
-            filterPanel.Location = new Point(0, 0);
-            filterPanel.BackColor = Color.Transparent;
-            Controls.Add(filterPanel);
+                gbNameFilter.Controls.Add(cbValuesFilter);
+                gbNameFilter.Location = new Point(10, hy);
+                gbNameFilter.Name = $"gbNameFilter{item.Name}";
+                gbNameFilter.Size = new Size(width, height);
+                gbNameFilter.Text = item.Name;
+                gbNameFilter.Tag = item;
+                gbNameFilter.Click += new EventHandler(gbNameFilter_Click);
 
-            for (int i = 0; i < count; i++)
-            {
+                cbValuesFilter.AutoSize = true;
 
-                Button[] btnNameFilter = new Button[count];
-                btnNameFilter[i] = new Button();
-                btnNameFilter[i].Location = new Point(X, Y + i * 50);
-                btnNameFilter[i].Name = $"btnNameFilter{i}";
-                btnNameFilter[i].Size = new Size(btnWidth, btnHeight);
-                btnNameFilter[i].Text = names[i];
-                filterPanel.Controls.Add(btnNameFilter[i]);
-                btnNameFilter[i].Click += new EventHandler(btnNameFilter_Click);
-
-                void btnNameFilter_Click(object sender, EventArgs e)
+                // Координати розміщення чекедлістбокса всередині групбокса
+                cbValuesFilter.Location = new System.Drawing.Point(10, 25);
+                
+                foreach (var ch in item.Children)
                 {
-                    kol++;
+                    // Додаємо до чекедлістбокса назви дітей
+                    cbValuesFilter.Items.Add(ch);
+                };
 
-                    if (kol % 2 != 0)
-                    {
-                    //filterPanel.AutoScroll = true;
-                        pan = new Panel();
-                        List<string> child = new List<string>();
-                        var res_child = from b in collection
-                                        where b.Name == (sender as Button).Text
-                                        select b.Children;
+                // Новий розмір групбокса
+                gbNameFilter.Size = new Size(cbValuesFilter.Size.Width + chWidth, cbValuesFilter.Size.Height + checkHeight);
 
-                        if(res_child == null)
-                        {
-                            MessageBox.Show("Відсутні елементи для відображення");
-                        }
+                // Інтервал по висоті між групбоксами
+                hy += gbNameFilter.Height + gb_interval;
 
-                        foreach (var item in res_child)
-                        {
-                            foreach (var it in item)
-                            {
-                                child.Add(it.Value);
-                            }
-                        }
-                        countChild = child.Count();
-                       
-                        pan.Location = new Point(X, btnHeight * i + interval * 2);
-                        pan.Size = new Size(btnWidth, 0);
-                        pan.BackColor = Color.Transparent;
-                        //pan.AutoScroll = true;
-
-                        filterPanel.Controls.Add(pan);
-                        pan.Visible = true;
-                        dy = 0;
-                        foreach (var item in child)
-                        {
-                            CheckBox chb = new CheckBox();
-                            chb.AutoSize = true;
-                            chb.Location = new System.Drawing.Point(1, dy);
-                            chb.Size = new System.Drawing.Size(82, chbHeight);
-                            chb.Text = item.ToString();
-                            chb.CheckedChanged += CheckChangedHandler;
-                            chb.Tag = item;
-                            chb.UseVisualStyleBackColor = true;
-                            pan.Controls.Add(chb);
-                            // Зміщуємо виведення наступного чекбокса на його висоту + інтервал
-                            dy = dy + chbHeight + interval;
-                        }
-                        var height = (chbHeight + interval) * countChild;
-                        pan.Height = height;
-                    }
-                    else
-                    {
-                        pan.Controls.Clear();
-                        for (int i = 0; i < pan.Controls.Count; i++)
-                        {
-                            pan.Controls[i].Enabled = false;
-                            pan.Controls[i].Dispose();
-                            i--;
-                        }
-
-                        if (pan.Controls.Count == 0)
-                        {
-                            Controls.Remove(pan);
-                            pan.Dispose();
-                        }
-                    }
-                }
+                // Додаємо групбокс на форму
+                Controls.Add(gbNameFilter);
             }
-
-            //this.AutoScroll = true;
         }
 
-        /// <summary>
-        /// Список обраних елементів фільтра
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="ea"></param>
-        private void CheckChangedHandler(object sender, EventArgs ea)
+        void gbNameFilter_Click(object sender, EventArgs e)
         {
+            var name = (sender as GroupBox);
+            var res_list = name.Controls.OfType<CheckedListBox>().FirstOrDefault();
 
-            CheckBox cb = sender as CheckBox;
-            var cat2 = GetListFilters();
-            var filterNameValue = from x in _context.FilterNameGroups.AsQueryable() select x;
-            var res = from y in filterNameValue
-                      where y.FilterValueOf.Name == cb.Text
-                      select y.FilterValueId;
+            //Лічильник натискань кнопки
+            kol++;
 
-            foreach (var y in res)
+            if (kol % 2 != 0)
             {
-                category.Add(y);
+                var Height = res_list.Height + 25;
+                name.Height = Height;
+            }
+            else
+            {
+                var Height = 25;
+                name.Height = Height;
             }
 
+            int item_y = 15;
+            
+            // Обхід по всім контролам типу Групбокс
+            foreach (var item in Controls.OfType<GroupBox>())
+            {
+                // Нові координати для кожного групбокса
+                item.Location = new Point(item.Location.X, item_y);
+                // Зміна координати розміщення групбокса по осі Y,відповідно до висоти інших групбоксів
+                item_y += item.Size.Height + 5;
+            }
         }
 
         private List<FNameViewModel> GetListFilters()
@@ -247,11 +167,11 @@ namespace Rozetka
                              Id = fName.Key.Id,
                              Name = fName.Key.Name,
                              Children = fName.Select(x =>
-                                   new FValueViewModel
+                                   new FilterValueModel
                                    {
                                        Id = x.FValueId,
-                                       Value = x.FValue
-                                   }).OrderBy(l => l.Value).ToList()
+                                       Name = x.FValue
+                                   }).OrderBy(l => l.Name).ToList()
                          };
 
             return result.ToList();
@@ -270,27 +190,42 @@ namespace Rozetka
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            var filtersList = GetListFilters();
-            int[] filterValueSearchList = category.ToArray();
+            List<int> values = new List<int>();
+            var list_items = Controls.OfType<GroupBox>();
+            foreach (var groupBox in list_items)
+            {
+                var res_check = groupBox.Controls.OfType<CheckedListBox>().FirstOrDefault().CheckedItems;
+                foreach (var listItem in res_check)
+                {
+                    var data = listItem as FilterValueModel;
+                    values.Add(data.Id);
+                }
+            }
+
+            var filter_list = GetListFilters();
+            int[] filter_int = values.ToArray();
 
             var query = _context
                     .Products
                     .AsQueryable();
 
-            foreach (var fName in filtersList)
+            foreach (var fName in filter_list)
             {
-                int countFilter = 0; //Кількість співпадінь у даній групі фільтрів
+                int countFilter = 0;
+
                 var predicate = PredicateBuilder.False<Product>();
+
                 foreach (var fValue in fName.Children)
                 {
-                    for (int i = 0; i < filterValueSearchList.Length; i++)
+                    for (int i = 0; i < filter_int.Length; i++)
                     {
-                        var idV = fValue.Id; //id - значення фільтра
-                        if (filterValueSearchList[i] == idV) //маємо співпадіння
+                        var value_Id = fValue.Id;
+
+                        if (filter_int[i] == value_Id)
                         {
                             predicate = predicate
                                 .Or(p => p.Filters
-                                    .Any(f => f.FilterValueId == idV));
+                                    .Any(f => f.FilterValueId == value_Id));
                             countFilter++;
                         }
                     }
@@ -312,8 +247,6 @@ namespace Rozetka
                 };
                 dgvProducts.Rows.Add(row);
             }
-
-
         }
     }
 }

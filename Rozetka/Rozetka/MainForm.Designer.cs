@@ -41,7 +41,7 @@ namespace Rozetka
             // 
             // btnAddFilterValue
             // 
-            this.btnAddFilterValue.Location = new System.Drawing.Point(149, 12);
+            this.btnAddFilterValue.Location = new System.Drawing.Point(547, 12);
             this.btnAddFilterValue.Name = "btnAddFilterValue";
             this.btnAddFilterValue.Size = new System.Drawing.Size(173, 37);
             this.btnAddFilterValue.TabIndex = 7;
@@ -57,10 +57,10 @@ namespace Rozetka
             this.ColName,
             this.ColPrice,
             this.ColImage});
-            this.dgvProducts.Location = new System.Drawing.Point(149, 55);
+            this.dgvProducts.Location = new System.Drawing.Point(164, 55);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(571, 436);
+            this.dgvProducts.Size = new System.Drawing.Size(556, 548);
             this.dgvProducts.TabIndex = 8;
             // 
             // ColId
@@ -88,11 +88,11 @@ namespace Rozetka
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(12, 453);
+            this.btnFind.Location = new System.Drawing.Point(12, 565);
             this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(125, 38);
+            this.btnFind.Size = new System.Drawing.Size(146, 38);
             this.btnFind.TabIndex = 9;
-            this.btnFind.Text = "Застосувати";
+            this.btnFind.Text = "Застосувати фільтри";
             this.btnFind.UseVisualStyleBackColor = true;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
@@ -100,7 +100,7 @@ namespace Rozetka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 503);
+            this.ClientSize = new System.Drawing.Size(732, 615);
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.dgvProducts);
             this.Controls.Add(this.btnAddFilterValue);
